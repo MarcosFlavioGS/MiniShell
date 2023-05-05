@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/04/20 18:53:49 by mflavio-         ###   ########.fr       */
+/*   Created: 2022/10/18 05:22:44 by mflavio-          #+#    #+#             */
+/*   Updated: 2022/10/21 03:12:17 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-# define MINI_SHELL_H
-# include "libft/libft.h"
-#endif
+int	ft_numlen(unsigned long int num)
+{
+	int	count;
+
+	count = 0;
+	if (num <= 0)
+		count++;
+	while (num != 0)
+	{
+		num = num / 10;
+		count++;
+	}
+	return (count);
+}

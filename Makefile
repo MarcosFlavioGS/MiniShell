@@ -10,10 +10,34 @@
 #                                                                              #
 # **************************************************************************** #
 
-all:
+NAME = mini_shell
+
+FLAGS = -Wall -Wextra -Werror
+
+SRC = 	src/main.c
+
+OBJ = ${SRC:src/%.c=obj/%.o}
+
+LIBFT = libft/libft.a
+
+all: ${LIBFT} ${NAME}
+
+${LIBFT}:
+	$(MAKE) -C libft/
+
+${NAME}: ${OBJ} ${LIBFT}
+	gcc ${FLAGS} -o $@ $^
+
+obj/%.o: src/%.c
+	mkdir -p obj
+	gcc ${FLAGS} -c $< -o $@
 
 clean:
+	rm -rf obj
+	$(MAKE) -C libft/ clean
 
 fclean: clean
+	rm -rf ${NAME}
+	$(MAKE) -C libft/ fclean
 
 re: fclean all

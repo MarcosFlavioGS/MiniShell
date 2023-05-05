@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/04/20 18:53:49 by mflavio-         ###   ########.fr       */
+/*   Created: 2022/09/27 00:16:26 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/01/03 15:40:45 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-# define MINI_SHELL_H
-# include "libft/libft.h"
-#endif
+#include "libft.h"
+
+int	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, sizeof(char));
+	return (1);
+}
