@@ -12,9 +12,16 @@
 
 #include "../mini_shell.h"
 
-int	main(int argc, char **argv)
+int	main(void)
 {
-	if (argc > 1)
-		ft_printf("Hello %s !\n", *++argv);
+	char *line;
+
+	while (1)
+	{
+		line = readline("$> ");
+		if (ft_strncmp(line, "exit", 5) == 0)
+			break;
+		printf("%s\n", line);
+	}
 	return (0);
 }

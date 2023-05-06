@@ -12,7 +12,7 @@
 
 NAME = mini_shell
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -lreadline
 
 SRC = 	src/main.c
 
