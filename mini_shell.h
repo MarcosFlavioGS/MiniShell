@@ -13,7 +13,20 @@
 #ifndef MINI_SHELL_H
 # define MINI_SHELL_H
 # include "libft/libft.h"
+# include <string.h>
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+typedef struct s_token
+{
+    char    *content;
+    int     type;
+}   t_token;
+
+typedef struct s_list_of_tokens {
+    t_token                 *token;
+    struct s_list_of_tokens *next;
+}   t_list_of_tokens;
+
 #endif
