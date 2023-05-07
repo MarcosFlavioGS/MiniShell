@@ -12,9 +12,9 @@
 
 #include "../mini_shell.h"
 
-static void clear_list(t_list_of_tokens *tokens)
+static void clear_list(t_tokenized *tokens)
 {
-    t_list_of_tokens *tmp;
+    t_tokenized *tmp;
 
     while (tokens)
     {
@@ -26,9 +26,9 @@ static void clear_list(t_list_of_tokens *tokens)
     }
 }
 
-void ft_echo(t_list_of_tokens **tokens)
+void ft_echo(t_tokenized **tokens)
 {
-    t_list_of_tokens *tmp;
+    t_tokenized *tmp;
 
     if ((*tokens)->next == NULL)
         return ;
@@ -46,8 +46,8 @@ void ft_echo(t_list_of_tokens **tokens)
 
 int main(void)
 {
-    char                *line;
-    t_list_of_tokens    *tokens;
+    char           *line;
+    t_tokenized    *tokens;
 
     tokens = NULL;
     while (1)

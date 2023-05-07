@@ -24,10 +24,10 @@ typedef struct s_token
     int     type;
 }   t_token;
 
-typedef struct s_list_of_tokens {
-    t_token                 *token;
-    struct s_list_of_tokens *next;
-}   t_list_of_tokens;
+typedef struct s_tokenized {
+    t_token           *token;
+    struct s_tokenized *next;
+}   t_tokenized;
 
-void lexer(char *line, t_list_of_tokens **tokens);
+void lexer(char *line, t_tokenized **tokens);
 #endif
