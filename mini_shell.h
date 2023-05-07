@@ -29,4 +29,5 @@ typedef struct s_list_of_tokens {
     struct s_list_of_tokens *next;
 }   t_list_of_tokens;
 
+void lexer(char *line, t_list_of_tokens **tokens);
 #endif
