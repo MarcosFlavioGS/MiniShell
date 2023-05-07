@@ -12,19 +12,6 @@
 
 #include "../mini_shell.h"
 
-void print_list(t_list_of_tokens **tokens)
-{
-    t_list_of_tokens *tmp;
-
-    tmp = *tokens;
-    while (tmp)
-    {
-        printf("content: %s\n", tmp->token->content);
-        printf("type: %d\n", tmp->token->type);
-        tmp = tmp->next;
-    }
-}
-
 static void clear_list(t_list_of_tokens *tokens)
 {
     t_list_of_tokens *tmp;
@@ -39,6 +26,24 @@ static void clear_list(t_list_of_tokens *tokens)
     }
 }
 
+void ft_echo(t_list_of_tokens **tokens)
+{
+    t_list_of_tokens *tmp;
+
+    if ((*tokens)->next == NULL)
+        return ;
+    else
+    {
+        tmp = (*tokens)->next;
+        while (tmp)
+        {
+            printf("%s", tmp->token->content);
+            tmp = tmp->next;
+        }
+        printf("\n");
+    }
+}
+
 int main(void)
 {
     char                *line;
@@ -50,11 +55,10 @@ int main(void)
         line = readline("$> ");
         lexer(line, &tokens);
         free(line);
-        //print_list(&tokens);
         if (ft_strncmp(tokens->token->content, "exit", 4) == 0)
             break;
-        else if (ft_strncmp(tokens->token->content, "echo", 4) == 0 && tokens->next)
-            printf("%s\n", tokens->next->token->content);
+        else if (ft_strncmp(tokens->token->content, "echo", 4) == 0)
+            ft_echo(&tokens);
         clear_list(tokens);
         tokens = NULL;
     }
