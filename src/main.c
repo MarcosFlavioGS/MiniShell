@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:52:51 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/04/20 18:52:55 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:28:06 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	main(void)
 	while (1)
 	{
 		line = readline("$> ");
-		if (ft_strncmp(line, "exit", 5) == 0)
+		if (ft_strncmp(line, "exit", 4) == 0)
 			break;
-		printf("%s\n", line);
+		if (ft_strnstr(line, "echo", 4))
+		{
+			printf("%s\n", line);
+		}
 	}
 	return (0);
 }
