@@ -19,7 +19,7 @@ static void	clear_list(t_tokenized *tokens)
 	while (tokens)
 	{
 		tmp = tokens->next;
-		free(tokens->token->content);
+		free(tokens->token->t_name);
 		free(tokens->token);
 		free(tokens);
 		tokens = tmp;
@@ -37,7 +37,7 @@ void	ft_echo(t_tokenized **tokens)
 		tmp = (*tokens)->next;
 		while (tmp)
 		{
-			printf("%s", tmp->token->content);
+			printf("%s", tmp->token->t_name);
 			tmp = tmp->next;
 		}
 		printf("\n");
@@ -54,9 +54,9 @@ int	main(void)
 		line = readline("$> ");
 		lexer(line, &tokens);
 		free(line);
-		if (ft_strncmp(tokens->token->content, "exit", 4) == 0)
+		if (ft_strncmp(tokens->token->t_name, "exit", 4) == 0)
 			break ;
-		else if (ft_strncmp(tokens->token->content, "echo", 4) == 0)
+		else if (ft_strncmp(tokens->token->t_name, "echo", 4) == 0)
 			ft_echo(&tokens);
 		clear_list(tokens);
 		tokens = NULL;

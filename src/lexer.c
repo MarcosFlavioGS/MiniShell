@@ -12,15 +12,15 @@
 
 #include "../mini_shell.h"
 
-static t_token	*new_token(char *content, int type)
+static t_token	*new_token(char *identifier, int at_value)
 {
 	t_token	*token;
 
 	token = malloc(sizeof(t_token));
-	token->content = malloc(ft_strlen(content) + 1);
-	ft_strlcpy(token->content, content, ft_strlen(content) + 1);
-	token->type = type;
-	token->content[ft_strlen(content)] = '\0';
+	token->t_name = malloc(ft_strlen(identifier) + 1);
+	ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
+	token->at_value = at_value;
+	token->t_name[ft_strlen(identifier)] = '\0';
 	return (token);
 }
 
@@ -41,24 +41,24 @@ void	lexer(char *line, t_tokenized **tokens)
 {
 	t_token		*token;
 	t_tokenized	*current;
-	char		**token_array;
+	char		**lexeme_array;
 	int			i;
 
 	i = 0;
-	token_array = ft_split(line, ' ');
-	token = new_token(token_array[i++], 0);
+	lexeme_array = ft_split(line, ' ');
+	token = new_token(lexeme_array[i++], 0);
 	*tokens = malloc(sizeof(t_tokenized));
 	(*tokens)->token = token;
 	(*tokens)->next = NULL;
 	current = *tokens;
-	while (token_array[i])
+	while (lexeme_array[i])
 	{
-		token = new_token(token_array[i], 0);
+		token = new_token(lexeme_array[i], 0);
 		current->next = malloc(sizeof(t_tokenized));
 		current->next->token = token;
 		current->next->next = NULL;
 		current = current->next;
 		i++;
 	}
-	free_array(token_array);
+	free_array(lexeme_array);
 }

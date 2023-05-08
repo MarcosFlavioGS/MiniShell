@@ -20,8 +20,8 @@
 
 typedef struct s_token
 {
-	char	*content;
-	int		type;
+	char	*t_name;
+	int		at_value;
 }	t_token;
 
 typedef struct s_tokenized
