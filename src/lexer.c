@@ -12,12 +12,12 @@ static t_token *new_token(char *content, int type)
     return (token);
 }
 
-void lexer(char *line, t_list_of_tokens **tokens)
+void lexer(char *line, t_tokenized **tokens)
 {
-    t_token             *token;
-    t_list_of_tokens    *current;
-    char                **token_array;
-    int                 i;
+    t_token		*token;
+    t_tokenized	*current;
+    char		**token_array;
+    int			i;
 
     i = 0;
     token_array = ft_split(line, ' ');
@@ -27,14 +27,14 @@ void lexer(char *line, t_list_of_tokens **tokens)
         token = new_token(token_array[i], 0);
         if (!current)
         {
-            *tokens = malloc(sizeof(t_list_of_tokens));
+            *tokens = malloc(sizeof(t_tokenized));
             (*tokens)->token = token;
             (*tokens)->next = NULL;
             current = *tokens;
         }
         else
         {
-            current->next = malloc(sizeof(t_list_of_tokens));
+            current->next = malloc(sizeof(t_tokenized));
             current->next->token = token;
             current->next->next = NULL;
             current = current->next;
