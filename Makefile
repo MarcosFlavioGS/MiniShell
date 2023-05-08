@@ -12,7 +12,7 @@
 
 NAME = mini_shell
 
-FLAGS = -Wall -Wextra -Werror -lreadline
+FLAGS = -Wall -Wextra -Werror
 
 SRC = 	src/main.c \
 		src/lexer.c
@@ -27,7 +27,7 @@ ${LIBFT}:
 	$(MAKE) -C libft/
 
 ${NAME}: ${OBJ} ${LIBFT}
-	gcc ${FLAGS} -o $@ $^
+	gcc ${FLAGS} -lreadline -o $@ $^
 
 obj/%.o: src/%.c
 	mkdir -p obj
