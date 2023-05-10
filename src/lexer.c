@@ -37,12 +37,15 @@ void	free_array(char **array)
 	free(array);
 }
 
-void print(t_tokenized **tokens) {
-	t_tokenized *tmp;
+void	print(t_tokenized **tokens)
+{
+	t_tokenized	*tmp;
 
 	tmp = *tokens;
-	while (tmp) {
-		printf("Token name: %s\nSymbol id: %d\n", tmp->token->t_name, tmp->token->at_value);
+	while (tmp)
+	{
+		printf("Token name: %s\nSymbol id: %d\n",
+			tmp->token->t_name, tmp->token->at_value);
 		tmp = tmp->next;
 	}
 }
@@ -69,6 +72,6 @@ void	lexer(char *line, t_tokenized **tokens)
 		current->next->next = NULL;
 		current = current->next;
 	}
-	//print(&*tokens);
+	print(&*tokens);
 	free_array(lexeme_array);
 }
