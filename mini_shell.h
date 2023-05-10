@@ -20,9 +20,14 @@
 
 typedef struct s_token
 {
-	char	*t_name;
-	int		at_value;
+	char	       *t_name;
+	unsigned int   at_value;
 }	t_token;
+
+typedef struct s_hash {
+	char *name;
+	int  at_value;
+}  t_hash;
 
 typedef struct s_tokenized
 {
@@ -30,5 +35,6 @@ typedef struct s_tokenized
 	struct s_tokenized	*next;
 }	t_tokenized;
 
-void	lexer(char *line, t_tokenized **tokens);
+void         lexer(char *line, t_tokenized **tokens);
+unsigned int hash(const char *str);
 #endif

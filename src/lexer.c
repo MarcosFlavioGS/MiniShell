@@ -12,7 +12,7 @@
 
 #include "../mini_shell.h"
 
-static t_token	*new_token(char *identifier, int at_value)
+static t_token	*new_token(char *identifier, unsigned int at_value)
 {
 	t_token	*token;
 
@@ -37,6 +37,16 @@ void	free_array(char **array)
 	free(array);
 }
 
+void print(t_tokenized **tokens) {
+	t_tokenized *tmp;
+
+	tmp = *tokens;
+	while (tmp) {
+		printf("Token name: %s\nSymbol id: %d\n", tmp->token->t_name, tmp->token->at_value);
+		tmp = tmp->next;
+	}
+}
+
 void	lexer(char *line, t_tokenized **tokens)
 {
 	t_token		*token;
@@ -46,19 +56,19 @@ void	lexer(char *line, t_tokenized **tokens)
 
 	i = 0;
 	lexeme_array = ft_split(line, ' ');
-	token = new_token(lexeme_array[i++], 0);
+	token = new_token(lexeme_array[i], hash(lexeme_array[i]));
 	*tokens = malloc(sizeof(t_tokenized));
 	(*tokens)->token = token;
 	(*tokens)->next = NULL;
 	current = *tokens;
-	while (lexeme_array[i])
+	while (lexeme_array[++i])
 	{
-		token = new_token(lexeme_array[i], 0);
+		token = new_token(lexeme_array[i], hash(lexeme_array[i]));
 		current->next = malloc(sizeof(t_tokenized));
 		current->next->token = token;
 		current->next->next = NULL;
 		current = current->next;
-		i++;
 	}
+	//print(&*tokens);
 	free_array(lexeme_array);
 }

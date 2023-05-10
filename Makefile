@@ -14,8 +14,9 @@ NAME = mini_shell
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC = 	src/main.c \
-		src/lexer.c
+SRC = 	src/main.c  \
+		src/lexer.c \
+		src/hash.c
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 
