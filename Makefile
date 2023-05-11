@@ -3,18 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
+#    By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/04/20 18:52:47 by mflavio-         ###   ########.fr        #
+#    Updated: 2023/05/07 01:50:27 by mflavio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = mini_shell
 
-FLAGS = -Wall -Wextra -Werror -lreadline
+FLAGS = -Wall -Wextra -Werror
 
-SRC = 	src/main.c
+SRC = 	src/main.c  \
+		src/lexer.c \
+		src/hash.c
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 
@@ -26,7 +28,7 @@ ${LIBFT}:
 	$(MAKE) -C libft/
 
 ${NAME}: ${OBJ} ${LIBFT}
-	gcc ${FLAGS} -o $@ $^
+	gcc ${FLAGS} -lreadline -o $@ $^
 
 obj/%.o: src/%.c
 	mkdir -p obj
