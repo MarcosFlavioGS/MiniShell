@@ -58,7 +58,7 @@ void	lexer(char *line, t_tokenized **tokens)
 	int			i;
 
 	i = 0;
-	lexeme_array = ft_split(line, ' ');
+	lexeme_array = lexemizer(line);
 	token = new_token(lexeme_array[i], hash(lexeme_array[i]));
 	*tokens = malloc(sizeof(t_tokenized));
 	(*tokens)->token = token;
