@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:53:31 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/05/16 20:35:42 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:30:47 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char **lexemizer(char *line)
 
     i = 0;
     count = token_counter(line);
-    lexemes = (char **)malloc(sizeof(char *) * count);
+    lexemes = (char **)ft_calloc(count + 1, sizeof(char *));
     while (*line)
     {
         while (*line == ' ')

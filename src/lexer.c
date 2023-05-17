@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/05/16 20:12:23 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:36:02 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	lexer(char *line, t_tokenized **tokens)
 
 	i = 0;
 	lexeme_array = lexemizer(line);
-	while (lexeme_array[i])
-		printf("%s\n", lexeme_array[i++]);
 	token = new_token(lexeme_array[i], hash(lexeme_array[i]));
 	*tokens = malloc(sizeof(t_tokenized));
 	(*tokens)->token = token;
