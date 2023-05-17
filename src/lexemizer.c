@@ -12,77 +12,76 @@
 
 #include "../mini_shell.h"
 
-int special_strlen(char *line, char c)
+int	special_strlen(char *line, char c)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (line[i] != c && line[i])
-        i++;
-    return (i);
+	i = 0;
+	while (line[i] != c && line[i])
+		i++;
+	return (i);
 }
 
-int get_next_quote(char *line)
+int	get_next_quote(char *line)
 {
-    int i;
+	int	i;
 
-    i = 1;
-    while (line[i] != 34 && line[i] != 39)
-        i++;
-    return (i);
+	i = 1;
+	while (line[i] != 34 && line[i] != 39)
+		i++;
+	return (i);
 }
 
-int token_counter(char *line)
+int	token_counter(char *line)
 {
-    int count;
-    int i;
+	int	count;
+	int	i;
 
-    i = 0;
-    count = 0;
-    while (line[i])
-    {
-        while (line[i] == ' ')
-            i++;
-        if (line[i] == 34 || line[i] == 39)
-        {
-            i += get_next_quote(&line[i]);
-            i++;
-        }
-        else
-        {
-            i += special_strlen(&line[i], ' ');
-        }
-        count++;
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		while (line[i] == ' ')
+			i++;
+		if (line[i] == 34 || line[i] == 39)
+		{
+			i += get_next_quote(&line[i]);
+			i++;
+		}
+		else
+		{
+			i += special_strlen(&line[i], ' ');
+		}
+		count++;
+	}
+	return (count);
 }
 
-char **lexemizer(char *line)
+char	**lexemizer(char *line)
 {
-    int  i;
-    int  count;
-    char **lexemes;
+	int		i;
+	int		count;
+	char	**lexemes;
 
-    i = 0;
-    count = token_counter(line);
-    lexemes = (char **)ft_calloc(count + 1, sizeof(char *));
-    while (*line)
-    {
-        while (*line == ' ')
-            line++;
-        if (*line == 34 || *line == 39)
-        {
-            lexemes[i] = ft_substr(line, 0, get_next_quote(line) + 1);
-            i++;
-            line += get_next_quote(line);
-            line += 1;
-        }
-        else
-        {
-            lexemes[i] = ft_substr(line, 0, special_strlen(line, ' '));
-            i++;
-            line += special_strlen(line, ' ');
-        }
-    }
-    return (lexemes);
+	i = 0;
+	count = token_counter(line);
+	lexemes = (char **)ft_calloc(count + 1, sizeof(char *));
+	while (*line)
+	{
+		while (*line == ' ')
+			line++;
+		if (*line == 34 || *line == 39)
+		{
+			lexemes[i] = ft_substr(line, 0, get_next_quote(line) + 1);
+			i++;
+			line += get_next_quote(line) + 1;
+		}
+		else
+		{
+			lexemes[i] = ft_substr(line, 0, special_strlen(line, ' '));
+			i++;
+			line += special_strlen(line, ' ');
+		}
+	}
+	return (lexemes);
 }

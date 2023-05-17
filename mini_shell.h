@@ -42,6 +42,6 @@ typedef struct s_tokenized
 }	t_tokenized;
 
 void			lexer(char *line, t_tokenized **tokens);
-char            **lexemizer(char *line);
+char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
 #endif
