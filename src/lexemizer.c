@@ -25,9 +25,11 @@ int	special_strlen(char *line, char c)
 int	get_next_quote(char *line)
 {
 	int	i;
+	char c;
 
-	i = 1;
-	while (line[i] != 34 && line[i] != 39)
+	i = 0;
+	c = line[i++];
+	while (line[i] != c)
 		i++;
 	return (i);
 }
