@@ -30,16 +30,13 @@ typedef struct s_symbols
 	int		at_value;
 }	t_symbols;
 
-typedef struct s_hash_table
-{
-	t_symbols	**items;
-}	t_hashTable;
-
 typedef struct s_tokenized
 {
 	t_token				*token;
 	struct s_tokenized	*next;
 }	t_tokenized;
+
+t_symbols *symbol_table[15];
 
 void			lexer(char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
