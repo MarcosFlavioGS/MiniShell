@@ -24,8 +24,8 @@ int	special_strlen(char *line, char c)
 
 int	get_next_quote(char *line)
 {
-	int	i;
-	char c;
+	int		i;
+	char	c;
 
 	i = 0;
 	c = line[i++];
