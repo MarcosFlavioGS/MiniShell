@@ -14,10 +14,11 @@ NAME = mini_shell
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC = 	src/main.c  	\
-		src/lexer.c 	\
-		src/lexemizer.c \
-		src/hash.c
+SRC = 	src/main.c  			\
+		src/lexer.c 			\
+		src/lexemizer.c 		\
+		src/hash.c				\
+		src/insert_builtins.c
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 

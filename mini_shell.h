@@ -24,21 +24,23 @@ typedef struct s_token
 	unsigned int	at_value;
 }	t_token;
 
-typedef struct s_symbols
-{
-	char	*name;
-	int		at_value;
-}	t_symbols;
-
 typedef struct s_tokenized
 {
 	t_token				*token;
 	struct s_tokenized	*next;
 }	t_tokenized;
 
-t_symbols *symbol_table[15];
+typedef struct s_symbols
+{
+	char				*name;
+	char				*type;
+	int					at_value;
+	struct s_symbols	*next;
+}	t_symbols;
 
 void			lexer(char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
+void			insert_builtins(t_symbols *symbol_table[]);
+void			insert(t_symbols *table[], t_symbols *symbol);
 #endif

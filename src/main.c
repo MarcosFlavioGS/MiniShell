@@ -44,11 +44,25 @@ void	ft_echo(t_tokenized **tokens)
 	}
 }
 
+void	init_symbol_table(t_symbols *symbol_table[])
+{
+	int	i;
+
+	i = 0;
+	while (i < 15)
+	{
+		symbol_table[i++] = NULL;
+	}
+}
+
 int	main(void)
 {
 	char		*line;
 	t_tokenized	*tokens;
+	t_symbols	*symbol_table[15];
 
+	init_symbol_table(symbol_table);
+	insert_builtins(symbol_table);
 	while (1)
 	{
 		line = readline("$> ");
