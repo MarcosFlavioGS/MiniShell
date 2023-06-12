@@ -18,7 +18,9 @@ SRC = 	src/main.c  			\
 		src/lexer.c 			\
 		src/lexemizer.c 		\
 		src/hash.c				\
-		src/insert_builtins.c
+		src/insert.c			\
+		src/insert_builtins.c	\
+		src/insert_builtins2.c
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 
