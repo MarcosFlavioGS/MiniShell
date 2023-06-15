@@ -43,8 +43,8 @@ char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
 void			insert_builtins(t_symbols *symbol_table[]);
 void			insert(t_symbols *table[], t_symbols *symbol);
+char			*get_line(void);
 // Inserting to hash table
-
 t_symbols		*insert_unset(void);
 t_symbols		*insert_env(void);
 t_symbols		*insert_export(void);

@@ -20,7 +20,8 @@ SRC = 	src/main.c  			\
 		src/hash.c				\
 		src/insert.c			\
 		src/insert_builtins.c	\
-		src/insert_builtins2.c
+		src/insert_builtins2.c	\
+		src/get_line.c
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 

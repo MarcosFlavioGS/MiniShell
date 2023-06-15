@@ -65,7 +65,7 @@ int	main(void)
 	insert_builtins(symbol_table);
 	while (1)
 	{
-		line = readline("$> ");
+		line = get_line();
 		lexer(line, &tokens);
 		free(line);
 		if (ft_strncmp(tokens->token->t_name, "exit", 4) == 0)
