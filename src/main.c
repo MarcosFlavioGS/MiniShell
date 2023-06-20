@@ -26,24 +26,6 @@ static void	clear_list(t_tokenized *tokens)
 	}
 }
 
-void	ft_echo(t_tokenized **tokens)
-{
-	t_tokenized	*tmp;
-
-	if ((*tokens)->next == NULL)
-		return ;
-	else
-	{
-		tmp = (*tokens)->next;
-		while (tmp)
-		{
-			printf("%s", tmp->token->t_name);
-			tmp = tmp->next;
-		}
-		printf("\n");
-	}
-}
-
 void	init_symbol_table(t_symbols *symbol_table[])
 {
 	int	i;
@@ -68,10 +50,7 @@ int	main(void)
 		line = get_line();
 		lexer(line, &tokens);
 		free(line);
-		if (ft_strncmp(tokens->token->t_name, "exit", 4) == 0)
-			break ;
-		else if (ft_strncmp(tokens->token->t_name, "echo", 4) == 0)
-			ft_echo(&tokens);
+		execute(&tokens);
 		clear_list(tokens);
 		tokens = NULL;
 	}
