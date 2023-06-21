@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:52:51 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/05/07 01:56:20 by mflavio-         ###   ########.fr       */
+/*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/06/21 18:01:52 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,22 @@ void	init_symbol_table(t_symbols *symbol_table[])
 	}
 }
 
-int	main(void)
+int	main(int argc, char *argv[], char **env)
 {
 	char		*line;
 	t_tokenized	*tokens;
 	t_symbols	*symbol_table[15];
 
+	if (argc > 2)
+		return (0);
 	init_symbol_table(symbol_table);
 	insert_builtins(symbol_table);
 	while (1)
 	{
-		line = get_line();
+		if (argc == 2)
+			line = read_file(argv[1]);
+		else
+			line = get_line();
 		lexer(line, &tokens);
 		free(line);
 		execute(&tokens);
