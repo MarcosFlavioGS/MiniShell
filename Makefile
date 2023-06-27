@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+         #
+#    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/05/07 01:50:27 by mflavio-         ###   ########.fr        #
+#    Updated: 2023/06/27 19:33:33 by mflavio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRC = 	src/main.c  			\
 		src/insert_builtins.c	\
 		src/insert_builtins2.c	\
 		src/get_line.c			\
-		src/execute.c
+		src/execute.c			\
+		src/insert_operators.c 	\
+		src/insert_env.c	
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 

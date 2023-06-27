@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/04/20 18:53:49 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/06/27 19:12:10 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,20 @@ typedef struct s_symbols
 	struct s_symbols	*next;
 }	t_symbols;
 
+typedef struct s_env
+{
+	char			*name;
+	char			*path;
+	char			*at_value;
+	struct s_env	*next;
+}	t_env;
+
 void			lexer(char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
 void			insert_builtins(t_symbols *symbol_table[]);
+void			insert_operators(t_symbols *symbol_table[]);
+void			insert_env_path(t_env *env_table[], char **envp);
 void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
 void			execute(t_tokenized **tokens);
