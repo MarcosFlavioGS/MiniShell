@@ -20,7 +20,6 @@ SRC = 	src/main.c  			\
 		src/hash.c				\
 		src/insert.c			\
 		src/insert_builtins.c	\
-		src/insert_builtins2.c	\
 		src/get_line.c			\
 		src/execute.c			\
 		src/insert_operators.c 	\

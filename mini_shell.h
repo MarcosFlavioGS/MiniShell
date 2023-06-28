@@ -55,8 +55,4 @@ void			insert_env_path(t_env *env_table[], char **envp);
 void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
 void			execute(t_tokenized **tokens);
-// Inserting to hash table
-t_symbols		*insert_unset(void);
-t_symbols		*insert_env(void);
-t_symbols		*insert_export(void);
 #endif
