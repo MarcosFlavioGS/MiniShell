@@ -28,5 +28,5 @@ static unsigned int	char_sum(const char *str)
 
 unsigned int	hash(const char *str)
 {
-	return ((char_sum(str) * ft_strlen(str)) % 15);
+	return ((char_sum(str) * ft_strlen(str)) % SYMBOL_TABLE_SIZE);
 }

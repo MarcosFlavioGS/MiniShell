@@ -18,6 +18,9 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# define ENV_TABLE_SIZE 100
+# define SYMBOL_TABLE_SIZE 15
+
 typedef struct s_token
 {
 	char			*t_name;

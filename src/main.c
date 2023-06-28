@@ -71,8 +71,8 @@ int	main(int argc, char *argv[], char **envp)
 {
 	char		*line;
 	t_tokenized	*tokens;
-	t_symbols	*symbol_table[15];
-	t_env		*env_table[100];
+	t_symbols	*symbol_table[SYMBOL_TABLE_SIZE];
+	t_env		*env_table[ENV_TABLE_SIZE];
 
 	if (argc > 2)
 	{
