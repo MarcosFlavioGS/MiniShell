@@ -14,40 +14,44 @@ NAME = mini_shell
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC = 	src/main.c  			\
-		src/lexer.c 			\
-		src/lexemizer.c 		\
-		src/hash.c				\
-		src/insert.c			\
-		src/insert_builtins.c	\
-		src/get_line.c			\
-		src/execute.c			\
-		src/insert_operators.c 	\
-		src/insert_env.c		\
-		src/main_loop.c
+SRC_DIR = src
+OBJ_DIR = obj
 
-OBJ = ${SRC:src/%.c=obj/%.o}
+SRC_FILES = 	main.c  			\
+				lexer.c 			\
+				lexemizer.c			\
+				hash.c				\
+				insert.c			\
+				insert_builtins.c	\
+				get_line.c			\
+				execute.c			\
+				insert_operators.c 	\
+				insert_env.c		\
+				main_loop.c
+
+SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 LIBFT = libft/libft.a
 
-all: ${LIBFT} ${NAME}
+all: $(LIBFT) $(NAME)
 
-${LIBFT}:
+$(LIBFT):
 	$(MAKE) -C libft/
 
-${NAME}: ${OBJ} ${LIBFT}
-	gcc ${FLAGS} -lreadline -o $@ $^
+$(NAME): $(OBJ) $(LIBFT)
+	gcc $(FLAGS) -lreadline -o $@ $^
 
-obj/%.o: src/%.c
-	mkdir -p obj
-	gcc ${FLAGS} -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
+	gcc $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf obj
+	rm -rf $(OBJ_DIR)
 	$(MAKE) -C libft/ clean
 
 fclean: clean
-	rm -rf ${NAME}
+	rm -rf $(NAME)
 	$(MAKE) -C libft/ fclean
 
 re: fclean all
