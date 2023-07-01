@@ -23,7 +23,8 @@ SRC = 	src/main.c  			\
 		src/get_line.c			\
 		src/execute.c			\
 		src/insert_operators.c 	\
-		src/insert_env.c	
+		src/insert_env.c		\
+		src/main_loop.c
 
 OBJ = ${SRC:src/%.c=obj/%.o}
 

@@ -35,7 +35,7 @@ static void	insert_envs(t_env *env_table[], t_env *node)
 {
 	int	index;
 
-	index = hash(node->name);
+	index = hash_env(node->name);
 	node->next = env_table[index];
 	env_table[index] = node;
 }

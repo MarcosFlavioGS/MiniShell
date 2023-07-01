@@ -12,20 +12,6 @@
 
 #include "../mini_shell.h"
 
-static void	clear_list(t_tokenized *tokens)
-{
-	t_tokenized	*tmp;
-
-	while (tokens)
-	{
-		tmp = tokens->next;
-		free(tokens->token->t_name);
-		free(tokens->token);
-		free(tokens);
-		tokens = tmp;
-	}
-}
-
 void	init_symbol_table(t_symbols *symbol_table[])
 {
 	int	i;
@@ -79,19 +65,13 @@ int	main(int argc, char *argv[], char **envp)
 		print_argv(argv);
 		return (0);
 	}
+	line = NULL;
+	tokens = NULL;
 	init_symbol_table(symbol_table);
 	insert_builtins(symbol_table);
 	insert_operators(symbol_table);
 	insert_env_path(env_table, envp);
-	while (1)
-	{
-		line = get_line();
-		lexer(line, &tokens);
-		free(line);
-		execute(&tokens);
-		clear_list(tokens);
-		tokens = NULL;
-	}
+	main_loop(line, tokens);
 	free_tables(symbol_table, env_table);
 	return (0);
 }

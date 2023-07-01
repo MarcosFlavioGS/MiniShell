@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/06/27 19:12:10 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:13:20 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ typedef struct s_env
 void			lexer(char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
+unsigned int	hash_env(const char *str);
 void			insert_builtins(t_symbols *symbol_table[]);
 void			insert_operators(t_symbols *symbol_table[]);
 void			insert_env_path(t_env *env_table[], char **envp);
 void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
 void			execute(t_tokenized **tokens);
+void			main_loop(char *line, t_tokenized *tokens);
 #endif

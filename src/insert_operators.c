@@ -29,5 +29,6 @@ void	insert_operators(t_symbols *symbol_table[])
 	insert(symbol_table, insert_in("<"));
 	insert(symbol_table, insert_in("<<"));
 	insert(symbol_table, insert_in(">"));
+	insert(symbol_table, insert_in(">>"));
 	insert(symbol_table, insert_in("|"));
 }

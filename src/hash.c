@@ -30,3 +30,8 @@ unsigned int	hash(const char *str)
 {
 	return ((char_sum(str) * ft_strlen(str)) % SYMBOL_TABLE_SIZE);
 }
+
+unsigned int	hash_env(const char *str)
+{
+	return ((char_sum(str) * ft_strlen(str)) % ENV_TABLE_SIZE);
+}
