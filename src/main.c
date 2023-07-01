@@ -17,7 +17,7 @@ void	init_symbol_table(t_symbols *symbol_table[])
 	int	i;
 
 	i = 0;
-	while (i < 15)
+	while (i < SYMBOL_TABLE_SIZE)
 	{
 		symbol_table[i++] = NULL;
 	}
@@ -40,13 +40,13 @@ void	free_tables(t_symbols *symbol_table[], t_env *env_table[])
 	int	i;
 
 	i = 0;
-	while (i < 15)
+	while (i < SYMBOL_TABLE_SIZE)
 	{
 		free(symbol_table[i]);
 		i++;
 	}
 	i = 0;
-	while (i < 100)
+	while (i < ENV_TABLE_SIZE)
 	{
 		free(env_table[i]);
 		i++;
