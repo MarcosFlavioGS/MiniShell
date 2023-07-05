@@ -17,5 +17,6 @@ char	*get_line(void)
 	char	*line;
 
 	line = readline("$> ");
+	add_history(line);
 	return (line);
 }

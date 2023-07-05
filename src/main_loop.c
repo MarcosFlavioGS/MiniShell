@@ -31,7 +31,6 @@ void	main_loop(char *line, t_tokenized *tokens)
 	while (1)
 	{
 		line = get_line();
-		add_history(line);
 		if (!line)
 			continue ;
 		lexer(line, &tokens);
