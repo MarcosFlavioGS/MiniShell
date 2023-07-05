@@ -12,24 +12,6 @@
 
 #include "../mini_shell.h"
 
-static void	ft_echo(t_tokenized **tokens)
-{
-	t_tokenized	*tmp;
-
-	if ((*tokens)->next == NULL)
-		return ;
-	else
-	{
-		tmp = (*tokens)->next;
-		while (tmp)
-		{
-			printf("%s", tmp->token->t_name);
-			tmp = tmp->next;
-		}
-		printf("\n");
-	}
-}
-
 void	execute(t_tokenized **tokens)
 {
 	if (ft_strncmp((*tokens)->token->t_name, "exit", 4) == 0)

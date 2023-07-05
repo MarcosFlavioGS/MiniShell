@@ -6,24 +6,13 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/06/27 20:18:09 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:46:30 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-void	init_symbol_table(t_symbols *symbol_table[])
-{
-	int	i;
-
-	i = 0;
-	while (i < SYMBOL_TABLE_SIZE)
-	{
-		symbol_table[i++] = NULL;
-	}
-}
-
-void	print_argv(char *argv[])
+static void	print_argv(char *argv[])
 {
 	int	i;
 
@@ -57,8 +46,7 @@ int	main(int argc, char *argv[], char **envp)
 {
 	char		*line;
 	t_tokenized	*tokens;
-	t_symbols	*symbol_table[SYMBOL_TABLE_SIZE];
-	t_env		*env_table[ENV_TABLE_SIZE];
+	t_mini		*mini;
 
 	if (argc > 2)
 	{
@@ -67,11 +55,9 @@ int	main(int argc, char *argv[], char **envp)
 	}
 	line = NULL;
 	tokens = NULL;
-	init_symbol_table(symbol_table);
-	insert_builtins(symbol_table);
-	insert_operators(symbol_table);
-	insert_env_path(env_table, envp);
+	mini = NULL;
+	init_tables(mini, envp);
 	main_loop(line, tokens);
-	free_tables(symbol_table, env_table);
+	free_tables(mini->symbol_table, mini->env_table);
 	return (0);
 }

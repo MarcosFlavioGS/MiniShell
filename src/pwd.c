@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/05 19:10:22 by mflavio-         ###   ########.fr       */
+/*   Created: 2023/07/05 18:43:30 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/07/05 18:43:32 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-static void	clear_list(t_tokenized *tokens)
+int	ft_pwd(void)
 {
-	t_tokenized	*tmp;
+	char	cwd[100];
 
-	while (tokens)
+	if (getcwd(cwd, 100))
 	{
-		tmp = tokens->next;
-		free(tokens->token->t_name);
-		free(tokens->token);
-		free(tokens);
-		tokens = tmp;
+		ft_putendl_fd(cwd, 1);
+		return (0);
 	}
-}
-
-void	main_loop(char *line, t_tokenized *tokens)
-{
-	while (1)
-	{
-		line = get_line();
-		add_history(line);
-		if (!line)
-			continue ;
-		lexer(line, &tokens);
-		free(line);
-		execute(&tokens);
-		clear_list(tokens);
-		tokens = NULL;
-	}
+	else
+		return (1);
 }

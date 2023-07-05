@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_loop.c                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/05 19:10:22 by mflavio-         ###   ########.fr       */
+/*   Created: 2023/07/05 18:47:22 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/07/05 18:50:55 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-static void	clear_list(t_tokenized *tokens)
+int	ft_echo(t_tokenized **tokens)
 {
 	t_tokenized	*tmp;
 
-	while (tokens)
+	if ((*tokens)->next == NULL)
+		return (0);
+	else
 	{
-		tmp = tokens->next;
-		free(tokens->token->t_name);
-		free(tokens->token);
-		free(tokens);
-		tokens = tmp;
+		tmp = (*tokens)->next;
+		while (tmp)
+		{
+			printf("%s", tmp->token->t_name);
+			tmp = tmp->next;
+		}
+		printf("\n");
 	}
-}
-
-void	main_loop(char *line, t_tokenized *tokens)
-{
-	while (1)
-	{
-		line = get_line();
-		add_history(line);
-		if (!line)
-			continue ;
-		lexer(line, &tokens);
-		free(line);
-		execute(&tokens);
-		clear_list(tokens);
-		tokens = NULL;
-	}
+	return (0);
 }

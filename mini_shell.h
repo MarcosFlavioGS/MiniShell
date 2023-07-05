@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/01 11:13:20 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/05 19:44:21 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # define ENV_TABLE_SIZE 100
 # define SYMBOL_TABLE_SIZE 15
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_token
 {
@@ -49,6 +51,12 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_mini
+{
+	t_symbols	**symbol_table;
+	t_env		**env_table;
+}	t_mini;
+
 void			lexer(char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
@@ -60,4 +68,8 @@ void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
 void			execute(t_tokenized **tokens);
 void			main_loop(char *line, t_tokenized *tokens);
+void			init_tables(t_mini *mini, char **env);
+// Builtins
+int				ft_echo(t_tokenized **tokens);
+int				ft_pwd(void);
 #endif

@@ -18,6 +18,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC_FILES = 	main.c  			\
+				init_tables.c		\
 				lexer.c 			\
 				lexemizer.c			\
 				hash.c				\
@@ -27,6 +28,8 @@ SRC_FILES = 	main.c  			\
 				execute.c			\
 				insert_operators.c 	\
 				insert_env.c		\
+				echo.c				\
+				pwd.c				\
 				main_loop.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

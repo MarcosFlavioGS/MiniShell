@@ -40,7 +40,7 @@ static void	insert_envs(t_env *env_table[], t_env *node)
 	env_table[index] = node;
 }
 
-void    init_table(t_env *env_table[])
+void	init_table(t_env *env_table[])
 {
 	int		i;
 
