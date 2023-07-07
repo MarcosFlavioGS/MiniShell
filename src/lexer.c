@@ -54,23 +54,31 @@ void	lexer(char *line, t_tokenized **tokens)
 {
 	t_token		*token;
 	t_tokenized	*current;
+	t_tokenized	*new_tokenized;
 	char		**lexeme_array;
 	int			i;
 
 	i = 0;
 	lexeme_array = lexemizer(line);
-	token = new_token(lexeme_array[i], hash(lexeme_array[i]));
-	*tokens = malloc(sizeof(t_tokenized));
-	(*tokens)->token = token;
-	(*tokens)->next = NULL;
-	current = *tokens;
-	while (lexeme_array[++i])
+	new_tokenized = NULL;
+	current = NULL;
+	while (lexeme_array[i])
 	{
 		token = new_token(lexeme_array[i], hash(lexeme_array[i]));
-		current->next = malloc(sizeof(t_tokenized));
-		current->next->token = token;
-		current->next->next = NULL;
-		current = current->next;
+		new_tokenized = malloc(sizeof(t_tokenized));
+		new_tokenized->token = token;
+		new_tokenized->next = NULL;
+		if (current == NULL)
+		{
+			*tokens = new_tokenized;
+			current = *tokens;
+		}
+		else
+		{
+			current->next = new_tokenized;
+			current = current->next;
+		}
+		i++;
 	}
 	print(&*tokens);
 	free_array(lexeme_array);
