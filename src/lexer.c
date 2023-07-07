@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/05/17 12:36:02 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/07 19:53:58 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,36 +50,37 @@ void	print(t_tokenized **tokens)
 	}
 }
 
-void	lexer(char *line, t_tokenized **tokens)
+static void	tokenize(char **lexemes, t_tokenized **tokens)
 {
 	t_token		*token;
 	t_tokenized	*current;
 	t_tokenized	*new_tokenized;
-	char		**lexeme_array;
 	int			i;
 
 	i = 0;
-	lexeme_array = lexemizer(line);
 	new_tokenized = NULL;
 	current = NULL;
-	while (lexeme_array[i])
+	while (lexemes[i])
 	{
-		token = new_token(lexeme_array[i], hash(lexeme_array[i]));
+		token = new_token(lexemes[i], hash(lexemes[i]));
 		new_tokenized = malloc(sizeof(t_tokenized));
 		new_tokenized->token = token;
 		new_tokenized->next = NULL;
-		if (current == NULL)
-		{
+		if (!*tokens)
 			*tokens = new_tokenized;
-			current = *tokens;
-		}
 		else
-		{
 			current->next = new_tokenized;
-			current = current->next;
-		}
+		current = new_tokenized;
 		i++;
 	}
+}
+
+void	lexer(char *line, t_tokenized **tokens)
+{
+	char		**lexeme_array;
+
+	lexeme_array = lexemizer(line);
+	tokenize(lexeme_array, tokens);
 	print(&*tokens);
 	free_array(lexeme_array);
 }

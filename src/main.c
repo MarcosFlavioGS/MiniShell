@@ -42,8 +42,6 @@ static void	free_tables(t_symbols *symbol_table[], t_env *env_table[])
 	}
 }
 
-
-
 int	main(int argc, char *argv[], char **envp)
 {
 	char		*line;
