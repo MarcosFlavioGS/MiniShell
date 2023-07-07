@@ -40,18 +40,6 @@ static void	insert_envs(t_env *env_table[], t_env *node)
 	env_table[index] = node;
 }
 
-void	init_table(t_env *env_table[])
-{
-	int		i;
-
-	i = 0;
-	while (i < ENV_TABLE_SIZE)
-	{
-		env_table[i] = NULL;
-		i++;
-	}
-}
-
 void	insert_env_path(t_env *env_table[], char **envp)
 {
 	t_env	*node;

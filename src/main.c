@@ -24,7 +24,7 @@ static void	print_argv(char *argv[])
 	}
 }
 
-void	free_tables(t_symbols *symbol_table[], t_env *env_table[])
+static void	free_tables(t_symbols *symbol_table[], t_env *env_table[])
 {
 	int	i;
 
@@ -41,6 +41,8 @@ void	free_tables(t_symbols *symbol_table[], t_env *env_table[])
 		i++;
 	}
 }
+
+
 
 int	main(int argc, char *argv[], char **envp)
 {

@@ -74,7 +74,7 @@ char	**lexemizer(char *line)
 			line++;
 		if (*line == 34 || *line == 39)
 		{
-			lexemes[i] = ft_substr(line, 1, get_next_quote(line) - 1);
+			lexemes[i] = ft_substr(line, 0, get_next_quote(line) + 1);
 			i++;
 			line += get_next_quote(line) + 1;
 		}
