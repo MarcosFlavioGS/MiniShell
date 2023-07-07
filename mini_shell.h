@@ -22,6 +22,8 @@
 # define SYMBOL_TABLE_SIZE 15
 # define TRUE 1
 # define FALSE 0
+# define S_QUOTE 34
+# define D_QUOTE 39
 
 typedef struct s_token
 {

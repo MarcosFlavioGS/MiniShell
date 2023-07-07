@@ -45,7 +45,7 @@ int	token_counter(char *line)
 	{
 		while (line[i] == ' ')
 			i++;
-		if (line[i] == 34 || line[i] == 39)
+		if (line[i] == S_QUOTE || line[i] == D_QUOTE)
 		{
 			i += get_next_quote(&line[i]);
 			i++;
@@ -72,7 +72,7 @@ char	**lexemizer(char *line)
 	{
 		while (*line == ' ')
 			line++;
-		if (*line == 34 || *line == 39)
+		if (*line == S_QUOTE || *line == D_QUOTE)
 		{
 			lexemes[i] = ft_substr(line, 0, get_next_quote(line) + 1);
 			i++;
