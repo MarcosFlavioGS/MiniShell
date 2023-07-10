@@ -20,7 +20,6 @@ OBJ_DIR = obj
 SRC_FILES = 	main.c  			\
 				init_tables.c		\
 				lexer.c 			\
-				lexer_utils.c		\
 				lexemizer.c			\
 				hash.c				\
 				insert.c			\
