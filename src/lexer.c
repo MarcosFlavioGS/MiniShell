@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/07 19:53:58 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/09 22:26:09 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	lexer(char *line, t_tokenized **tokens)
 
 	lexeme_array = lexemizer(line);
 	tokenize(lexeme_array, tokens);
+	separate_operators(tokens);
 	print(&*tokens);
 	free_array(lexeme_array);
 }

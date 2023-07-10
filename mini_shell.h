@@ -60,6 +60,7 @@ typedef struct s_mini
 }	t_mini;
 
 void			lexer(char *line, t_tokenized **tokens);
+void            separate_operators(t_tokenized **tokens);
 char			**lexemizer(char *line);
 unsigned int	hash(const char *str);
 unsigned int	hash_env(const char *str);
