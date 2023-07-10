@@ -81,7 +81,7 @@ void	lexer(char *line, t_tokenized **tokens)
 
 	lexeme_array = lexemizer(line);
 	tokenize(lexeme_array, tokens);
-	separate_operators(tokens);
+	//separate_operators(tokens);
 	print(&*tokens);
 	free_array(lexeme_array);
 }

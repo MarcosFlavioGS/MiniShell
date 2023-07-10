@@ -17,7 +17,7 @@ int	special_strlen(char *line, char c)
 	int	i;
 
 	i = 0;
-	while (line[i] != c && line[i])
+	while (line[i] != c && line[i] != S_QUOTE && line[i] != D_QUOTE && line[i])
 		i++;
 	return (i);
 }

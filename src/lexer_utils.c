@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
-
+/*
 static int	check_for_operators(char *t_name)
 {
 	if (ft_strnstr(t_name, ">", ft_strlen(t_name)) != NULL)
@@ -50,7 +50,9 @@ void	separate_operators(t_tokenized **tokens)
 		else
 		{
 			if (check_for_operators(tmp->token->t_name) == TRUE)
-				separate_tokens(tmp);
+				//separate_tokens(tmp);
+				printf("Nothing yet");
 		}
 	}
 }
+*/
