@@ -12,46 +12,45 @@
 
 #include "../mini_shell.h"
 
-
-
-static int check_for_operators(char *t_name)
+static int	check_for_operators(char *t_name)
 {
-    if (ft_strnstr(t_name, ">", ft_strlen(t_name)) != NULL)
-        return (TRUE);
-    else if (ft_strnstr(t_name, "<", ft_strlen(t_name)) != NULL)
-        return (TRUE);
-    else if (ft_strnstr(t_name, ">>", ft_strlen(t_name)) != NULL)
-        return (TRUE);
-    else if (ft_strnstr(t_name, "<<", ft_strlen(t_name)) != NULL)
-        return (TRUE);
-    else if (ft_strnstr(t_name, "|", ft_strlen(t_name)) != NULL)
-        return (TRUE);
-    else
-        return (FALSE);
+	if (ft_strnstr(t_name, ">", ft_strlen(t_name)) != NULL)
+		return (TRUE);
+	else if (ft_strnstr(t_name, "<", ft_strlen(t_name)) != NULL)
+		return (TRUE);
+	else if (ft_strnstr(t_name, ">>", ft_strlen(t_name)) != NULL)
+		return (TRUE);
+	else if (ft_strnstr(t_name, "<<", ft_strlen(t_name)) != NULL)
+		return (TRUE);
+	else if (ft_strnstr(t_name, "|", ft_strlen(t_name)) != NULL)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
-static void separate_tokens(t_tokenized *head)
+static void	separate_tokens(t_tokenized *head)
 {
-    t_tokenized *new_tokenized;
-    t_token *token;
-    char **new_lexemes;
+	t_tokenized	*new_tokenized;
+	t_token		*token;
+	char		**new_lexemes;
 
-    new_lexemes = special_split_with_operators(head->token->t_name);
+	new_lexemes = special_split_with_operators(head->token->t_name);
 }
 
-void separate_operators(t_tokenized **tokens)
+void	separate_operators(t_tokenized **tokens)
 {
-    t_tokenized *tmp;
+	t_tokenized	*tmp;
 
-    tmp = *tokens;
-    while (tmp)
-    {
-        if (tmp->token->t_name[0] == S_QUOTE || tmp->token->t_name[0] == D_QUOTE)
-            tmp = tmp->next;
-        else
-        {
-            if (check_for_operators(tmp->token->t_name) == TRUE)
-                separate_tokens(tmp);
-        }
-  }
+	tmp = *tokens;
+	while (tmp)
+	{
+		if (tmp->token->t_name[0] == S_QUOTE
+			|| tmp->token->t_name[0] == D_QUOTE)
+			tmp = tmp->next;
+		else
+		{
+			if (check_for_operators(tmp->token->t_name) == TRUE)
+				separate_tokens(tmp);
+		}
+	}
 }
