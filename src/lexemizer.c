@@ -6,18 +6,21 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:53:31 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/05/17 12:30:47 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:52:58 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-int	special_strlen(char *line, char c)
+int	special_strlen(char *line)
 {
 	int	i;
 
 	i = 0;
-	while (line[i] != c && line[i] != S_QUOTE && line[i] != D_QUOTE && line[i])
+	while (line[i] != ' '
+		&& line[i] != S_QUOTE && line[i] != D_QUOTE
+		&& line[i] != '<' && line[i] != '>' && line[i] != '|'
+		&& line[i])
 		i++;
 	return (i);
 }
@@ -50,10 +53,10 @@ int	token_counter(char *line)
 			i += get_next_quote(&line[i]);
 			i++;
 		}
+		else if (line[i] == '<' || line[i] == '>' || line[i] == '|')
+			i++;
 		else
-		{
-			i += special_strlen(&line[i], ' ');
-		}
+			i += special_strlen(&line[i]);
 		count++;
 	}
 	return (count);
@@ -74,15 +77,15 @@ char	**lexemizer(char *line)
 			line++;
 		if (*line == S_QUOTE || *line == D_QUOTE)
 		{
-			lexemes[i] = ft_substr(line, 0, get_next_quote(line) + 1);
-			i++;
+			lexemes[i++] = ft_substr(line, 0, get_next_quote(line) + 1);
 			line += get_next_quote(line) + 1;
 		}
+		else if (*line == '<' || *line == '>' || *line == '|')
+			lexemes[i++] = ft_substr(line++, 0, 1);
 		else
 		{
-			lexemes[i] = ft_substr(line, 0, special_strlen(line, ' '));
-			i++;
-			line += special_strlen(line, ' ');
+			lexemes[i++] = ft_substr(line, 0, special_strlen(line));
+			line += special_strlen(line);
 		}
 	}
 	return (lexemes);
