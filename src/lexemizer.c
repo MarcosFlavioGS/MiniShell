@@ -81,7 +81,10 @@ char	**lexemizer(char *line)
 			line += get_next_quote(line) + 1;
 		}
 		else if (*line == '<' || *line == '>' || *line == '|')
-			lexemes[i++] = ft_substr(line++, 0, 1);
+		{
+			lexemes[i++] = ft_substr(line, 0, 1);
+			line++;
+		}
 		else
 		{
 			lexemes[i++] = ft_substr(line, 0, special_strlen(line));
