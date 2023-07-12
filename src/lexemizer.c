@@ -54,12 +54,29 @@ int	token_counter(char *line)
 			i++;
 		}
 		else if (line[i] == '<' || line[i] == '>' || line[i] == '|')
-			i++;
+		{
+			if (line[i] == '|')
+				i++;
+			else if (line[i + 1] == line[i])
+				i += 2;
+			else
+				i++;
+		}
 		else
 			i += special_strlen(&line[i]);
 		count++;
 	}
 	return (count);
+}
+
+int checker(char *line)
+{
+	int i;
+
+	i = 0;
+	if (line[i + 1] == line[i])
+		return (TRUE);
+	return (FALSE);
 }
 
 char	**lexemizer(char *line)
@@ -82,8 +99,16 @@ char	**lexemizer(char *line)
 		}
 		else if (*line == '<' || *line == '>' || *line == '|')
 		{
-			lexemes[i++] = ft_substr(line, 0, 1);
-			line++;
+			if (*line != '|' && checker(line))
+			{
+				lexemes[i++] = ft_substr(line, 0, 2);
+				line += 2;
+			}
+			else
+			{
+				lexemes[i++] = ft_substr(line, 0, 1);
+				line++;
+			}
 		}
 		else
 		{
