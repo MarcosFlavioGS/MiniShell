@@ -21,6 +21,7 @@ SRC_FILES = 	main.c  			\
 				init_tables.c		\
 				lexer.c 			\
 				lexemizer.c			\
+				lexemizer_utils.c	\
 				hash.c				\
 				insert.c			\
 				insert_builtins.c	\

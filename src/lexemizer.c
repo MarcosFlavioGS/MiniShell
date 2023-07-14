@@ -12,7 +12,7 @@
 
 #include "../mini_shell.h"
 
-int	special_strlen(char *line)
+static int	special_strlen(char *line)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int	special_strlen(char *line)
 	return (i);
 }
 
-int	get_next_quote(char *line)
+static int	get_next_quote(char *line)
 {
 	int		i;
 	char	c;
@@ -37,7 +37,17 @@ int	get_next_quote(char *line)
 	return (i);
 }
 
-int	token_counter(char *line)
+static int token_counter_util(char *line, int index)
+{
+	if (line[index] == '|')
+		return 1;
+	else if (line[index + 1] == line[index])
+		return (2);
+	else
+		return (1);
+}
+
+static int	token_counter(char *line)
 {
 	int	count;
 	int	i;
@@ -55,28 +65,13 @@ int	token_counter(char *line)
 		}
 		else if (line[i] == '<' || line[i] == '>' || line[i] == '|')
 		{
-			if (line[i] == '|')
-				i++;
-			else if (line[i + 1] == line[i])
-				i += 2;
-			else
-				i++;
+			i += token_counter_util(line,i);
 		}
 		else
 			i += special_strlen(&line[i]);
 		count++;
 	}
 	return (count);
-}
-
-int checker(char *line)
-{
-	int i;
-
-	i = 0;
-	if (line[i + 1] == line[i])
-		return (TRUE);
-	return (FALSE);
 }
 
 char	**lexemizer(char *line)
@@ -98,18 +93,7 @@ char	**lexemizer(char *line)
 			line += get_next_quote(line) + 1;
 		}
 		else if (*line == '<' || *line == '>' || *line == '|')
-		{
-			if (*line != '|' && checker(line))
-			{
-				lexemes[i++] = ft_substr(line, 0, 2);
-				line += 2;
-			}
-			else
-			{
-				lexemes[i++] = ft_substr(line, 0, 1);
-				line++;
-			}
-		}
+			line += operator_handler(lexemes, line, i++);
 		else
 		{
 			lexemes[i++] = ft_substr(line, 0, special_strlen(line));
