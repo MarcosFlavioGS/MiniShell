@@ -37,7 +37,7 @@ static int	get_next_quote(char *line)
 	return (i);
 }
 
-static int token_counter_util(char *line, int index)
+static int operator_counter(char *line, int index)
 {
 	if (line[index] == '|')
 		return 1;
@@ -65,7 +65,7 @@ static int	token_counter(char *line)
 		}
 		else if (line[i] == '<' || line[i] == '>' || line[i] == '|')
 		{
-			i += token_counter_util(line,i);
+			i += operator_counter(line, i);
 		}
 		else
 			i += special_strlen(&line[i]);
