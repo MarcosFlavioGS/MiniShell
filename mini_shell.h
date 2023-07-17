@@ -61,7 +61,7 @@ typedef struct s_mini
 
 void			lexer(char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
-int             operator_handler(char **lexemes, char *line, int i);
+int				operator_handler(char **lexemes, char *line, int i);
 unsigned int	hash(const char *str);
 unsigned int	hash_env(const char *str);
 void			insert_builtins(t_symbols *symbol_table[]);

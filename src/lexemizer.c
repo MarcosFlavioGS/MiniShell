@@ -37,10 +37,10 @@ static int	get_next_quote(char *line)
 	return (i);
 }
 
-static int operator_counter(char *line, int index)
+static int	operator_counter(char *line, int index)
 {
 	if (line[index] == '|')
-		return 1;
+		return (1);
 	else if (line[index + 1] == line[index])
 		return (2);
 	else

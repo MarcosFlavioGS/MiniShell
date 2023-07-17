@@ -12,9 +12,9 @@
 
 #include "../mini_shell.h"
 
-static int checker(char *line)
+static int	checker(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (line[i + 1] == line[i])
@@ -22,7 +22,7 @@ static int checker(char *line)
 	return (FALSE);
 }
 
-int operator_handler(char **lexemes, char *line, int i)
+int	operator_handler(char **lexemes, char *line, int i)
 {
 	if (*line != '|' && checker(line))
 	{
