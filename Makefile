@@ -6,13 +6,13 @@
 #    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/06/27 19:33:33 by mflavio-         ###   ########.fr        #
+#    Updated: 2023/07/18 19:18:07 by mflavio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = mini_shell
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 SRC_DIR = src
 OBJ_DIR = obj

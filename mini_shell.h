@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/05 19:44:21 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:10:31 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_env
 {
 	char			*name;
 	char			*path;
-	char			*at_value;
 	struct s_env	*next;
 }	t_env;
 

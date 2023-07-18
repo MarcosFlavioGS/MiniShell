@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/05 19:10:22 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/18 19:14:53 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	main_loop(char *line, t_tokenized *tokens)
 	while (1)
 	{
 		line = get_line();
+		printf("line: %s\n", line);
 		if (!line)
 			continue ;
 		lexer(line, &tokens);
