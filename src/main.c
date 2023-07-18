@@ -12,18 +12,6 @@
 
 #include "../mini_shell.h"
 
-static void	print_argv(char *argv[])
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		printf("%s\n", argv[i]);
-		i++;
-	}
-}
-
 static void	free_tables(t_symbols *symbol_table[], t_env *env_table[])
 {
 	int	i;
@@ -48,9 +36,9 @@ int	main(int argc, char *argv[], char **envp)
 	t_tokenized	*tokens;
 	t_mini		*mini;
 
+	(void)argv;
 	if (argc > 2)
 	{
-		print_argv(argv);
 		return (0);
 	}
 	line = NULL;
