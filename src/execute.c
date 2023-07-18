@@ -14,6 +14,8 @@
 
 void	execute(t_tokenized **tokens)
 {
+	if (!*tokens)
+		return ;
 	if (ft_strncmp((*tokens)->token->t_name, "exit", 4) == 0)
 		exit (0);
 	else if (ft_strncmp((*tokens)->token->t_name, "echo", 4) == 0)
