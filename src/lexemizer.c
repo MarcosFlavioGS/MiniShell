@@ -94,7 +94,7 @@ char	**lexemizer(char *line)
 		}
 		else if (*line == '<' || *line == '>' || *line == '|')
 			line += operator_handler(lexemes, line, i++);
-		else
+		else if (*line)
 		{
 			lexemes[i++] = ft_substr(line, 0, special_strlen(line));
 			line += special_strlen(line);
