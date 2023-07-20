@@ -35,6 +35,7 @@ void	main_loop(char *line, t_tokenized *tokens)
 			continue ;
 		lexer(line, &tokens);
 		free(line);
+		parser(&tokens);
 		execute(&tokens);
 		clear_list(tokens);
 		tokens = NULL;
