@@ -12,7 +12,7 @@
 
 #include "../mini_shell.h"
 
-bool is_valid_syntax(t_tokenized *tokens)
+int is_valid_syntax(t_tokenized *tokens)
 {}
 
 void syntax_error(t_tokenized **tokens)

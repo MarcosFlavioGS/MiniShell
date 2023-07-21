@@ -26,7 +26,7 @@ static void	clear_list(t_tokenized *tokens)
 	}
 }
 
-void	main_loop(t_mini *mini, t_tokenized *tokens)
+void	main_loop(t_mini *mini, char *line, t_tokenized *tokens)
 {
 	while (1)
 	{

@@ -32,7 +32,8 @@ SRC_FILES = 	main.c  			\
 				echo.c				\
 				pwd.c				\
 				main_loop.c			\
-				parser.c
+				parser.c			\
+				syntax_checker.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))

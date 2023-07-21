@@ -83,6 +83,7 @@ void			execute(t_tokenized **tokens);
 void			main_loop(t_mini *mini, char *line, t_tokenized *tokens);
 void			init_tables(t_mini *mini, char **env);
 void			parser(t_mini *mini, t_tokenized **tokens);
+void			syntax_error(t_tokenized **tokens);
 // Builtins
 int				ft_echo(t_tokenized **tokens);
 int				ft_pwd(void);
