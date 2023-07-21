@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   syntax_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 17:03:02 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/20 20:57:46 by mflavio-         ###   ########.fr       */
+/*   Created: 2023/07/20 17:20:50 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/07/20 18:09:47 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-void	parser(t_mini *mini, t_tokenized **tokens)
+bool is_valid_syntax(t_tokenized *tokens)
+{}
+
+void syntax_error(t_tokenized **tokens)
 {
-	// 1. Check for syntax errors
-	// 2. Create the tree
-	mini->tree = NULL;
-	syntax_error(tokens);
-	mini->tree = create_tree(tokens);
+    if (!is_valid_syntax(*tokens)) {
+        fprintf(stderr, "Syntax error: Invalid command\n");
+        exit(EXIT_FAILURE);
+    }
 }

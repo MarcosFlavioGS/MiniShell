@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:53:31 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/10 20:52:58 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:07:32 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	special_strlen(char *line)
 	i = 0;
 	while (line[i] != ' '
 		&& line[i] != S_QUOTE && line[i] != D_QUOTE
-		&& line[i] != '<' && line[i] != '>' && line[i] != '|'
+		&& line[i] != REDIR_IN && line[i] != REDIR_OUT && line[i] != PIPE
 		&& line[i])
 		i++;
 	return (i);
@@ -39,7 +39,7 @@ static int	get_next_quote(char *line)
 
 static int	operator_counter(char *line, int index)
 {
-	if (line[index] == '|')
+	if (line[index] == PIPE)
 		return (1);
 	else if (line[index + 1] == line[index])
 		return (2);
@@ -63,7 +63,7 @@ static int	token_counter(char *line)
 			i += get_next_quote(&line[i]);
 			i++;
 		}
-		else if (line[i] == '<' || line[i] == '>' || line[i] == '|')
+		else if (line[i] == REDIR_IN || line[i] == REDIR_OUT || line[i] == PIPE)
 		{
 			i += operator_counter(line, i);
 		}
@@ -92,7 +92,7 @@ char	**lexemizer(char *line)
 			lexemes[i++] = ft_substr(line, 0, get_next_quote(line) + 1);
 			line += get_next_quote(line) + 1;
 		}
-		else if (*line == '<' || *line == '>' || *line == '|')
+		else if (*line == REDIR_IN || *line == REDIR_OUT || *line == PIPE)
 			line += operator_handler(lexemes, line, i++);
 		else if (*line)
 		{
