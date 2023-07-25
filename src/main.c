@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/18 19:49:23 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:44:34 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char *argv[], char **envp)
 	tokens = NULL;
 	mini = NULL;
 	init_tables(mini, envp);
-	main_loop(line, tokens);
+	main_loop(mini, line, tokens);
 	free_env_table(mini->env_table);
 	free_symbol_table(mini->symbol_table);
 	return (0);

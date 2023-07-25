@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/18 19:10:31 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:35:06 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define FALSE 0
 # define S_QUOTE 34
 # define D_QUOTE 39
+# define PIPE 124
+# define REDIR_IN 60
+# define REDIR_OUT 62
 
 typedef struct s_token
 {
@@ -52,10 +55,18 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_tree
+{
+	void			*content;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}	t_tree;
+
 typedef struct s_mini
 {
 	t_symbols	**symbol_table;
 	t_env		**env_table;
+	t_tree		*tree;
 }	t_mini;
 
 void			lexer(char *line, t_tokenized **tokens);
@@ -69,7 +80,7 @@ void			insert_env_path(t_env *env_table[], char **envp);
 void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
 void			execute(t_tokenized **tokens);
-void			main_loop(char *line, t_tokenized *tokens);
+void			main_loop(t_mini *mini, char *line, t_tokenized *tokens);
 void			init_tables(t_mini *mini, char **env);
 // Builtins
 int				ft_echo(t_tokenized **tokens);

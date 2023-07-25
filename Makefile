@@ -6,7 +6,7 @@
 #    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/07/18 19:18:07 by mflavio-         ###   ########.fr        #
+#    Updated: 2023/07/25 17:35:19 by mflavio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC_FILES = 	main.c  			\
 				insert_env.c		\
 				echo.c				\
 				pwd.c				\
-				main_loop.c
+				main_loop.c			\
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
