@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/20 20:44:20 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:35:06 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ char			*get_line(void);
 void			execute(t_tokenized **tokens);
 void			main_loop(t_mini *mini, char *line, t_tokenized *tokens);
 void			init_tables(t_mini *mini, char **env);
-void			parser(t_mini *mini, t_tokenized **tokens);
-void			syntax_error(t_tokenized **tokens);
 // Builtins
 int				ft_echo(t_tokenized **tokens);
 int				ft_pwd(void);
