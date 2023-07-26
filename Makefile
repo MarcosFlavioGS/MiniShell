@@ -31,7 +31,7 @@ SRC_FILES = 	main.c  			\
 				insert_env.c		\
 				echo.c				\
 				pwd.c				\
-				main_loop.c			\
+				main_loop.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
