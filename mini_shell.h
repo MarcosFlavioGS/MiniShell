@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:58:34 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:58:56 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define SYMBOL_TABLE_SIZE 15
 # define TRUE 1
 # define FALSE 0
-# define S_QUOTE 34
-# define D_QUOTE 39
+# define S_QUOTE 39
+# define D_QUOTE 34
 # define PIPE 124
 # define REDIR_IN 60
 # define REDIR_OUT 62
@@ -32,6 +32,7 @@ typedef struct s_token
 {
 	char			*t_name;
 	unsigned int	at_value;
+	unsigned int	expand;
 }	t_token;
 
 typedef struct s_tokenized

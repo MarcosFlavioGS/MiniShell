@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:34:30 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:59:47 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:04:17 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,18 @@
 
 void	expand(t_env *env_table[], t_tokenized **tokens)
 {
-	printf("expand: %s, %s\n", (*tokens)->token->t_name, env_table[15]->name);
+	t_tokenized	*tmp;
+
+	(void)env_table;
+	tmp = *tokens;
+	while (tmp)
+	{
+		if (ft_strnstr(tmp->token->t_name, "$", ft_strlen(tmp->token->t_name))
+			&& tmp->token->expand == TRUE)
+		{
+			printf("expansive: %s\n", tmp->token->t_name);
+			//expand_env(&env_table, &tmp);
+		}
+		tmp = tmp->next;
+	}	
 }

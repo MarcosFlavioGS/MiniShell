@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:16:46 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:19:33 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ static t_token	*new_token(char *identifier, unsigned int at_value)
 
 	token = malloc(sizeof(t_token));
 	token->t_name = malloc(ft_strlen(identifier) + 1);
-	ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
+	if (*identifier == S_QUOTE || *identifier == D_QUOTE)
+		ft_strlcpy(token->t_name, identifier + 1, ft_strlen(identifier) - 1);
+	else
+		ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
 	token->at_value = at_value;
 	token->t_name[ft_strlen(identifier)] = '\0';
+	token->expand = FALSE;
 	return (token);
 }
 
@@ -66,6 +70,8 @@ static void	tokenize(char **lexemes, t_tokenized **tokens)
 		new_tokenized = malloc(sizeof(t_tokenized));
 		new_tokenized->token = token;
 		new_tokenized->next = NULL;
+		if (lexemes[i][0] != S_QUOTE)
+			new_tokenized->token->expand = TRUE;
 		if (!*tokens)
 			*tokens = new_tokenized;
 		else
