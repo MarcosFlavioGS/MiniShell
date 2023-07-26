@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:15:01 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:41:48 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	main_loop(t_mini **mini, char *line, t_tokenized *tokens)
 			continue ;
 		lexer(mini, line, &tokens);
 		free(line);
-		execute(&tokens);
+		execute(mini, &tokens);
 		clear_list(tokens);
 		tokens = NULL;
 	}

@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:16:37 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:58:34 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_mini
 
 void			lexer(t_mini **mini, char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
-void			expand(t_env *env_table[],t_tokenized **tokens);
+void			expand(t_env *env_table[], t_tokenized **tokens);
 int				operator_handler(char **lexemes, char *line, int i);
 unsigned int	hash(const char *str);
 unsigned int	hash_env(const char *str);
@@ -80,10 +80,13 @@ void			insert_operators(t_symbols *symbol_table[]);
 void			insert_env_path(t_env *env_table[], char **envp);
 void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
-void			execute(t_tokenized **tokens);
+void			execute(t_mini **mini, t_tokenized **tokens);
 void			main_loop(t_mini **mini, char *line, t_tokenized *tokens);
 void			init_tables(t_mini **mini, char **env);
+void			free_env_table(t_env **env_table);
+void			free_symbol_table(t_symbols **symbol_table);
 // Builtins
 int				ft_echo(t_tokenized **tokens);
 int				ft_pwd(void);
+void			exit_shell(t_mini **mini, t_tokenized **tokens);
 #endif

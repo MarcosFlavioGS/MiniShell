@@ -6,7 +6,7 @@
 #    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/07/26 18:06:48 by mflavio-         ###   ########.fr        #
+#    Updated: 2023/07/26 18:51:51 by mflavio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC_FILES = 	main.c  			\
 				echo.c				\
 				pwd.c				\
 				expand.c			\
+				free_tables.c		\
+				exit.c				\
 				main_loop.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

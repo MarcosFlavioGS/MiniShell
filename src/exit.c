@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:52:03 by mflavio-         ###   ########.fr       */
+/*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/07/26 18:59:23 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-int	main(int argc, char *argv[], char **envp)
+static void	clear_list(t_tokenized *tokens)
 {
-	char		*line;
-	t_tokenized	*tokens;
-	t_mini		*mini;
+	t_tokenized	*tmp;
 
-	(void)argv;
-	if (argc > 2)
+	while (tokens)
 	{
-		return (0);
+		tmp = tokens->next;
+		free(tokens->token->t_name);
+		free(tokens->token);
+		free(tokens);
+		tokens = tmp;
 	}
-	line = NULL;
-	tokens = NULL;
-	mini = NULL;
-	init_tables(&mini, envp);
-	main_loop(&mini, line, tokens);
-	free_env_table(mini->env_table);
-	free_symbol_table(mini->symbol_table);
-	return (0);
+}
+
+void	exit_shell(t_mini **mini, t_tokenized **tokens)
+{
+	free_symbol_table((*mini)->symbol_table);
+	free_env_table((*mini)->env_table);
+	free(*mini);
+	clear_list(*tokens);
+	exit(0);
 }
