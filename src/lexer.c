@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/09 22:26:09 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:16:46 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ static void	tokenize(char **lexemes, t_tokenized **tokens)
 	}
 }
 
-void	lexer(char *line, t_tokenized **tokens)
+void	lexer(t_mini **mini, char *line, t_tokenized **tokens)
 {
 	char		**lexeme_array;
 
 	lexeme_array = lexemizer(line);
 	tokenize(lexeme_array, tokens);
+	expand((*mini)->env_table, tokens);
 	print(&*tokens);
 	free_array(lexeme_array);
 }

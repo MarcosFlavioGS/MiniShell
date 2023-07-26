@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:02:34 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:16:37 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ typedef struct s_mini
 	t_tree		*tree;
 }	t_mini;
 
-void			lexer(char *line, t_tokenized **tokens);
+void			lexer(t_mini **mini, char *line, t_tokenized **tokens);
 char			**lexemizer(char *line);
+void			expand(t_env *env_table[],t_tokenized **tokens);
 int				operator_handler(char **lexemes, char *line, int i);
 unsigned int	hash(const char *str);
 unsigned int	hash_env(const char *str);
@@ -80,7 +81,7 @@ void			insert_env_path(t_env *env_table[], char **envp);
 void			insert(t_symbols *table[], t_symbols *symbol);
 char			*get_line(void);
 void			execute(t_tokenized **tokens);
-void			main_loop(t_mini *mini, char *line, t_tokenized *tokens);
+void			main_loop(t_mini **mini, char *line, t_tokenized *tokens);
 void			init_tables(t_mini **mini, char **env);
 // Builtins
 int				ft_echo(t_tokenized **tokens);
