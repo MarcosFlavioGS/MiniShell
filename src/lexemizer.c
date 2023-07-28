@@ -62,6 +62,8 @@ static int	token_counter(char *line)
 		{
 			i += get_next_quote(&line[i]);
 			i++;
+			if (line[i] == ' ')
+				count++;
 		}
 		else if (line[i] == REDIR_IN || line[i] == REDIR_OUT || line[i] == PIPE)
 		{
@@ -91,6 +93,11 @@ char	**lexemizer(char *line)
 		{
 			lexemes[i++] = ft_substr(line, 0, get_next_quote(line) + 1);
 			line += get_next_quote(line) + 1;
+			if (*line == ' ')
+			{
+				lexemes[i++] = ft_strdup(" ");
+				line++;
+			}
 		}
 		else if (*line == REDIR_IN || *line == REDIR_OUT || *line == PIPE)
 			line += operator_handler(lexemes, line, i++);

@@ -3,18 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 20:19:33 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/27 22:25:49 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
+static void get_type(char **identifier, enum Type *type)
+{
+	if (!ft_strncmp(*identifier, "<<", 2))
+		*type = heredoc;
+	else if (!ft_strncmp(*identifier, ">>", 2))
+		*type = append;
+	else if (!ft_strncmp(*identifier, ">", 1))
+		*type = redir_out;
+	else if (!ft_strncmp(*identifier, "<", 1))
+		*type = redir_in;
+	else if (!ft_strncmp(*identifier, "|", 1))
+		*type = t_pipe;
+	else if (!ft_strncmp(*identifier, " ", 1))
+		*type = separator;
+	else
+		*type = word;
+}
+
 static t_token	*new_token(char *identifier, unsigned int at_value)
 {
 	t_token	*token;
+	enum Type type;
 
 	token = malloc(sizeof(t_token));
 	token->t_name = malloc(ft_strlen(identifier) + 1);
@@ -22,8 +41,10 @@ static t_token	*new_token(char *identifier, unsigned int at_value)
 		ft_strlcpy(token->t_name, identifier + 1, ft_strlen(identifier) - 1);
 	else
 		ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
-	token->at_value = at_value;
 	token->t_name[ft_strlen(identifier)] = '\0';
+	get_type(&token->t_name, &type);
+	token->at_value = at_value;
+	token->type = type;
 	token->expand = FALSE;
 	return (token);
 }
@@ -48,8 +69,8 @@ void	print(t_tokenized **tokens)
 	tmp = *tokens;
 	while (tmp)
 	{
-		printf("Token name: %s\nSymbol id: %d\n",
-			tmp->token->t_name, tmp->token->at_value);
+		printf("Token name: %s\nToken type: %i\nSymbol id: %d\n",
+			tmp->token->t_name, tmp->token->type, tmp->token->at_value);
 		tmp = tmp->next;
 	}
 }

@@ -28,10 +28,13 @@
 # define REDIR_IN 60
 # define REDIR_OUT 62
 
+enum Type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
+
 typedef struct s_token
 {
 	char			*t_name;
 	unsigned int	at_value;
+	unsigned int	type;
 	unsigned int	expand;
 }	t_token;
 
