@@ -14,17 +14,17 @@
 
 static void get_type(char **identifier, enum Type *type)
 {
-	if (!ft_strncmp(*identifier, "<<", 2))
+	if (!ft_strncmp(*identifier, "<<", 2) && ft_strlen(*identifier) == 2)
 		*type = heredoc;
-	else if (!ft_strncmp(*identifier, ">>", 2))
+	else if (!ft_strncmp(*identifier, ">>", 2) && ft_strlen(*identifier) == 2)
 		*type = append;
-	else if (!ft_strncmp(*identifier, ">", 1))
+	else if (!ft_strncmp(*identifier, ">", 1) && ft_strlen(*identifier) == 1)
 		*type = redir_out;
-	else if (!ft_strncmp(*identifier, "<", 1))
+	else if (!ft_strncmp(*identifier, "<", 1) && ft_strlen(*identifier) == 1)
 		*type = redir_in;
-	else if (!ft_strncmp(*identifier, "|", 1))
+	else if (!ft_strncmp(*identifier, "|", 1) && ft_strlen(*identifier) == 1)
 		*type = t_pipe;
-	else if (!ft_strncmp(*identifier, " ", 1))
+	else if (!ft_strncmp(*identifier, " ", 1) && ft_strlen(*identifier) == 1)
 		*type = separator;
 	else
 		*type = word;
@@ -49,7 +49,7 @@ static t_token	*new_token(char *identifier)
 	return (token);
 }
 
-void	free_array(char **array)
+static void	free_array(char **array)
 {
 	int	i;
 
@@ -62,7 +62,7 @@ void	free_array(char **array)
 	free(array);
 }
 
-int check_null_str(char s1, char s2, int *i)
+static int check_null_str(char s1, char s2, int *i)
 {
 	if ((s1 == S_QUOTE || s2 == D_QUOTE)
 		&& s1 == s2)
