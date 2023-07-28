@@ -23,11 +23,8 @@ SRC_FILES = 	main.c  			\
 				lexemizer.c			\
 				lexemizer_utils.c	\
 				hash.c				\
-				insert.c			\
-				insert_builtins.c	\
 				get_line.c			\
 				execute.c			\
-				insert_operators.c 	\
 				insert_env.c		\
 				echo.c				\
 				pwd.c				\

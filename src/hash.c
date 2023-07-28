@@ -26,12 +26,7 @@ static unsigned int	char_sum(const char *str)
 	return (n);
 }
 
-unsigned int	hash(const char *str)
+unsigned int	hash(const char *str, int size)
 {
-	return ((char_sum(str) * ft_strlen(str)) % SYMBOL_TABLE_SIZE);
-}
-
-unsigned int	hash_env(const char *str)
-{
-	return ((char_sum(str) * ft_strlen(str)) % ENV_TABLE_SIZE);
+	return ((char_sum(str) * ft_strlen(str)) % size);
 }

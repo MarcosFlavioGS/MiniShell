@@ -33,25 +33,3 @@ void	free_env_table(t_env **env_table)
 		i++;
 	}
 }
-
-void	free_symbol_table(t_symbols **symbol_table)
-{
-	int			i;
-	t_symbols	*tmp;
-	t_symbols	*tmp2;
-
-	i = 0;
-	while (i < SYMBOL_TABLE_SIZE)
-	{
-		tmp = symbol_table[i];
-		while (tmp)
-		{
-			tmp2 = tmp->next;
-			free(tmp->name);
-			free(tmp->type);
-			free(tmp);
-			tmp = tmp2;
-		}
-		i++;
-	}
-}

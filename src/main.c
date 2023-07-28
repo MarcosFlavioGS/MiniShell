@@ -29,6 +29,5 @@ int	main(int argc, char *argv[], char **envp)
 	init_tables(&mini, envp);
 	main_loop(&mini, line, tokens);
 	free_env_table(mini->env_table);
-	free_symbol_table(mini->symbol_table);
 	return (0);
 }

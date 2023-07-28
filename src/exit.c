@@ -28,7 +28,6 @@ static void	clear_list(t_tokenized *tokens)
 
 void	exit_shell(t_mini **mini, t_tokenized **tokens)
 {
-	free_symbol_table((*mini)->symbol_table);
 	free_env_table((*mini)->env_table);
 	free(*mini);
 	clear_list(*tokens);

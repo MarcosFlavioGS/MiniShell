@@ -43,7 +43,7 @@ static t_token	*new_token(char *identifier)
 		ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
 	token->t_name[ft_strlen(identifier)] = '\0';
 	get_type(&token->t_name, &type);
-	token->at_value = hash(token->t_name);
+	token->at_value = hash(token->t_name, 15);
 	token->type = type;
 	token->expand = FALSE;
 	return (token);
