@@ -26,6 +26,19 @@ static void	clear_list(t_tokenized *tokens)
 	}
 }
 
+static void	print(t_tokenized **tokens)
+{
+	t_tokenized	*tmp;
+
+	tmp = *tokens;
+	while (tmp)
+	{
+		printf("Token name: %s\nToken type: %i\nSymbol id: %d\n",
+			tmp->token->t_name, tmp->token->type, tmp->token->at_value);
+		tmp = tmp->next;
+	}
+}
+
 void	main_loop(t_mini **mini, char *line, t_tokenized *tokens)
 {
 	while (1)
@@ -35,6 +48,7 @@ void	main_loop(t_mini **mini, char *line, t_tokenized *tokens)
 			continue ;
 		lexer(mini, line, &tokens);
 		free(line);
+		print(&tokens);
 		execute(mini, &tokens);
 		clear_list(tokens);
 		tokens = NULL;

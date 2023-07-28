@@ -62,19 +62,6 @@ void	free_array(char **array)
 	free(array);
 }
 
-void	print(t_tokenized **tokens)
-{
-	t_tokenized	*tmp;
-
-	tmp = *tokens;
-	while (tmp)
-	{
-		printf("Token name: %s\nToken type: %i\nSymbol id: %d\n",
-			tmp->token->t_name, tmp->token->type, tmp->token->at_value);
-		tmp = tmp->next;
-	}
-}
-
 int check_null_str(char s1, char s2, int *i)
 {
 	if ((s1 == S_QUOTE || s2 == D_QUOTE)
@@ -122,6 +109,5 @@ void	lexer(t_mini **mini, char *line, t_tokenized **tokens)
 	lexeme_array = lexemizer(line);
 	tokenize(lexeme_array, tokens);
 	expand((*mini)->env_table, tokens);
-	print(&*tokens);
 	free_array(lexeme_array);
 }
