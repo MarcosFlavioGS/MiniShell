@@ -30,7 +30,7 @@ static void get_type(char **identifier, enum Type *type)
 		*type = word;
 }
 
-static t_token	*new_token(char *identifier, unsigned int at_value)
+static t_token	*new_token(char *identifier)
 {
 	t_token	*token;
 	enum Type type;
@@ -43,7 +43,7 @@ static t_token	*new_token(char *identifier, unsigned int at_value)
 		ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
 	token->t_name[ft_strlen(identifier)] = '\0';
 	get_type(&token->t_name, &type);
-	token->at_value = at_value;
+	token->at_value = hash(token->t_name);
 	token->type = type;
 	token->expand = FALSE;
 	return (token);
@@ -75,6 +75,17 @@ void	print(t_tokenized **tokens)
 	}
 }
 
+int check_null_str(char s1, char s2, int *i)
+{
+	if ((s1 == S_QUOTE || s2 == D_QUOTE)
+		&& s1 == s2)
+		{
+			*i += 1;
+			return (1);
+		}
+	return (0);
+}
+
 static void	tokenize(char **lexemes, t_tokenized **tokens)
 {
 	t_token		*token;
@@ -87,7 +98,9 @@ static void	tokenize(char **lexemes, t_tokenized **tokens)
 	current = NULL;
 	while (lexemes[i])
 	{
-		token = new_token(lexemes[i], hash(lexemes[i]));
+		if (check_null_str(lexemes[i][0], lexemes[i][1], &i))
+			continue ;
+		token = new_token(lexemes[i]);
 		new_tokenized = malloc(sizeof(t_tokenized));
 		new_tokenized->token = token;
 		new_tokenized->next = NULL;
