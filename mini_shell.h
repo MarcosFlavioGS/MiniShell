@@ -6,7 +6,7 @@
 /*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/29 17:07:01 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:24:49 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_mini
 void			lexer(char *line, t_tokenstream **tokens);
 char			**lexemizer(char *line);
 int				operator_handler(char **lexemes, char *line, int i);
+int				special_strlen(char *line);
 unsigned int	hash(const char *str, int size);
 void			insert_env_path(t_env *env_table[], char **envp);
 char			*get_line(void);

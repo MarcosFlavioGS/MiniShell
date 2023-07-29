@@ -12,19 +12,6 @@
 
 #include "../mini_shell.h"
 
-static int	special_strlen(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] != ' '
-		&& line[i] != S_QUOTE && line[i] != D_QUOTE
-		&& line[i] != REDIR_IN && line[i] != REDIR_OUT && line[i] != PIPE
-		&& line[i])
-		i++;
-	return (i);
-}
-
 static int	get_next_quote(char *line)
 {
 	int		i;
@@ -76,7 +63,7 @@ static int	token_counter(char *line)
 	return (count);
 }
 
-void handle_quotes_and_spaces(char **lexemes, char **line_ptr, int *i) {
+static void handle_quotes_and_spaces(char **lexemes, char **line_ptr, int *i) {
 	char *line = *line_ptr;
 
 	lexemes[(*i)++] = ft_substr(line, 0, get_next_quote(line) + 1);

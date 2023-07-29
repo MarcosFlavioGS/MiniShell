@@ -35,3 +35,16 @@ int	operator_handler(char **lexemes, char *line, int i)
 		return (1);
 	}
 }
+
+int	special_strlen(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != ' '
+		&& line[i] != S_QUOTE && line[i] != D_QUOTE
+		&& line[i] != REDIR_IN && line[i] != REDIR_OUT && line[i] != PIPE
+		&& line[i])
+		i++;
+	return (i);
+}
