@@ -6,7 +6,7 @@
 /*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/29 14:48:10 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:07:01 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_token
 
 typedef struct t_tokenstream
 {
-	t_token				*token;
+	t_token					*token;
 	struct t_tokenstream	*next;
 }	t_tokenstream;
 
@@ -61,8 +61,8 @@ typedef struct s_tree
 
 typedef struct s_mini
 {
-	t_env		*env_table[ENV_TABLE_SIZE];
-	t_tree		*tree;
+	t_env	*env_table[ENV_TABLE_SIZE];
+	t_tree	*tree;
 }	t_mini;
 
 void			lexer(char *line, t_tokenstream **tokens);
@@ -75,6 +75,7 @@ void			execute(t_mini **mini, t_tokenstream **tokens);
 void			main_loop(t_mini **mini, char *line, t_tokenstream *tokens);
 void			init_tables(t_mini **mini, char **env);
 void			free_env_table(t_env **env_table);
+void			free_array(char **array);
 // Builtins
 int				ft_echo(t_tokenstream **tokens);
 int				ft_pwd(void);

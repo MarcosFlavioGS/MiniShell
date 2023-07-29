@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexemizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:53:31 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/20 18:07:32 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:16:55 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,21 @@ static int	token_counter(char *line)
 	return (count);
 }
 
+void handle_quotes_and_spaces(char **lexemes, char **line_ptr, int *i) {
+	char *line = *line_ptr;
+
+	lexemes[(*i)++] = ft_substr(line, 0, get_next_quote(line) + 1);
+	line += get_next_quote(line) + 1;
+	
+	if (*line == ' ')
+	{
+		lexemes[(*i)++] = ft_strdup(" ");
+		line++;
+	}
+
+	*line_ptr = line;
+}
+
 char	**lexemizer(char *line)
 {
 	int		i;
@@ -91,13 +106,7 @@ char	**lexemizer(char *line)
 			line++;
 		if (*line == S_QUOTE || *line == D_QUOTE)
 		{
-			lexemes[i++] = ft_substr(line, 0, get_next_quote(line) + 1);
-			line += get_next_quote(line) + 1;
-			if (*line == ' ')
-			{
-				lexemes[i++] = ft_strdup(" ");
-				line++;
-			}
+			handle_quotes_and_spaces(lexemes, &line, &i);
 		}
 		else if (*line == REDIR_IN || *line == REDIR_OUT || *line == PIPE)
 			line += operator_handler(lexemes, line, i++);

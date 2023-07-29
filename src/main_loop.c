@@ -33,8 +33,10 @@ static void	print(t_tokenstream **tokens)
 	tmp = *tokens;
 	while (tmp)
 	{
-		printf("Token name: %s\nToken type: %i\nSymbol id: %d\nQuote: %i\n",
-			tmp->token->t_name, tmp->token->type, tmp->token->at_value, tmp->token->quote);
+		printf(
+			"Token name: %s\nToken type: %i\nSymbol id: %d\nQuote: %i\n",
+			tmp->token->t_name, tmp->token->type,
+			   tmp->token->at_value, tmp->token->quote);
 		tmp = tmp->next;
 	}
 }
@@ -45,7 +47,9 @@ void	main_loop(t_mini **mini, char *line, t_tokenstream *tokens)
 	{
 		line = get_line();
 		if (!line)
-			continue ;
+		{
+			exit_shell(mini, &tokens);
+		}
 		lexer(line, &tokens);
 		free(line);
 		print(&tokens);

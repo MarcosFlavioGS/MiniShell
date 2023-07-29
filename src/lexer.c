@@ -57,19 +57,6 @@ static t_token	*new_token(char *identifier)
 	return (token);
 }
 
-static void	free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 static int check_null_str(char s1, char s2, int *i)
 {
 	if ((s1 == S_QUOTE || s2 == D_QUOTE)
