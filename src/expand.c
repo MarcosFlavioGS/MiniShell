@@ -12,9 +12,9 @@
 
 #include "../mini_shell.h"
 
-void	expand(t_env *env_table[], t_tokenized **tokens)
+void	expand(t_env *env_table[], t_tokenstream **tokens)
 {
-	t_tokenized	*tmp;
+	t_tokenstream	*tmp;
 
 	(void)env_table;
 	tmp = *tokens;

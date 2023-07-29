@@ -73,11 +73,11 @@ static int check_null_str(char s1, char s2, int *i)
 	return (0);
 }
 
-static void	tokenize(char **lexemes, t_tokenized **tokens)
+static void	tokenize(char **lexemes, t_tokenstream **tokens)
 {
 	t_token		*token;
-	t_tokenized	*current;
-	t_tokenized	*new_tokenized;
+	t_tokenstream	*current;
+	t_tokenstream	*new_tokenized;
 	int			i;
 
 	i = 0;
@@ -88,7 +88,7 @@ static void	tokenize(char **lexemes, t_tokenized **tokens)
 		if (check_null_str(lexemes[i][0], lexemes[i][1], &i))
 			continue ;
 		token = new_token(lexemes[i]);
-		new_tokenized = malloc(sizeof(t_tokenized));
+		new_tokenized = malloc(sizeof(t_tokenstream));
 		new_tokenized->token = token;
 		new_tokenized->next = NULL;
 		if (lexemes[i][0] != S_QUOTE)
@@ -102,7 +102,7 @@ static void	tokenize(char **lexemes, t_tokenized **tokens)
 	}
 }
 
-void	lexer(t_mini **mini, char *line, t_tokenized **tokens)
+void	lexer(t_mini **mini, char *line, t_tokenstream **tokens)
 {
 	char		**lexeme_array;
 

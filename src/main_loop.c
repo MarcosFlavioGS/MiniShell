@@ -12,9 +12,9 @@
 
 #include "../mini_shell.h"
 
-static void	clear_list(t_tokenized *tokens)
+static void	clear_list(t_tokenstream *tokens)
 {
-	t_tokenized	*tmp;
+	t_tokenstream	*tmp;
 
 	while (tokens)
 	{
@@ -26,9 +26,9 @@ static void	clear_list(t_tokenized *tokens)
 	}
 }
 
-static void	print(t_tokenized **tokens)
+static void	print(t_tokenstream **tokens)
 {
-	t_tokenized	*tmp;
+	t_tokenstream	*tmp;
 
 	tmp = *tokens;
 	while (tmp)
@@ -39,7 +39,7 @@ static void	print(t_tokenized **tokens)
 	}
 }
 
-void	main_loop(t_mini **mini, char *line, t_tokenized *tokens)
+void	main_loop(t_mini **mini, char *line, t_tokenstream *tokens)
 {
 	while (1)
 	{

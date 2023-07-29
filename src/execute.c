@@ -12,7 +12,7 @@
 
 #include "../mini_shell.h"
 
-void	execute(t_mini **mini, t_tokenized **tokens)
+void	execute(t_mini **mini, t_tokenstream **tokens)
 {
 	if (!*tokens)
 		return ;

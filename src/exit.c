@@ -12,9 +12,9 @@
 
 #include "../mini_shell.h"
 
-static void	clear_list(t_tokenized *tokens)
+static void	clear_list(t_tokenstream *tokens)
 {
-	t_tokenized	*tmp;
+	t_tokenstream	*tmp;
 
 	while (tokens)
 	{
@@ -26,7 +26,7 @@ static void	clear_list(t_tokenized *tokens)
 	}
 }
 
-void	exit_shell(t_mini **mini, t_tokenized **tokens)
+void	exit_shell(t_mini **mini, t_tokenstream **tokens)
 {
 	free_env_table((*mini)->env_table);
 	free(*mini);

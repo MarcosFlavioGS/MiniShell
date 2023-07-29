@@ -12,9 +12,9 @@
 
 #include "../mini_shell.h"
 
-int	ft_echo(t_tokenized **tokens)
+int	ft_echo(t_tokenstream **tokens)
 {
-	t_tokenized	*tmp;
+	t_tokenstream	*tmp;
 
 	if ((*tokens)->next == NULL)
 		return (0);

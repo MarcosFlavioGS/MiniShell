@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[], char **envp)
 {
 	char		*line;
-	t_tokenized	*tokens;
+	t_tokenstream	*tokens;
 	t_mini		*mini;
 
 	(void)argv;

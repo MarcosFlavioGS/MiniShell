@@ -37,11 +37,11 @@ typedef struct s_token
 	unsigned int	expand;
 }	t_token;
 
-typedef struct s_tokenized
+typedef struct t_tokenstream
 {
 	t_token				*token;
-	struct s_tokenized	*next;
-}	t_tokenized;
+	struct t_tokenstream	*next;
+}	t_tokenstream;
 
 typedef struct s_env
 {
@@ -63,19 +63,19 @@ typedef struct s_mini
 	t_tree		*tree;
 }	t_mini;
 
-void			lexer(t_mini **mini, char *line, t_tokenized **tokens);
+void			lexer(t_mini **mini, char *line, t_tokenstream **tokens);
 char			**lexemizer(char *line);
-void			expand(t_env *env_table[], t_tokenized **tokens);
+void			expand(t_env *env_table[], t_tokenstream **tokens);
 int				operator_handler(char **lexemes, char *line, int i);
 unsigned int	hash(const char *str, int size);
 void			insert_env_path(t_env *env_table[], char **envp);
 char			*get_line(void);
-void			execute(t_mini **mini, t_tokenized **tokens);
-void			main_loop(t_mini **mini, char *line, t_tokenized *tokens);
+void			execute(t_mini **mini, t_tokenstream **tokens);
+void			main_loop(t_mini **mini, char *line, t_tokenstream *tokens);
 void			init_tables(t_mini **mini, char **env);
 void			free_env_table(t_env **env_table);
 // Builtins
-int				ft_echo(t_tokenized **tokens);
+int				ft_echo(t_tokenstream **tokens);
 int				ft_pwd(void);
-void			exit_shell(t_mini **mini, t_tokenized **tokens);
+void			exit_shell(t_mini **mini, t_tokenstream **tokens);
 #endif
