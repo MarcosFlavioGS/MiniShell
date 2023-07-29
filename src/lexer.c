@@ -6,13 +6,13 @@
 /*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/27 22:25:49 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:05:13 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-static void get_type(char **identifier, enum Type *type)
+static void	get_type(char **identifier, enum Type *type)
 {
 	if (!ft_strncmp(*identifier, "<<", 2) && ft_strlen(*identifier) == 2)
 		*type = heredoc;
@@ -32,8 +32,8 @@ static void get_type(char **identifier, enum Type *type)
 
 static t_token	*new_token(char *identifier)
 {
-	t_token	*token;
-	enum Type type;
+	t_token		*token;
+	enum Type	type;
 
 	token = malloc(sizeof(t_token));
 	token->t_name = malloc(ft_strlen(identifier) + 1);
@@ -75,10 +75,10 @@ static int check_null_str(char s1, char s2, int *i)
 
 static void	tokenize(char **lexemes, t_tokenstream **tokens)
 {
-	t_token		*token;
+	t_token			*token;
 	t_tokenstream	*current;
 	t_tokenstream	*new_tokenized;
-	int			i;
+	int				i;
 
 	i = 0;
 	new_tokenized = NULL;
@@ -104,7 +104,7 @@ static void	tokenize(char **lexemes, t_tokenstream **tokens)
 
 void	lexer(t_mini **mini, char *line, t_tokenstream **tokens)
 {
-	char		**lexeme_array;
+	char	**lexeme_array;
 
 	lexeme_array = lexemizer(line);
 	tokenize(lexeme_array, tokens);
