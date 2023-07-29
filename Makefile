@@ -6,11 +6,11 @@
 #    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/07/26 18:51:51 by mflavio-         ###   ########.fr        #
+#    Updated: 2023/07/29 19:20:57 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mini_shell
+NAME = minishell
 
 FLAGS = -Wall -Wextra -Werror -g
 
@@ -43,7 +43,7 @@ $(LIBFT):
 	$(MAKE) -C libft/
 
 $(NAME): $(OBJ) $(LIBFT)
-	gcc $(FLAGS) -lreadline -o $@ $^
+	gcc $(FLAGS) -o $@ $^ -lreadline
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
