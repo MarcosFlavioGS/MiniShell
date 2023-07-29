@@ -52,17 +52,9 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef struct s_tree
-{
-	void			*content;
-	struct s_tree	*left;
-	struct s_tree	*right;
-}	t_tree;
-
 typedef struct s_mini
 {
 	t_env	*env_table[ENV_TABLE_SIZE];
-	t_tree	*tree;
 }	t_mini;
 
 void			lexer(char *line, t_tokenstream **tokens);
