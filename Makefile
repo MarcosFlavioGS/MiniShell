@@ -28,7 +28,6 @@ SRC_FILES = 	main.c  			\
 				insert_env.c		\
 				echo.c				\
 				pwd.c				\
-				expand.c			\
 				free_tables.c		\
 				exit.c				\
 				main_loop.c

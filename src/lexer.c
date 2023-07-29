@@ -38,14 +38,22 @@ static t_token	*new_token(char *identifier)
 	token = malloc(sizeof(t_token));
 	token->t_name = malloc(ft_strlen(identifier) + 1);
 	if (*identifier == S_QUOTE || *identifier == D_QUOTE)
+	{
+		if (*identifier == D_QUOTE)
+			token->quote = DQUOTE;
+		else
+			token->quote = SQUOTE;
 		ft_strlcpy(token->t_name, identifier + 1, ft_strlen(identifier) - 1);
+	}
 	else
+	{
+		token->quote = NOQUOTE;
 		ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
+	}
 	token->t_name[ft_strlen(identifier)] = '\0';
 	get_type(&token->t_name, &type);
-	token->at_value = hash(token->t_name, 15);
 	token->type = type;
-	token->expand = FALSE;
+	token->at_value = hash(token->t_name, 15);
 	return (token);
 }
 
@@ -91,8 +99,6 @@ static void	tokenize(char **lexemes, t_tokenstream **tokens)
 		new_tokenized = malloc(sizeof(t_tokenstream));
 		new_tokenized->token = token;
 		new_tokenized->next = NULL;
-		if (lexemes[i][0] != S_QUOTE)
-			new_tokenized->token->expand = TRUE;
 		if (!*tokens)
 			*tokens = new_tokenized;
 		else
@@ -102,12 +108,11 @@ static void	tokenize(char **lexemes, t_tokenstream **tokens)
 	}
 }
 
-void	lexer(t_mini **mini, char *line, t_tokenstream **tokens)
+void	lexer(char *line, t_tokenstream **tokens)
 {
 	char	**lexeme_array;
 
 	lexeme_array = lexemizer(line);
 	tokenize(lexeme_array, tokens);
-	expand((*mini)->env_table, tokens);
 	free_array(lexeme_array);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 19:58:56 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/07/29 14:48:10 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@
 
 enum Type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
 
+enum Quote {NOQUOTE, SQUOTE, DQUOTE};
+
 typedef struct s_token
 {
 	char			*t_name;
 	unsigned int	at_value;
-	unsigned int	type;
-	unsigned int	expand;
+	enum Type		type;
+	enum Quote		quote;
 }	t_token;
 
 typedef struct t_tokenstream
@@ -63,9 +65,8 @@ typedef struct s_mini
 	t_tree		*tree;
 }	t_mini;
 
-void			lexer(t_mini **mini, char *line, t_tokenstream **tokens);
+void			lexer(char *line, t_tokenstream **tokens);
 char			**lexemizer(char *line);
-void			expand(t_env *env_table[], t_tokenstream **tokens);
 int				operator_handler(char **lexemes, char *line, int i);
 unsigned int	hash(const char *str, int size);
 void			insert_env_path(t_env *env_table[], char **envp);
