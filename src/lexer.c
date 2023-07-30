@@ -57,17 +57,6 @@ static t_token	*new_token(char *identifier)
 	return (token);
 }
 
-static int check_null_str(char s1, char s2, int *i)
-{
-	if ((s1 == S_QUOTE || s2 == D_QUOTE)
-		&& s1 == s2)
-		{
-			*i += 1;
-			return (1);
-		}
-	return (0);
-}
-
 static void	tokenize(char **lexemes, t_tokenstream **tokens)
 {
 	t_token			*token;
@@ -80,8 +69,6 @@ static void	tokenize(char **lexemes, t_tokenstream **tokens)
 	current = NULL;
 	while (lexemes[i])
 	{
-		if (check_null_str(lexemes[i][0], lexemes[i][1], &i))
-			continue ;
 		token = new_token(lexemes[i]);
 		new_tokenized = malloc(sizeof(t_tokenstream));
 		new_tokenized->token = token;
