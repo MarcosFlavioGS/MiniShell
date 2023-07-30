@@ -69,7 +69,7 @@ static void handle_quotes_and_spaces(char **lexemes, char **line_ptr, int *i) {
 	lexemes[(*i)++] = ft_substr(line, 0, get_next_quote(line) + 1);
 	line += get_next_quote(line) + 1;
 	
-	if (*line == ' ' && *i > 1)
+	if (*line == ' ' && *i > 1 && ft_strlen(&*line) > 2)
 	{
 		lexemes[(*i)++] = ft_strdup(" ");
 		line++;
