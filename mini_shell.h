@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/29 18:24:49 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:35:39 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@
 # define REDIR_IN 60
 # define REDIR_OUT 62
 
-enum Type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
+enum e_type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
 
-enum Quote {NOQUOTE, SQUOTE, DQUOTE};
+enum e_quote {noquote, squote, dquote};
 
 typedef struct s_token
 {
 	char			*t_name;
 	unsigned int	at_value;
-	enum Type		type;
-	enum Quote		quote;
+	enum e_type		type;
+	enum e_quote	quote;
 }	t_token;
 
 typedef struct t_tokenstream

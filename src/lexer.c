@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/28 22:05:13 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:40:29 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mini_shell.h"
 
-static void	get_type(char **identifier, enum Type *type)
+static void	get_type(char **identifier, enum e_type *type)
 {
 	if (!ft_strncmp(*identifier, "<<", 2) && ft_strlen(*identifier) == 2)
 		*type = heredoc;
@@ -33,21 +33,21 @@ static void	get_type(char **identifier, enum Type *type)
 static t_token	*new_token(char *identifier)
 {
 	t_token		*token;
-	enum Type	type;
+	enum e_type	type;
 
 	token = malloc(sizeof(t_token));
 	token->t_name = malloc(ft_strlen(identifier) + 1);
 	if (*identifier == S_QUOTE || *identifier == D_QUOTE)
 	{
 		if (*identifier == D_QUOTE)
-			token->quote = DQUOTE;
+			token->quote = dquote;
 		else
-			token->quote = SQUOTE;
+			token->quote = squote;
 		ft_strlcpy(token->t_name, identifier + 1, ft_strlen(identifier) - 1);
 	}
 	else
 	{
-		token->quote = NOQUOTE;
+		token->quote = noquote;
 		ft_strlcpy(token->t_name, identifier, ft_strlen(identifier) + 1);
 	}
 	token->t_name[ft_strlen(identifier)] = '\0';

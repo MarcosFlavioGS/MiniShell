@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:52:03 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:37:09 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int argc, char *argv[], char **envp)
 {
-	char		*line;
+	char			*line;
 	t_tokenstream	*tokens;
-	t_mini		*mini;
+	t_mini			*mini;
 
 	(void)argv;
 	if (argc > 2)

@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:41:48 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:36:39 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	print(t_tokenstream **tokens)
 		printf(
 			"Token name: %s\nToken type: %i\nSymbol id: %d\nQuote: %i\n",
 			tmp->token->t_name, tmp->token->type,
-			   tmp->token->at_value, tmp->token->quote);
+			tmp->token->at_value, tmp->token->quote);
 		tmp = tmp->next;
 	}
 }
