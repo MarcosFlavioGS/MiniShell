@@ -13,37 +13,43 @@ SOURCES :=	$(SOURCES_PROGRAM)\
 			assertz/assertz.c\
 			main.c
 
-CC = cc
 
-NAME = test
+SOURCES :=	$(SOURCES_PROGRAM)\
+			$(SOURCES_TESTS)\
+			assertz/assertz.c\
+			main.c
+
+CC = gcc
 
 OBJECTS = $(SOURCES:.c=.o)
 DEPENDS = $(SOURCES:.c=.d)
 
-LIBFT = ../libft/libft.a
+LIBFT   = ../libft/libft.a
+ASSERTZ = ./assertz/assertz.a
 
 # recipes
 
 all : $(NAME)
 
-$(NAME) : $(OBJECTS) $(LIBFT)
-	$(CC) $(OBJECTS) -o $@ $(LIBFT)
+$(NAME) : $(LIBFT) $(ASSERTZ) $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@ $(LIBFT) $(ASSERTZ)
 
 %.o : %.c
 	$(CC) -MMD -c $< -o $@ -DALL
 
 -include $(DEPENDS)
 
-test_stack_utils : all
-	valgrind --leak-check=full --show-leak-kinds=all ./test 5
-
 fclean :
 	rm -rf $(NAME)
 	rm -rf $(OBJECTS)
 	rm -rf $(DEPENDS)
+	make -C ./assertz/ clean
 
 $(LIBFT):
-	make -C ../libft/Makefile
+	make -C ../libft/
+
+$(ASSERTZ):
+	make -C ./assertz/
 
 valgrind : all
 	valgrind --show-leak-kinds=all --leak-check=full ./$(NAME)

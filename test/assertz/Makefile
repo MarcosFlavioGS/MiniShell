@@ -1,13 +1,16 @@
-NAME = assertz
+NAME = assertz.a
 
-SOURCES = assertz.c\
-test_assertz.c
+SOURCES = \
+			assertz.c\
+			test_assertz.c
 
 OBJECTS = $(SOURCES:.c=.o)
 DEPENDE = $(SOURCES:.c=.d)
 
+all : $(NAME)
+
 $(NAME) : $(OBJECTS)
-	gcc $(OBJECTS) -o $@
+	ar -rcs $(NAME) $(OBJECTS)
 
 %.o : %.c
 	gcc -MMD -c $< -o $@
