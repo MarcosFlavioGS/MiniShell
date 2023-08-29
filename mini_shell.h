@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_shell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/02 16:35:39 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/27 23:14:03 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define PIPE 124
 # define REDIR_IN 60
 # define REDIR_OUT 62
+
+# define ENV_INVLD_PARAM 1
+# define ENV_MALLOC_ERROR 2
 
 enum e_type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
 
@@ -73,4 +76,13 @@ void			free_array(char **array);
 int				ft_echo(t_tokenstream **tokens);
 int				ft_pwd(void);
 void			exit_shell(t_mini **mini, t_tokenstream **tokens);
+
+//env_manager.c
+char			**env_dup(char **env);
+void			env_free(char **env);
+size_t			env_get_value_index(char **env, char *variable);
+char			*env_get_value(char **env, char *variable, int *status);
+int				env_add_value(char ***env, char *v_and_v);
+int				env_remove_value(char ***env, char *variable);
+
 #endif
