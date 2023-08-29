@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
+#    By: phz <phz@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/07/29 19:20:57 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/08/27 15:45:59 by phz              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,20 +17,21 @@ FLAGS = -Wall -Wextra -Werror -g
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = 	main.c  			\
-				init_tables.c		\
-				lexer.c 			\
-				lexemizer.c			\
-				lexemizer_utils.c	\
-				hash.c				\
-				get_line.c			\
-				execute.c			\
-				insert_env.c		\
+SRC_FILES =		\
 				echo.c				\
-				pwd.c				\
-				free_tables.c		\
+				execute.c			\
 				exit.c				\
-				main_loop.c
+				free_tables.c		\
+				get_line.c			\
+				hash.c				\
+				init_tables.c		\
+				insert_env.c		\
+				lexemizer_utils.c	\
+				lexemizer.c			\
+				lexer.c 			\
+				main_loop.c			\
+				main.c  			\
+				pwd.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
