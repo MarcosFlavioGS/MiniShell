@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 00:19:12 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/01/03 15:37:48 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 19:52:38 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 // GNL
 char	*get_next_line(int fd);
 // ft_printf
-int		ft_printf(const char *placeholders, ...);
+int		ft_printf(int fd, const char *placeholders, ...);
 int		ft_numlen(unsigned long int num);
 #endif
