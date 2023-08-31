@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: phz <phz@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/08/27 15:45:59 by phz              ###   ########.fr        #
+#    Updated: 2023/08/30 23:26:48 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,21 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC_FILES =		\
+				utils/message.c     \
 				echo.c				\
+				env_manager.c		\
+				env_manager2.c		\
 				execute.c			\
 				exit.c				\
 				free_tables.c		\
 				get_line.c			\
 				hash.c				\
-				init_tables.c		\
 				insert_env.c		\
 				lexemizer_utils.c	\
 				lexemizer.c			\
 				lexer.c 			\
 				main_loop.c			\
+				minishell_manager.c \
 				main.c  			\
 				pwd.c
 
@@ -48,6 +51,7 @@ $(NAME): $(OBJ) $(LIBFT)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/utils
 	gcc $(FLAGS) -c $< -o $@
 
 clean:
@@ -59,3 +63,6 @@ fclean: clean
 	$(MAKE) -C libft/ fclean
 
 re: fclean all
+
+valgrind : all
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=suppressions ./minishell
