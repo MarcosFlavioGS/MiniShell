@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/28 22:04:40 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:32:45 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static void	clear_list(t_tokenstream *tokens)
 {
@@ -28,8 +28,7 @@ static void	clear_list(t_tokenstream *tokens)
 
 void	exit_shell(t_mini **mini, t_tokenstream **tokens)
 {
-	free_env_table((*mini)->env_table);
-	free(*mini);
+	mini_destroy(*mini);
 	clear_list(*tokens);
 	exit(0);
 }

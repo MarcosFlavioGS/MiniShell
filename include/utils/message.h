@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   message.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 18:43:30 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:35:27 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/08/30 21:48:04 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/08/30 22:10:22 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef MESSAGE_H
+# define MESSAGE_H
 
-int	ft_pwd(void)
-{
-	char	cwd[100];
+# define ERR_MSG_1 "malloc error! minishell struct"
+# define ERR_MSG_2 "malloc error! env_dup"
 
-	if (getcwd(cwd, 100))
-	{
-		ft_putendl_fd(cwd, 1);
-		return (0);
-	}
-	else
-		return (1);
-}
+void	msg_fatal_err(const char *msg);
+
+void	msg_syscall_err(const char *msg);
+
+#endif

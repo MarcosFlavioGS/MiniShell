@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 16:56:36 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/05/10 16:56:38 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:34:53 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static unsigned int	char_sum(const char *str)
 {

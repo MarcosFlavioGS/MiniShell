@@ -6,11 +6,11 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/29 15:29:06 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:35:13 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static void	clear_list(t_tokenstream *tokens)
 {

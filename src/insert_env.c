@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   insert_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 18:40:34 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/06/27 19:38:15 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:34:57 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static char	*get_string_before_equal(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:28:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/08/29 14:35:13 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:32:32 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 #include "../libft/libft.h"
 #include <stddef.h>
 #include <stdlib.h>
@@ -67,11 +67,11 @@ static int	env_set_value(char **env, char *v_and_v, size_t index_value)
 {
 	char	*new_variable;
 
-	v_and_v = ft_strdup(v_and_v);
-	if (!v_and_v)
+	new_variable = ft_strdup(v_and_v);
+	if (!new_variable)
 		return (ENV_MALLOC_ERROR);
 	free(env[index_value]);
-	env[index_value] = v_and_v;
+	env[index_value] = new_variable;
 	return (0);
 }
 
