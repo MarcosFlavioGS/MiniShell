@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:02:57 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:40:09 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-# define MINI_SHELL_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 # include "../libft/libft.h"
 # include <string.h>
 # include <stdio.h>
@@ -29,7 +29,6 @@
 
 # define ENV_INVLD_PARAM 1
 # define ENV_MALLOC_ERROR 2
-
 
 enum e_type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
 
