@@ -6,11 +6,11 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:29:02 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/08/29 14:32:31 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:32:26 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 #include "../libft/libft.h"
 #include <stddef.h>
 #include <stdlib.h>

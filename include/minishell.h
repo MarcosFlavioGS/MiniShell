@@ -6,13 +6,13 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/27 23:14:03 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:02:57 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_SHELL_H
 # define MINI_SHELL_H
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <string.h>
 # include <stdio.h>
 # include <readline/readline.h>
@@ -30,6 +30,7 @@
 # define ENV_INVLD_PARAM 1
 # define ENV_MALLOC_ERROR 2
 
+
 enum e_type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
 
 enum e_quote {noquote, squote, dquote};
@@ -42,10 +43,10 @@ typedef struct s_token
 	enum e_quote	quote;
 }	t_token;
 
-typedef struct t_tokenstream
+typedef struct s_tokenstream
 {
 	t_token					*token;
-	struct t_tokenstream	*next;
+	struct s_tokenstream	*next;
 }	t_tokenstream;
 
 typedef struct s_env
@@ -57,7 +58,7 @@ typedef struct s_env
 
 typedef struct s_mini
 {
-	t_env	*env_table[ENV_TABLE_SIZE];
+	char	**env;
 }	t_mini;
 
 void			lexer(char *line, t_tokenstream **tokens);
@@ -69,7 +70,6 @@ void			insert_env_path(t_env *env_table[], char **envp);
 char			*get_line(void);
 void			execute(t_mini **mini, t_tokenstream **tokens);
 void			main_loop(t_mini **mini, char *line, t_tokenstream *tokens);
-void			init_tables(t_mini **mini, char **env);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
 // Builtins
@@ -84,5 +84,9 @@ size_t			env_get_value_index(char **env, char *variable);
 char			*env_get_value(char **env, char *variable, int *status);
 int				env_add_value(char ***env, char *v_and_v);
 int				env_remove_value(char ***env, char *variable);
+
+//minishell_manager.c
+t_mini			*mini_create(char **env);
+void			mini_destroy(t_mini *mini);
 
 #endif

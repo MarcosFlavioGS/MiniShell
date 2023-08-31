@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexemizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 00:27:09 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/14 00:27:16 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:35:02 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static int	checker(char *line)
 {

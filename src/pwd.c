@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:43:30 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/07/05 18:43:32 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:35:27 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 int	ft_pwd(void)
 {
