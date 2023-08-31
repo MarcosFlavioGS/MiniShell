@@ -3,30 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:47:22 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:32:16 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:01:27 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_echo(t_tokenstream **tokens)
+int	ft_echo(char **args, int fd)
 {
-	t_tokenstream	*tmp;
+	int	i;
+	int	n;
 
-	if ((*tokens)->next == NULL)
-		return (0);
-	else
+	i = 1;
+	n = 0;
+	if (args[1] && ft_strncmp(args[1], "-n", 3) == 0)
 	{
-		tmp = (*tokens)->next;
-		while (tmp)
-		{
-			printf("%s", tmp->token->t_name);
-			tmp = tmp->next;
-		}
-		printf("\n");
+		n = 1;
+		i++;
 	}
+	while (args[i])
+	{
+		ft_putstr_fd(args[i], fd);
+		if (args[i + 1])
+			ft_putstr_fd(" ", fd);
+		i++;
+	}
+	if (!n)
+		ft_putstr_fd("\n", fd);
 	return (0);
 }
