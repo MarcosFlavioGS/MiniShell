@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 19:09:34 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:49:45 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 			}
 			i++;
 		}
-		exit(ft_atoi(args[1]));
+		exit(ft_atoi(args[1])%256);
 	}
 	return (0);
 }

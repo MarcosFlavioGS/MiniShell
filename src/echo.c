@@ -6,17 +6,18 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:47:22 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 19:01:27 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:40:47 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	ft_echo(char **args, int fd)
+int	ft_echo(t_mini **mini, char **args, int fd)
 {
 	int	i;
 	int	n;
 
+	(void)mini;
 	i = 1;
 	n = 0;
 	if (args[1] && ft_strncmp(args[1], "-n", 3) == 0)

@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:07:45 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 18:29:31 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/31 19:32:00 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_builtins(void (*builtins[7])(char **args))
 
 void	*get_builtin(char *cmd)
 {
-	void (*builtins[7])(char **args);
+	void (*builtins[7])(t_mini **, char **, int);
 
 	set_builtins(builtins);
 	if (ft_strncmp(cmd, "echo", 5) == 0)
