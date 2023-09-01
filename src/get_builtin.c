@@ -12,7 +12,7 @@
 
 #include "../include/minishell.h"
 
-void	set_builtins(void (*builtins[7])(char **args))
+void	set_builtins(void (*builtins[7])(t_mini **mini, char **args, int fd))
 {
 	builtins[0] = &ft_echo;
 	builtins[1] = &ft_cd;
