@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexemizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:53:31 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/02 16:41:25 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:35:06 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static int	get_next_quote(char *line)
 {

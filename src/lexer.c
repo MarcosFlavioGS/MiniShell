@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:22:03 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/02 16:40:29 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:35:09 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 
 static void	get_type(char **identifier, enum e_type *type)
 {
