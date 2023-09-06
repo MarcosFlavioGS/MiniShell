@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 17:40:09 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:36:33 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,16 @@ void			execute(t_mini **mini, t_tokenstream **tokens);
 void			main_loop(t_mini **mini, char *line, t_tokenstream *tokens);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
-// Builtins
-int				ft_echo(t_tokenstream **tokens);
-int				ft_pwd(void);
 void			exit_shell(t_mini **mini, t_tokenstream **tokens);
+
+// Builtins
+int				ft_echo(t_mini **mini, char **args, int fd);
+int				ft_pwd(t_mini **mini, char **args, int fd);
+int				ft_cd(t_mini **mini, char **args, int fd);
+int				ft_env(t_mini **mini, char **args, int fd);
+int				ft_export(t_mini **mini, char **args, int fd);
+int				ft_unset(t_mini **mini, char **args, int fd);
+int				ft_exit(t_mini **mini, char **args, int fd);
 
 //env_manager.c
 char			**env_dup(char **env);
