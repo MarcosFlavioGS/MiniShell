@@ -6,14 +6,14 @@
 /*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 20:54:51 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/05 21:24:56 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:46:10 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 // Add a new environment variable
-void	ft_addenv(char *str, char **env)
+static void	ft_addenv(char *str, char **env)
 {
 	int		i;
 	char	**new_env;
@@ -27,13 +27,12 @@ void	ft_addenv(char *str, char **env)
 		new_env[i] = ft_strdup(env[i]);
 	new_env[i] = ft_strdup(str);
 	new_env[i + 1] = NULL;
-	ft_free_array(env);
+	free_array(env);
 	env = new_env;
 }
 
 // Set a new value to an environment variable
-
-void	ft_setenv(char *str, char **env)
+static void	ft_setenv(char *str, char **env)
 {
 	int		i;
 	char	*tmp;
@@ -44,7 +43,7 @@ void	ft_setenv(char *str, char **env)
 	{
 		tmp = ft_substr(str, 0, ft_strchr(str, '=') - str);
 		tmp2 = ft_substr(env[i], 0, ft_strchr(env[i], '=') - env[i]);
-		if (ft_strcmp(tmp, tmp2) == 0)
+		if (ft_strncmp(tmp, tmp2, ft_strlen(tmp)) == 0)
 		{
 			free(env[i]);
 			env[i] = ft_strdup(str);
@@ -58,8 +57,7 @@ void	ft_setenv(char *str, char **env)
 }
 
 // Get the value of an environment variable
-
-char	*ft_getenv(char *str, char **env)
+static char	*ft_getenv(char *str, char **env)
 {
 	int		i;
 	char	*tmp;
@@ -82,9 +80,7 @@ char	*ft_getenv(char *str, char **env)
 	return (NULL);
 }
 
-// ft_print_export
-
-void	ft_print_export(t_mini **mini, int fd)
+static void	ft_print_export(t_mini **mini, int fd)
 {
 	int		i;
 	int		j;
@@ -115,8 +111,7 @@ void	ft_print_export(t_mini **mini, int fd)
 	}
 }
 
-// Implemet the export builtin command
-void	ft_export(t_mini **mini, char **args, int fd)
+int	ft_export(t_mini **mini, char **args, int fd)
 {
 	int		i;
 	char	*tmp;
@@ -130,20 +125,15 @@ void	ft_export(t_mini **mini, char **args, int fd)
 		{
 			if (ft_strchr(args[i], '='))
 			{
-				if (ft_getenv(args[i], (*mini)->env) == NULL)
-					ft_addenv(args[i], (*mini)->env);
-				else
+				tmp = ft_substr(args[i], 0,
+								ft_strchr(args[i], '=') - args[i]);
+				if (ft_getenv(tmp, (*mini)->env))
 					ft_setenv(args[i], (*mini)->env);
-			}
-			else
-			{
-				tmp = ft_strjoin(args[i], "=");
-				if (ft_getenv(tmp, (*mini)->env) == NULL)
-					ft_addenv(tmp, (*mini)->env);
 				else
-					ft_setenv(tmp, (*mini)->env);
+					ft_addenv(args[i], (*mini)->env);
 				free(tmp);
 			}
 		}
 	}
+	return (0);
 }

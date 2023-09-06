@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:23:33 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 20:37:54 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:46:33 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <errno.h>
 
-char    *get_env(char **env, char *key)
+static char    *get_env(char **env, char *key)
 {
     int	i;
     int	j;
