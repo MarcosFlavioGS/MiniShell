@@ -15,8 +15,8 @@
 
 char    *get_env(char **env, char *key)
 {
-    int		i;
-    int		j;
+    int	i;
+    int	j;
     char	*value;
 
     i = 0;
@@ -41,7 +41,7 @@ int	ft_cd(t_mini **mini, char **args, int fd)
 
     if (args[1] == NULL)
     {
-        path = get_env(*mini->env, "HOME");
+        path = get_env((*mini)->env, "HOME");
         if (path == NULL)
         {
             ft_putstr_fd("minishell: cd: HOME not set\n", fd);
