@@ -12,8 +12,6 @@
 
 #include "../include/minishell.h"
 
-typedef void (*builtin_func_t)(t_mini **mini, char **args, int fd);
-
 void set_builtins(builtin_func_t builtins[7]) {
 	builtins[0] = (void *)&ft_echo;
 	builtins[1] = (void *)&ft_cd;

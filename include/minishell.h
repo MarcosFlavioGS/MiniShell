@@ -60,6 +60,8 @@ typedef struct s_mini
 	char	**env;
 }	t_mini;
 
+typedef void (*builtin_func_t)(t_mini **mini, char **args, int fd);
+
 void			lexer(char *line, t_tokenstream **tokens);
 char			**lexemizer(char *line);
 int				operator_handler(char **lexemes, char *line, int i);
