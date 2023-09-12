@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 21:20:49 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/05 21:24:20 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:08:47 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_unset(t_mini **mini, char **args, int fd)
 		tmp = ft_substr(args[i], 0, ft_strchr(args[i], '=') - args[i]);
 		tmp2 = ft_substr((*mini)->env[i], 0,
 				ft_strchr((*mini)->env[i], '=') - (*mini)->env[i]);
-		if (ft_strcmp(tmp, tmp2) == 0)
+		if (ft_strncmp(tmp, tmp2, ft_strlen(tmp)) == 0)
 		{
 			free((*mini)->env[i]);
 			(*mini)->env[i] = NULL;

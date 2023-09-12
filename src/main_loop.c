@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:35:13 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:48:54 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	main_loop(t_mini **mini, char *line, t_tokenstream *tokens)
 		lexer(line, &tokens);
 		free(line);
 		print(&tokens);
-		execute(mini, &tokens);
+		execute(mini, tokens->token->t_name, 1);
 		clear_list(tokens);
 		tokens = NULL;
 	}

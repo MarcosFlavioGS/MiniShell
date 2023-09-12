@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:47:22 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/05 21:36:27 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:03:25 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_echo(t_mini **mini, char **args, int fd)
 	(void)mini;
 	i = 1;
 	n = 0;
-	if (args[1] && ft_strcmp(args[1], "-n") == 0)
+	if (args[1] && ft_strncmp(args[1], "-n", 2) == 0)
 	{
 		n = 1;
 		i++;

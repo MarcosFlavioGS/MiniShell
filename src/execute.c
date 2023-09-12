@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:35:55 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:32:35 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/12 20:14:27 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	execute(t_mini **mini, t_tokenstream **tokens)
+void	execute(t_mini **mini, char *cmd, int fd)
 {
-	if (!*tokens)
-		return ;
-	if (ft_strncmp((*tokens)->token->t_name, "exit", 4) == 0)
-		exit_shell(mini, tokens);
-	else if (ft_strncmp((*tokens)->token->t_name, "echo", 4) == 0)
-		ft_echo(tokens);
+	builtin_func_t	func_ptr;
+	char			**args;
+
+	args = malloc(sizeof(char *) * 2);
+	args[0] = ft_strdup(cmd);
+	args[1] = NULL;
+	func_ptr = get_builtin(cmd);
+	if (func_ptr != NULL)
+		func_ptr(mini, args, fd);
+	else
+		printf("Command '%s' not recognized\n", cmd);
 }

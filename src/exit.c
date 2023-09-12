@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 19:49:45 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:58:06 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 	int	i;
 
 	i = 0;
-	mini_destroy(*mini);
-	ft_putstr_fd("exit\n", fd);
 	if (args[1])
 	{
 		if (args[2])
@@ -60,5 +58,7 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 		}
 		exit(ft_atoi(args[1]) % 256);
 	}
-	return (0);
+	mini_destroy(*mini);
+	ft_putstr_fd("exit\n", fd);
+	exit (0);
 }
