@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/08/30 23:26:48 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/12 19:08:06 by mflavio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,12 @@ SRC_FILES =		\
 				main_loop.c			\
 				minishell_manager.c \
 				main.c  			\
-				pwd.c
+				pwd.c				\
+				get_builtin.c		\
+				unset.c				\
+				export.c			\
+				env.c				\
+				cd.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))

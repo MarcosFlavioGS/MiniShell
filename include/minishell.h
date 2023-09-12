@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/05 21:36:33 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:04:28 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,14 @@ int				special_strlen(char *line);
 unsigned int	hash(const char *str, int size);
 void			insert_env_path(t_env *env_table[], char **envp);
 char			*get_line(void);
-void			execute(t_mini **mini, t_tokenstream **tokens);
+void			execute(t_mini **mini, char *args, int fd);
 void			main_loop(t_mini **mini, char *line, t_tokenstream *tokens);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
 void			exit_shell(t_mini **mini, t_tokenstream **tokens);
 
 // Builtins
+builtin_func_t	get_builtin(char *cmd);
 int				ft_echo(t_mini **mini, char **args, int fd);
 int				ft_pwd(t_mini **mini, char **args, int fd);
 int				ft_cd(t_mini **mini, char **args, int fd);
