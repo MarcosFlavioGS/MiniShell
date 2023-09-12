@@ -58,7 +58,7 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 			}
 			i++;
 		}
-		exit(ft_atoi(args[1])%256);
+		exit(ft_atoi(args[1]) % 256);
 	}
 	return (0);
 }

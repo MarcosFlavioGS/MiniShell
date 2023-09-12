@@ -49,7 +49,7 @@ static void	ft_setenv(char *str, char **env)
 			env[i] = ft_strdup(str);
 			free(tmp);
 			free(tmp2);
-			return;
+			return ;
 		}
 		free(tmp);
 		free(tmp2);
@@ -92,7 +92,7 @@ static void	ft_print_export(t_mini **mini, int fd)
 		j = -1;
 		ft_putstr_fd("declare -x ", fd);
 		tmp = ft_substr((*mini)->env[i], 0,
-                        ft_strchr((*mini)->env[i], '=') - (*mini)->env[i]);
+				ft_strchr((*mini)->env[i], '=') - (*mini)->env[i]);
 		ft_putstr_fd(tmp, fd);
 		free(tmp);
 		if (ft_strchr((*mini)->env[i], '='))
@@ -126,7 +126,7 @@ int	ft_export(t_mini **mini, char **args, int fd)
 			if (ft_strchr(args[i], '='))
 			{
 				tmp = ft_substr(args[i], 0,
-								ft_strchr(args[i], '=') - args[i]);
+						ft_strchr(args[i], '=') - args[i]);
 				if (ft_getenv(tmp, (*mini)->env))
 					ft_setenv(args[i], (*mini)->env);
 				else

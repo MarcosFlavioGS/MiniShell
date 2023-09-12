@@ -12,7 +12,8 @@
 
 #include "../include/minishell.h"
 
-void set_builtins(builtin_func_t builtins[7]) {
+void	set_builtins(builtin_func_t builtins[7])
+{
 	builtins[0] = (void *)&ft_echo;
 	builtins[1] = (void *)&ft_cd;
 	builtins[2] = (void *)&ft_pwd;
@@ -22,24 +23,25 @@ void set_builtins(builtin_func_t builtins[7]) {
 	builtins[6] = (void *)&ft_exit;
 }
 
-builtin_func_t get_builtin(char *cmd) {
-	builtin_func_t builtins[7];
+builtin_func_t	get_builtin(char *cmd)
+{
+	builtin_func_t	builtins[7];
 
 	set_builtins(builtins);
 	if (ft_strncmp(cmd, "echo", 5) == 0)
-		return builtins[0];
+		return (builtins[0]);
 	else if (ft_strncmp(cmd, "cd", 3) == 0)
-		return builtins[1];
+		return (builtins[1]);
 	else if (ft_strncmp(cmd, "pwd", 4) == 0)
-		return builtins[2];
+		return (builtins[2]);
 	else if (ft_strncmp(cmd, "export", 7) == 0)
-		return builtins[3];
+		return (builtins[3]);
 	else if (ft_strncmp(cmd, "unset", 6) == 0)
-		return builtins[4];
+		return (builtins[4]);
 	else if (ft_strncmp(cmd, "env", 4) == 0)
-		return builtins[5];
+		return (builtins[5]);
 	else if (ft_strncmp(cmd, "exit", 5) == 0)
-		return builtins[6];
+		return (builtins[6]);
 	else
-		return NULL;
+		return (NULL);
 }
