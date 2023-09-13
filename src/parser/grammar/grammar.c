@@ -1,49 +1,67 @@
 
 #include "../../../include/minishell.h"
 #include "../../../include/parser/token.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../include/parser/grammar/grammar.h"
 #include "../../../include/utils/message.h"
 
-int print_syntax_err(t_tok_type token_type)
+void	print_syntax_err(t_tok_type token_type)
 {
 	msg_err_nnl("minishell: syntax error near unexpected token `");
 	if (token_type == redir_in)
 		msg_err_nnl("<");
-	if (token_type == redir_out)
+	else if (token_type == redir_out)
 		msg_err_nnl(">");
-	if (token_type == append)
-		msg_err_nnl(">>");
-	if (token_type == heredoc)
+	else if (token_type == heredoc)
 		msg_err_nnl("<<");
-	if (token_type == pipez)
+	else if (token_type == append)
+		msg_err_nnl(">>");
+	else if (token_type == pipez)
 		msg_err_nnl("|");
-	if (token_type == eol)
+	else if (token_type == eol)
 		msg_err_nnl("newline");
 	msg_err("\'");
 }
 
-int	check_token_type(t_token *token, size_t count)
+static void	check_token_type(t_token *token, t_grammar	*grammar)
 {
 	if (token->type == word)
-		return
-	if (token->type == redir_in)
-	if (token->type == redir_out)
-	if (token->type == append)
-	if (token->type == heredoc)
-	if (token->type == pipez)
+		grammar_word(token, grammar);
+	else if (token->type == redir_in)
+		grammar_redir_in(token, grammar);
+	else if (token->type == redir_out)
+		grammar_redir_out(token, grammar);
+	else if (token->type == heredoc)
+		grammar_heredoc(token, grammar);
+	else if (token->type == append)
+		grammar_append(token, grammar);
+	else if (token->type == pipez)
+		grammar_pipez(token, grammar);
 }
 
-
+/**
+ * check_grammar - check the token_list syntax
+ *
+ * Return:
+ * 	On success:
+ * 		0
+ *  On failure:
+ * 		1 grammar syntax error
+*/
 int	check_grammar(t_token *token_list)
 {
-//	bash: syntax error near unexpected token `|'
-//	bash: syntax error near unexpected token `newline'
-	size_t	count;
-	t_token	*token_aux;
+	t_grammar	grammar;
+	t_token		*token_aux;
 
-	count = 0;
+	grammar.count = 0;
+	grammar.is_grammar_err = 0;
 	token_aux = token_list;
 	while (token_aux->type != eol)
 	{
-
+		check_token_type(token_aux, &grammar);
+		if (grammar.is_grammar_err)
+			return (1);
+		token_aux = list_token_get(&token_list, grammar.count);
 	}
+	return (0);
 }
