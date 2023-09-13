@@ -6,7 +6,7 @@
 #    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/08/30 23:26:48 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/13 17:29:47 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,23 +18,45 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC_FILES =		\
-				utils/message.c     \
-				echo.c				\
-				env_manager.c		\
-				env_manager2.c		\
-				execute.c			\
-				exit.c				\
-				free_tables.c		\
-				get_line.c			\
-				hash.c				\
-				insert_env.c		\
-				lexemizer_utils.c	\
-				lexemizer.c			\
-				lexer.c 			\
-				main_loop.c			\
-				minishell_manager.c \
-				main.c  			\
-				pwd.c
+				executor/executor_utils.c		\
+				executor/string_array.c			\
+				executor/simple_command.c		\
+				env_manager.c					\
+				env_manager2.c					\
+				minishell_manager.c				\
+				parser/grammar/grammar_rule.c	\
+				parser/grammar/grammar_rule2.c	\
+				parser/grammar/grammar.c		\
+				parser/list_token.c				\
+				parser/syntax_list.c			\
+				parser/token.c					\
+				parser/token2.c					\
+				parser/token3.c					\
+				parser/token4.c					\
+				parser/token5.c					\
+				parser/peek.c					\
+				parser/parser.c					\
+				parser/lexer.c					\
+				parser/handler_dquotes.c		\
+				parser/handler_expand.c			\
+				parser/handler_expand2.c		\
+				parser/handler_separators.c		\
+				parser/handler_quotes.c			\
+				parser/handler_squotes.c		\
+				parser/handler_word.c			\
+				utils/message.c   				\
+				exit.c							\
+				env_manager.c					\
+				env_manager2.c					\
+				get_line.c						\
+				main_loop.c						\
+				minishell_manager.c 			\
+				main.c  						\
+				pwd.c							\
+				../debug/executor/simple_command_debug.c\
+				../debug/executor/string_array_debug.c\
+				../debug/debug_utils.c\
+				../debug/token_list_utils.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
@@ -51,6 +73,9 @@ $(NAME): $(OBJ) $(LIBFT)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)/executor
+	mkdir -p $(OBJ_DIR)/parser
+	mkdir -p $(OBJ_DIR)/parser/grammar
 	mkdir -p $(OBJ_DIR)/utils
 	gcc $(FLAGS) -c $< -o $@
 

@@ -27,4 +27,12 @@ void	handler_word_test();
 
 void 	syntax_list_test();
 
+void	redirect_list_test();
+
+void 	string_array_test();
+
+void	simple_command_test();
+
+void	executor_utils_test();
+
 #endif

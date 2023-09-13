@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:07:55 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 15:53:49 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:02:55 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,13 @@ t_token	*token_create(const char *text, t_tok_type type)
 	if (text)
 	{
 		new_token->text = ft_strdup(text);
-		if (!new_token->text)
-		{
-			token_destroy(new_token);
-			return (NULL);
-		}
 		new_token->text_aux = ft_strdup(text);
-		if (!new_token->text_aux)
+		if (!new_token->text || !new_token->text_aux)
 		{
 			token_destroy(new_token);
 			return (NULL);
 		}
 	}
-	else
-		new_token->text = NULL;
 	return (new_token);
 }
 
@@ -69,6 +62,43 @@ void	token_destroy(t_token *token_free)
 	if (token_free->text_aux)
 		free(token_free->text_aux);
 	free(token_free);
+}
+
+/**
+ * token_dup - create a new token by duplicating information from another.
+ *
+ * Return:
+ * 	On success:
+ * 		a new pointer to new token is returned
+ * 	On failure:
+ * 		NULL is returned
+*/
+t_token	*token_dup(t_token *token_to_dup)
+{
+	t_token		*new_token;
+	int			malloc_error;
+
+	malloc_error = 0;
+	new_token = ft_calloc(1, sizeof(*new_token));
+	if (!new_token)
+		return (NULL);
+	new_token->type = token_to_dup->type;
+	if (token_to_dup->text)
+	{
+		new_token->text = ft_strdup(token_to_dup->text);
+		malloc_error = (new_token->text == NULL);
+	}
+	if (token_to_dup->text_aux)
+	{
+		new_token->text_aux = ft_strdup(token_to_dup->text_aux);
+		malloc_error = (new_token->text_aux == NULL);
+	}
+	if (malloc_error)
+	{
+		token_destroy(new_token);
+		new_token = NULL;
+	}
+	return (new_token);
 }
 
 /**

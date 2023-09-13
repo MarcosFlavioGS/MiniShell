@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:00:06 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 16:52:31 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 11:53:36 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../minishell.h"
 
-void	syntax_list(t_mini *mini, char *str_line);
+int		syntax_list(t_mini *mini);
 
-void	syntax_list_clear_mini(t_mini *mini);
 #endif

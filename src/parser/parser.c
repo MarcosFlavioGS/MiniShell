@@ -1,8 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/13 17:35:34 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/13 17:36:18 by dmanoel-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../../include/parser/parser.h"
+#include "../../include/executor/executor_utils.h"
 #include "../../include/minishell.h"
+#include "../../include/parser/grammar/grammar.h"
 #include "../../include/parser/handler_expand.h"
 #include "../../include/parser/handler_quotes.h"
 #include "../../include/parser/handler_squotes.h"
@@ -11,122 +26,58 @@
 #include "../../include/parser/handler_word.h"
 #include "../../include/parser/lexer.h"
 #include "../../include/parser/list_token.h"
+#include "../../include/parser/syntax_list.h"
 #include "../../include/parser/token.h"
 #include "../../libft/libft.h"
 
-
-#include "../../debug/token_list_utils.h"
-
-
-static int	is_token_list_created(t_token	*token_list)
+static int	is_token_list_created(t_mini *mini)
 {
-	if (!token_list)
+	if (!mini->token_list)
 	{
-		ft_printf("create token malloc error!!");
+		msg_fatal_err("malloc error in: lexer_create_tokens");
 		return (1);
 	}
 	return (0);
 }
 
-static int	is_quotes_opened(t_token	*token_list)
+int	parser(t_mini *mini, char *str_line)
 {
-	int returnz;
-	int quotes_status;
-
-	returnz = 0;
-	quotes_status = check_opened_quote(token_list);
-	if (quotes_status == STATUS_SQUOTE)
+	if (mini->token_list)
+		parser_clear_mini(mini);
+	mini->token_list = lexer_create_tokens(str_line);
+	if (is_token_list_created(mini))
+		return (1);
+	if (syntax_list(mini))
 	{
-		ft_printf("minishell: line 0: unexpected EOF while looking for matching `''");
-		returnz = 1;
+		parser_clear_mini(mini);
+		return (1);
 	}
-	if (quotes_status == STATUS_DQUOTE)
+	if (check_grammar(mini->token_list))
 	{
-		ft_printf("minishell: line 0: unexpected EOF while looking for matching `\"'");
-		returnz = 1;
+		parser_clear_mini(mini);
+		return (1);
 	}
-	if (returnz)
-		ft_printf("minishell: line 1: syntax error: unexpected end of file");
-	return (returnz);
+	mini->command_list = command_list_create(mini->token_list);
+	if (!mini->command_list)
+		return (1);
+	return (0);
 }
 
-void	parser(t_mini *mini, char *str_line)
+/**
+ * parser_clear_mini - free the mini's token_list member and command_list
+*/
+void	parser_clear_mini(t_mini *mini)
 {
-	t_token	*token_list;
-
-	token_list = lexer_create_tokens(str_line);
-	if (is_token_list_created(token_list))
+	if (!mini)
 		return ;
-	if (is_quotes_opened(token_list))
-		return ;
-	make_inside_squote_word(token_list);
-	make_inside_dquote_word(token_list);
-	if (add_empty_string(&token_list))
+	if (mini->token_list)
 	{
-		printf("kkkk");
-		return ;
+		list_token_clear(&mini->token_list);
+		mini->token_list = NULL;
 	}
-	remove_invalid_separators(&token_list);
-	remove_invalid_expand(&token_list);
-	make_invalid_expand_word(&token_list);
-	make_expand_after_heredoc_word(&token_list);
-
-	//PENSAR NAS FUNCOES HANDLERs
-
-	if (join_expand_with_word(&token_list))
+	if (mini->command_list)
 	{
-		//print malloc error
-		printf("kkkk");
-		return ;
+		command_list_destroy(mini->command_list);
+		mini->command_list = NULL;
 	}
-	if(make_expand(&token_list, mini))
-	{
-		//print malloc error
-		printf("kkkk");
-		return ;
-	}
-
-	if(remove_quotes(&token_list))
-	{
-		//print malloc error
-		printf("kkkk");
-		return ;
-	}
-	if(join_words(&token_list))
-	{
-		//print malloc error
-		printf("kkkk");
-		return ;
-	}
-
-	REMOVER TODOS OS separator APOS JUNTAR AS PALAVRAS DE VE AJDUAR
-	NA HORA DE CRIAR A LISTA DE COMANDOS
-
-	list_token_printf(token_list);
-
-	list_token_clear(&token_list);
-
-	/**
-	 * while (lista de tokens)
-	 * 		1)juntar $+WORD  em um novo token do tipo expand
-	 * 		setar text and text auxilar
-	 * 		remover o token $ e WORD e colocar o 1) no lugar
-	*/
-
-	/**
-	 * while (lista de tokens)
-	 * 		fazer o expand token->text + 1 no env_get_value()
-	 * 		converter o tipo expand para word
-	*/
-
-	//while e juntar palavras DEFAULT_DQUOTE e DEFAULT_SQUOTE '' "" gera pelo menos um string vazia
-	//remove "  e  '
-	//while juntar todas as palavras => NULL e NULL  = NULL
-    //                               => NULL e str   = str
-	//                               => str  e NULL   = str
-	//nao esquecer obviamente de juntar tmb os text2 por causa do ambiguos no nulll
-
-	//por ultimo apos juntar tudo, podemos remover os separadores
-	//isso vai facilitar a gramatica
-
 }

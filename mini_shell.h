@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/27 23:14:03 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:08:51 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			free_array(char **array);
 // Builtins
 int				ft_echo(t_tokenstream **tokens);
 int				ft_pwd(void);
-void			exit_shell(t_mini **mini, t_tokenstream **tokens);
+void			exit_shell(t_mini *mini);
 
 //env_manager.c
 char			**env_dup(char **env);

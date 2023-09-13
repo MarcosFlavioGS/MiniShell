@@ -1,48 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tables.c                                      :+:      :+:    :+:   */
+/*   simple_command.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 18:50:36 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:32:48 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/13 17:48:33 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/13 17:48:34 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef SIMPLE_COMMAND_H
+# define SIMPLE_COMMAND_H
 
-void	free_env_table(t_env **env_table)
-{
-	int		i;
-	t_env	*tmp;
-	t_env	*tmp2;
+# include "../../include/minishell.h"
 
-	i = 0;
-	while (i < ENV_TABLE_SIZE)
-	{
-		tmp = env_table[i];
-		while (tmp)
-		{
-			tmp2 = tmp->next;
-			free(tmp->name);
-			free(tmp->path);
-			free(tmp);
-			tmp = tmp2;
-		}
-		i++;
-	}
-}
+t_command	*command_create(t_token *token_list, size_t *count);
 
-void	free_array(char **array)
-{
-	int	i;
+void		command_destroy(t_command *simple_command);
 
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
+#endif

@@ -1,12 +1,14 @@
 NAME = test.out
 
 SOURCES_PROGRAM  = \
+					../src/executor/executor_utils.c\
+					../src/executor/string_array.c\
+					../src/executor/simple_command.c\
 					../src/env_manager.c\
 					../src/env_manager2.c\
 					../src/minishell_manager.c\
 					../src/parser/list_token.c\
 					../src/parser/syntax_list.c\
-					../src/parser/syntax_list2.c\
 					../src/parser/token.c\
 					../src/parser/token2.c\
 					../src/parser/token3.c\
@@ -21,14 +23,19 @@ SOURCES_PROGRAM  = \
 					../src/parser/handler_quotes.c\
 					../src/parser/handler_squotes.c\
 					../src/parser/handler_word.c\
-					../src/utils/die.c\
-					../src/utils/message.c\
-					../debug/token_list_utils.c
+					../src/utils/message.c
 
 SOURCES_TESTS    = \
+					../debug/executor/simple_command_debug.c\
+					../debug/executor/string_array_debug.c\
+					../debug/debug_utils.c\
+					../debug/token_list_utils.c\
 					test_aux.c\
 					env_manager_test.c\
 					env_manager2_test.c\
+					executor/executor_utils_test.c\
+					executor/simple_command_test.c\
+					executor/string_array_test.c\
 					parser/handler_dquotes_test.c\
 					parser/handler_expand_test.c\
 					parser/handler_expand2_test.c\

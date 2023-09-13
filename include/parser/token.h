@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:00:10 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 11:04:52 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:47:09 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_token	*token_create(const char *text, t_tok_type type);
 
 void	token_destroy(t_token *token_free);
 
+t_token	*token_dup(t_token *token_to_dup);
+
 //the tokens types
 t_token	*token_separator(t_stream *stream);
 
@@ -34,7 +36,7 @@ t_token	*token_pipe(t_stream *stream);
 
 t_token	*token_expand(t_stream *stream);
 
-t_token	*token_eol(t_stream *stream);
+t_token	*token_eol(void);
 
 t_token	*token_dquote(t_stream *stream);
 

@@ -222,6 +222,26 @@ void	token_create_and_destroy_tests()
 		assert_utils_die("t_token *token_with_text malloc error!!");
 }
 
+static void token_dup_test()
+{
+	create_subtitle("token_dup_test");
+
+	t_token fake;
+	fake.text     = "foo";
+	fake.text_aux = "bar";
+	fake.type     = word;
+
+	t_token *dup = token_dup(&fake);
+	if (dup)
+	{
+		assert_string(fake.text, dup->text, "text");
+		assert_string(fake.text_aux, dup->text_aux, "text_aux");
+		assert_svalue(fake.type, fake.type, "type");
+	}
+	else
+		assert_utils_die("t_token *dup malloc error!!");
+	list_token_clear(&dup);
+}
 
 //token_test.c
 void token_test()
@@ -229,6 +249,7 @@ void token_test()
 	create_title("token_test");
 
 	token_create_and_destroy_tests();
+	token_dup_test();
 
 	token_separator_test();
 	token_redict_in_test();

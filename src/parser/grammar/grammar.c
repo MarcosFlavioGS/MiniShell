@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grammar.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/13 17:37:03 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/13 17:37:23 by dmanoel-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../include/minishell.h"
 #include "../../../include/parser/token.h"
@@ -61,7 +72,7 @@ int	check_grammar(t_token *token_list)
 		check_token_type(token_aux, &grammar);
 		if (grammar.is_grammar_err)
 			return (1);
-		token_aux = list_token_get(&token_list, grammar.count);
+		token_aux = list_token_get(token_list, grammar.count);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:07:23 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 15:38:04 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:34:54 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@
 */
 static int	is_to_remove2(t_token *before, t_token *after)
 {
-	if (before->type == dquote && after->type == dquote
-		|| before->type == dquote && after->type == expand
-		|| before->type == dquote && after->type == squote
-		|| before->type == dquote && after->type == word
-		|| before->type == squote && after->type == dquote
-		|| before->type == squote && after->type == expand
-		|| before->type == squote && after->type == squote
-		|| before->type == squote && after->type == word
-		|| before->type == word && after->type == dquote
-		|| before->type == word && after->type == expand
-		|| before->type == word && after->type == squote
-		|| before->type == word && after->type == word
-		|| before->type == expand && after->type == dquote
-		|| before->type == expand && after->type == expand
-		|| before->type == expand && after->type == squote
-		|| before->type == expand && after->type == word)
+	if ((before->type == dquote && after->type == dquote)
+		|| (before->type == dquote && after->type == expand)
+		|| (before->type == dquote && after->type == squote)
+		|| (before->type == dquote && after->type == word)
+		|| (before->type == squote && after->type == dquote)
+		|| (before->type == squote && after->type == expand)
+		|| (before->type == squote && after->type == squote)
+		|| (before->type == squote && after->type == word)
+		|| (before->type == word && after->type == dquote)
+		|| (before->type == word && after->type == expand)
+		|| (before->type == word && after->type == squote)
+		|| (before->type == word && after->type == word)
+		|| (before->type == expand && after->type == dquote)
+		|| (before->type == expand && after->type == expand)
+		|| (before->type == expand && after->type == squote)
+		|| (before->type == expand && after->type == word))
 		return (0);
 	return (1);
 }

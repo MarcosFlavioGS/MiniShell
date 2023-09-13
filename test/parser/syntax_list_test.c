@@ -12,10 +12,10 @@ void syntax_list_test()
 	mini.env = env;
 	mini.token_list = NULL;
 
-	char *string = "> oi >> oi2 << oi3 < oi4 $a $x | $? word1 word2 << $dolar_vira_word$d_vira_w  <<< a\"  \"b \"\'\"\'\"\' \"";
-	syntax_list(&mini, string);
+	//char *string = "> oi >> oi2 << oi3 < oi4 $a $x | $? word1 word2 << $dolar_vira_word$d_vira_w  <<< a\"  \"b \"\'\"\'\"\' \"";
+	//syntax_list(&mini);
 
-	list_token_printf(mini.token_list);
-	list_token_clear(&mini.token_list);
+	//list_token_printf(mini.token_list);
+	//llist_token_clear(&mini.token_list);
 
 }

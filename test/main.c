@@ -32,6 +32,12 @@ int main(int argc, char *argv[])
 		handler_word_test();
 	if (argc == 1 || strcmp(argv[1], "syntax_list_test") == 0)
 		syntax_list_test();
+	if (argc == 1 || strcmp(argv[1], "string_array_test") == 0)
+		string_array_test();
+	if (argc == 1 || strcmp(argv[1], "simple_command_test") == 0)
+		simple_command_test();
+	if (argc == 1 || strcmp(argv[1], "executor_utils_test") == 0)
+		executor_utils_test();
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:05:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 15:23:02 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 13:33:09 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	is_inside_heredoc(t_token *token)
 	return (0);
 }
 
-static void	is_make_expand_to_word(t_token *token_expad, int status)
+static void	is_make_expand_to_word(t_token *token_expad)
 {
 	char	*text;
 
@@ -56,7 +56,7 @@ void	make_invalid_expand_word(t_token **token_list)
 	{
 		status = get_quote_status(aux->type, status);
 		if (aux->type == expand && status == STATUS_DEFAULT)
-			is_make_expand_to_word(aux, status);
+			is_make_expand_to_word(aux);
 		aux = list_token_get(*token_list, ++count);
 	}
 }

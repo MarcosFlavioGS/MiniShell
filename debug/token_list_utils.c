@@ -1,17 +1,7 @@
 #include "../include/minishell.h"
+#include "debug_utils.h"
 #include <stdio.h>
-#include <string.h>
 #include "token_list_utils.h"
-
-static int compare_strings(char *str1, char *str2)
-{
-	if(str1 && !str2 || !str1 && str2)
-		return 1;
-	if(!str1 && !str2)
-		return 0;
-	else
-		return strcmp(str1, str2);
-}
 
 int	list_token_compare_type(t_token *expected, t_token *actual)
 {
@@ -26,7 +16,6 @@ int	list_token_compare_type(t_token *expected, t_token *actual)
 		return 1;
 	return 0;
 }
-
 
 int	list_token_compare(t_token *expected, t_token *actual)
 {
@@ -46,33 +35,43 @@ int	list_token_compare(t_token *expected, t_token *actual)
 	return 0;
 }
 
+
+
 void list_token_printf(t_token *list_to_print)
 {
+	printf("[");
 	while(list_to_print)
 	{
-		printf("text:   %-10s, ", list_to_print->text);
+		printf("[");
+		printf("text:%s, ",    list_to_print->text);
+		printf("text_aux:%s, ", list_to_print->text_aux);
 		if(list_to_print->type == separator)
-			printf("type: separator\n");
+			printf("type: separator");
 		if(list_to_print->type == redir_in)
-			printf("type: redir_in\n");
+			printf("type: redir_in");
 		if(list_to_print->type == heredoc)
-			printf("type: heredoc\n");
+			printf("type: heredoc");
 		if(list_to_print->type == redir_out)
-			printf("type: redit_out\n");
+			printf("type: redit_out");
 		if(list_to_print->type == append)
-			printf("type: append\n");
+			printf("type: append");
 		if(list_to_print->type == pipez)
-			printf("type: pipez\n");
+			printf("type: pipez");
 		if(list_to_print->type == expand)
-			printf("type: expand\n");
+			printf("type: expand");
 		if(list_to_print->type == dquote)
-			printf("type: dquote\n");
+			printf("type: dquote");
 		if(list_to_print->type == squote)
-			printf("type: squote\n");
+			printf("type: squote");
 		if(list_to_print->type == eol)
-			printf("type: eol\n");
+			printf("type: eol");
 		if(list_to_print->type == word)
-			printf("type: word\n");
+			printf("type: word");
 		list_to_print = list_to_print->next;
+		if(list_to_print)
+			printf("], ");
+		else
+			printf("]");
 	}
+	printf("]");
 }

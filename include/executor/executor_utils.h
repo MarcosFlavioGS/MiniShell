@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   executor_utils.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 16:56:36 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:34:53 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/13 17:48:28 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/13 17:48:29 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef EXECUTOR_UTILS_H
+# define EXECUTOR_UTILS_H
 
-static unsigned int	char_sum(const char *str)
-{
-	unsigned int	n;
-	int				i;
+# include "../../include/minishell.h"
 
-	n = 0;
-	i = 0;
-	while (str[i])
-	{
-		n += str[i++];
-	}
-	return (n);
-}
+t_command	*command_list_create(t_token *token_list);
 
-unsigned int	hash(const char *str, int size)
-{
-	return ((char_sum(str) * ft_strlen(str)) % size);
-}
+void		command_list_destroy(t_command *command_list);
+
+#endif

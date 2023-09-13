@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:07:12 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 11:26:15 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:05:22 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ static int	get_expand_value(t_token *expand, const t_mini *mini)
 int	make_expand(t_token **token_list, const t_mini *mini)
 {
 	t_token	*token_aux;
-	char	*value;
 
 	token_aux = list_token_get(*token_list, 0);
 	while (token_aux->type != eol)
