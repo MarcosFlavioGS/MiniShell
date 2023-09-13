@@ -6,19 +6,75 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 21:20:49 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/12 19:08:47 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:21:17 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-// Remove an environment variable
+// Check if the environment variable exists
+int	check_env(t_mini *mini, char *arg)
+{
+	char	**tmp;
+	int		i;
 
+	i = 0;
+	tmp = mini->env;
+	while (tmp[i])
+	{
+		if (!ft_strncmp(tmp[i], arg, ft_strlen(arg) + 1))
+			return (1);
+	}
+	return (0);
+}
+
+int	ft_array_len(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
+
+// Remove an element from an array
+char	**remove_elem(char **array, char *arg)
+{
+	char	**new_array;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	new_array = malloc(sizeof(char *) * (ft_array_len(array)));
+	while (array[i])
+	{
+		if (!ft_strncmp(array[i], arg, ft_strlen(arg) + 1))
+		{
+			new_array[j] = ft_strdup(array[i]);
+			j++;
+		}
+		i++;
+	}
+	new_array[j] = NULL;
+	return (new_array);
+}
+
+// Remove the environment variable
+void	remove_env(t_mini **mini, char *arg)
+{
+	char **new_array;
+
+	new_array = remove_elem((*mini)->env, arg);
+	free_array((*mini)->env);
+	(*mini)->env = new_array;
+}
+
+// Remove an environment variable
 int	ft_unset(t_mini **mini, char **args, int fd)
 {
 	int		i;
-	char	*tmp;
-	char	*tmp2;
 
 	i = -1;
 	while (args[++i])
@@ -30,16 +86,8 @@ int	ft_unset(t_mini **mini, char **args, int fd)
 			ft_putendl_fd("': not a valid identifier", fd);
 			return (1);
 		}
-		tmp = ft_substr(args[i], 0, ft_strchr(args[i], '=') - args[i]);
-		tmp2 = ft_substr((*mini)->env[i], 0,
-				ft_strchr((*mini)->env[i], '=') - (*mini)->env[i]);
-		if (ft_strncmp(tmp, tmp2, ft_strlen(tmp)) == 0)
-		{
-			free((*mini)->env[i]);
-			(*mini)->env[i] = NULL;
-		}
-		free(tmp);
-		free(tmp2);
+		if (check_env(*mini, args[i]))
+			remove_env(mini, args[i]);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:35:55 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/12 20:14:27 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:30:32 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	execute(t_mini **mini, char *cmd, int fd)
 
 	args = malloc(sizeof(char *) * 2);
 	args[0] = ft_strdup(cmd);
-	args[1] = NULL;
+	args[1] = "Hello";
 	func_ptr = get_builtin(cmd);
 	if (func_ptr != NULL)
 		func_ptr(mini, args, fd);
