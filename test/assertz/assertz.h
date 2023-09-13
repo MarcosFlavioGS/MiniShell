@@ -24,9 +24,9 @@ void	create_title(const char *title);
 
 void	create_subtitle(const char *subtitle);
 
-void 	print_function_name_test(const char *function_name);
+void 	assert_print_function_name(const char *function_name);
 
-void	print_subtest_text(const char *subtext);
+void	assert_print_subtest_text(const char *subtext);
 
 int		assert_string(const char *str_expected, const char *str_actual, const char *format, ...);
 
@@ -41,5 +41,16 @@ int		assert_svalue(intmax_t value_expected, intmax_t value_actual, const char *f
 void	*assert_calloc(size_t nitems, size_t size, char *error_msg);
 
 void	*assert_malloc(size_t size, char *error_msg);
+
+
+//utils
+
+void	assert_utils_die(const char *format, ...);
+
+void	assert_utils_separator();
+
+void	assert_utils_print_ok(const char *format, ...);
+
+void	assert_utils_print_error(const char *format, ...);
 
 #endif

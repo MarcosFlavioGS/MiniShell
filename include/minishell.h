@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 17:40:09 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:18:53 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <stddef.h>
+# include <sys/types.h>
 
 # define ENV_TABLE_SIZE 100
 # define TRUE 1
@@ -30,23 +32,55 @@
 # define ENV_INVLD_PARAM 1
 # define ENV_MALLOC_ERROR 2
 
-enum e_type {word, separator, redir_in, redir_out, append, heredoc, t_pipe};
+# define STATUS_DEFAULT 0
+# define STATUS_DQUOTE 1
+# define STATUS_SQUOTE 2
 
-enum e_quote {noquote, squote, dquote};
+typedef struct s_command	t_command;
+typedef struct s_token		t_token;
+
+typedef enum e_tok_type
+{
+	word=1,
+	separator,
+	redir_in,
+	redir_out,
+	append,
+	heredoc,
+	pipez,
+	expand,
+	dquote,
+	squote,
+	equal,
+	interrogation,
+	eol
+}	t_tok_type;
 
 typedef struct s_token
 {
-	char			*t_name;
-	unsigned int	at_value;
-	enum e_type		type;
-	enum e_quote	quote;
+	char		*text;
+	char		*text_aux;
+	t_tok_type	type;
+	t_token		*next;
 }	t_token;
+
+typedef struct s_stream
+{
+	const char	*line;
+	size_t		index;
+}t_stream;
 
 typedef struct s_tokenstream
 {
 	t_token					*token;
 	struct s_tokenstream	*next;
 }	t_tokenstream;
+
+typedef struct s_grammar
+{
+	size_t	count;
+	int		is_grammar_err;
+}	t_grammar;
 
 typedef struct s_env
 {
@@ -55,9 +89,29 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_io
+{
+	int	stdin;
+	int	stdout;
+}	t_io;
+
+typedef struct s_command
+{
+	pid_t		pid;
+	char		*command_path;
+	char		**argv;
+	t_token		*redir_list;
+	t_io		io;
+	t_command	*next;
+}	t_command;
+
 typedef struct s_mini
 {
-	char	**env;
+	char		**env;
+	t_token		*token_list;
+	t_command	*command_list;
+	int			last_exit_code;
+	char		*line;
 }	t_mini;
 
 void			lexer(char *line, t_tokenstream **tokens);
@@ -68,13 +122,13 @@ unsigned int	hash(const char *str, int size);
 void			insert_env_path(t_env *env_table[], char **envp);
 char			*get_line(void);
 void			execute(t_mini **mini, t_tokenstream **tokens);
-void			main_loop(t_mini **mini, char *line, t_tokenstream *tokens);
+void			main_loop(t_mini *mini);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
 // Builtins
 int				ft_echo(t_tokenstream **tokens);
 int				ft_pwd(void);
-void			exit_shell(t_mini **mini, t_tokenstream **tokens);
+void			exit_shell(t_mini *mini);
 
 //env_manager.c
 char			**env_dup(char **env);

@@ -1,5 +1,5 @@
 #include "main.h"
-#include "../mini_shell.h"
+#include "../include/minishell.h"
 #include "assertz/assertz.h"
 
 static void	env_dup_test()

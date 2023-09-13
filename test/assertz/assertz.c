@@ -5,12 +5,14 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-#define ERROR_MSG "%sERROR%s >> " 
+#define ERROR_MSG "%sERROR%s >> "
+#define FATAL_MSG "%s !!! FATAL !!! %s >> "
 #define OK_MSG    "%sOK%s    >> "
 
 #define PRINT_ERROR	printf(ERROR_MSG, C_RED, C_NRM)
+#define PRINT_FATAL	printf(FATAL_MSG, C_RED, C_NRM)
 #define PRINT_OK	printf(OK_MSG, C_GRN, C_NRM)
- 
+
 const unsigned	title_size = 80;
 const unsigned	subtitle_white_space = 20;
 const unsigned	subsubtitle_white_space = 10;
@@ -53,14 +55,9 @@ void	create_subtitle(const char *subtitle)
 	printf("\n\n");
 }
 
-void 	print_function_name_test(const char *function_name)
+void 	assert_print_function_name(const char *function_name)
 {
 	create_subtitle(function_name);
-}
-
-void	print_subtest_text(const char *subtext)
-{
-
 }
 
 int		assert_string(const char *str_expected, const char *str_actual, const char *format, ...)
@@ -237,7 +234,6 @@ int		assert_address(const void *expected, const void *actual, const char *format
 	return (returnz);
 }
 
-
 void	*assert_calloc(size_t nitems, size_t size, char *error_msg)
 {
 	void	*returnz;
@@ -265,3 +261,53 @@ void	*assert_malloc(size_t size, char *error_msg)
 	}
 	return returnz;
 }
+
+void	assert_utils_die(const char *format, ...)
+{
+	if(format)
+	{
+		va_list args;
+		va_start (args, format);
+
+		PRINT_FATAL;
+		vprintf(format, args);
+		printf("\n");
+
+		va_end(args);
+	}
+	else
+	{
+		PRINT_FATAL;
+	}
+	exit(2);
+}
+
+void	assert_utils_separator()
+{
+	printf("-----\n");
+}
+
+void	assert_utils_print_ok(const char *format, ...)
+{
+	va_list args;
+	va_start (args, format);
+
+	PRINT_OK;
+	vprintf(format, args);
+	printf("\n");
+
+	va_end(args);
+}
+
+void	assert_utils_print_error(const char *format, ...)
+{
+	va_list args;
+	va_start (args, format);
+
+	PRINT_ERROR;
+	vprintf(format, args);
+	printf("\n");
+
+	va_end(args);
+}
+
