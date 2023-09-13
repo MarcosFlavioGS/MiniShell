@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   peek.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 18:35:55 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:32:35 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/05 11:00:03 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/05 11:01:14 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef PEEK_H
+# define PEEK_H
 
-void	execute(t_mini **mini, t_tokenstream **tokens)
-{
-	if (!*tokens)
-		return ;
-	if (ft_strncmp((*tokens)->token->t_name, "exit", 4) == 0)
-		exit_shell(mini, tokens);
-	else if (ft_strncmp((*tokens)->token->t_name, "echo", 4) == 0)
-		ft_echo(tokens);
-}
+# include "../../include/minishell.h"
+# include <stddef.h>
+
+t_tok_type	peek(const char *str, size_t index);
+
+#endif

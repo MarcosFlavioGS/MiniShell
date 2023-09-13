@@ -6,11 +6,13 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 22:56:54 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:35:23 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:28:54 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include "../include/executor/executor_utils.h"
+#include "../include/parser/list_token.h"
 #include "../libft/libft.h"
 #include "../include/utils/message.h"
 
@@ -39,6 +41,24 @@ void	mini_destroy(t_mini *mini)
 	if (!mini)
 		return ;
 	if (mini->env)
+	{
 		env_free(mini->env);
+		mini->env = NULL;
+	}
+	if (mini->token_list)
+	{
+		list_token_clear(&mini->token_list);
+		mini->token_list = NULL;
+	}
+	if (mini->command_list)
+	{
+		command_list_destroy(mini->command_list);
+		mini->command_list = NULL;
+	}
+	if (mini->line)
+	{
+		free(mini->line);
+		mini->line = NULL;
+	}
 	free(mini);
 }
