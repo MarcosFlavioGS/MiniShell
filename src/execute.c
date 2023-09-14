@@ -19,7 +19,7 @@ void	execute(t_mini **mini, char *cmd, int fd)
 
 	args = malloc(sizeof(char *) * 2);
 	args[0] = ft_strdup(cmd);
-	args[1] = "NOVA=eu";
+	args[1] = "Test";
 	func_ptr = get_builtin(cmd);
 	if (func_ptr != NULL)
 		func_ptr(mini, args, fd);
