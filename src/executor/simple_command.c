@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:39:08 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/13 17:41:46 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/14 08:33:59 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 static int	add_word(t_command *simple_command, t_token *token)
 {
 	char	*new_word;
+	char	*new_word_2;
 
 	if (!token->text)
 		return (1);
@@ -40,7 +41,14 @@ static int	add_word(t_command *simple_command, t_token *token)
 			return (0);
 	}
 	else
+	{
 		simple_command->command_path = new_word;
+		new_word_2 = ft_strdup(token->text);
+		if (!new_word_2)
+			return (0);
+		if (string_array_add(&(simple_command->argv), new_word_2))
+			return (0);
+	}
 	return (1);
 }
 
