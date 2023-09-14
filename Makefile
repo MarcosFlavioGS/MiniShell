@@ -18,28 +18,28 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 SRC_FILES =		\
-				utils/message.c     \
-				echo.c				\
-				env_manager.c		\
-				env_manager2.c		\
-				execute.c			\
-				exit.c				\
-				free_tables.c		\
-				get_line.c			\
-				hash.c				\
-				insert_env.c		\
-				lexemizer_utils.c	\
-				lexemizer.c			\
-				lexer.c 			\
-				main_loop.c			\
-				minishell_manager.c \
-				main.c  			\
-				pwd.c				\
-				get_builtin.c		\
-				unset.c				\
-				export.c			\
-				env.c				\
-				cd.c
+				utils/message.c     	\
+				env_manager.c			\
+				env_manager2.c			\
+				execute.c				\
+				free_tables.c			\
+				get_line.c				\
+				hash.c					\
+				insert_env.c			\
+				lexemizer_utils.c		\
+				lexemizer.c				\
+				lexer.c 				\
+				main_loop.c				\
+				minishell_manager.c 	\
+				main.c  				\
+				builtins/pwd.c			\
+				builtins/get_builtin.c	\
+				builtins/unset.c		\
+				builtins/export.c		\
+				builtins/env.c			\
+				builtins/echo.c			\
+				builtins/exit.c			\
+				builtins/cd.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
@@ -57,6 +57,7 @@ $(NAME): $(OBJ) $(LIBFT)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/utils
+	mkdir -p $(OBJ_DIR)/builtins
 	gcc $(FLAGS) -c $< -o $@
 
 clean:
