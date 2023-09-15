@@ -2,6 +2,7 @@ NAME = test.out
 
 SOURCES_PROGRAM  = \
 					../src/executor/executor_utils.c\
+					../src/executor/redirect/heredoc.c\
 					../src/executor/string_array.c\
 					../src/executor/simple_command.c\
 					../src/env_manager.c\
@@ -23,7 +24,8 @@ SOURCES_PROGRAM  = \
 					../src/parser/handler_quotes.c\
 					../src/parser/handler_squotes.c\
 					../src/parser/handler_word.c\
-					../src/utils/message.c
+					../src/utils/message.c\
+					../src/utils/syscall.c
 
 SOURCES_TESTS    = \
 					../debug/executor/simple_command_debug.c\
@@ -34,6 +36,7 @@ SOURCES_TESTS    = \
 					env_manager_test.c\
 					env_manager2_test.c\
 					executor/executor_utils_test.c\
+					executor/redirect/heredoc_test.c\
 					executor/simple_command_test.c\
 					executor/string_array_test.c\
 					parser/handler_dquotes_test.c\
@@ -66,7 +69,7 @@ ASSERTZ = ./assertz/assertz.a
 all : $(NAME)
 
 $(NAME) : $(LIBFT) $(ASSERTZ) $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LIBFT) $(ASSERTZ)
+	$(CC) $(OBJECTS) -o $@ $(LIBFT) $(ASSERTZ) -lreadline
 
 %.o : %.c
 	$(CC) -MMD -c $< -o $@ -DALL
@@ -88,3 +91,14 @@ $(ASSERTZ):
 
 valgrind : all
 	valgrind --show-leak-kinds=all --leak-check=full ./$(NAME)
+
+heredoc : all
+	valgrind --suppressions=../suppressions \
+	-q \
+	--leak-check=full \
+	--show-leak-kinds=all \
+	--track-fds=yes \
+	--track-origins=yes \
+	--trace-children=yes \
+	--trace-children-skip='*/bin/*,*/sbin/*' \
+	./test.out heredoc_test

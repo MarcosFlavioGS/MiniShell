@@ -127,7 +127,7 @@ static void	token_eol_test()
 	t_stream	tok1;
 	tok1.line = "\0";
 	tok1.index = 0;
-	t_token *token1 = token_eol(&tok1);
+	t_token *token1 = token_eol();
 	assert_string("\0", token1->text, "eol text $");
 	assert_svalue(eol, token1->type, "eol type");
 	assert_svalue(0, tok1.line[tok1.index], "eol index \\0");

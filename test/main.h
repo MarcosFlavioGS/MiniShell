@@ -35,4 +35,6 @@ void	simple_command_test();
 
 void	executor_utils_test();
 
+void	heredoc_test();
+
 #endif

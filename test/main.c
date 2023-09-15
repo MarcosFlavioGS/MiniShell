@@ -38,6 +38,8 @@ int main(int argc, char *argv[])
 		simple_command_test();
 	if (argc == 1 || strcmp(argv[1], "executor_utils_test") == 0)
 		executor_utils_test();
+	if (argc == 1 || strcmp(argv[1], "heredoc_test") == 0)
+		heredoc_test();
 
 	return 0;
 }
