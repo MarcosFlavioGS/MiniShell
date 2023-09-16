@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 18:43:30 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:35:27 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/05 20:54:51 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/09/05 21:46:10 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-int	ft_pwd(void)
+int	ft_export(t_mini **mini, char **args, int fd)
 {
-	char	cwd[100];
+	int		i;
 
-	if (getcwd(cwd, 100))
-	{
-		ft_putendl_fd(cwd, 1);
-		return (0);
-	}
+	i = 0;
+	if (!args[1])
+		ft_env(mini, args, fd);
 	else
-		return (1);
+	{
+		while (args[++i])
+		{
+			env_add_value(&(*mini)->env, args[i]);
+		}
+	}
+	return (0);
 }

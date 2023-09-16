@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:33:06 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/01 20:59:52 by mflavio-          #+#    #+#             */
+/*   Updated: 2023/09/05 21:38:42 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
-void	exit_shell(t_mini *mini)
+int	ft_env(t_mini **mini, char **args, int fd)
 {
-	mini_destroy(mini);
-	exit(0);
+	int	i;
+
+	(void)args;
+	i = 0;
+	while ((*mini)->env[i])
+	{
+		ft_putstr_fd((*mini)->env[i], fd);
+		ft_putstr_fd("\n", fd);
+		i++;
+	}
+	return (0);
 }
