@@ -12,7 +12,7 @@
 
 #include "../../include/minishell.h"
 
-void	set_builtins(builtin_func_t builtins[7])
+static void	set_builtins(builtin_func_t builtins[7])
 {
 	builtins[0] = (void *)&ft_echo;
 	builtins[1] = (void *)&ft_cd;
@@ -23,6 +23,20 @@ void	set_builtins(builtin_func_t builtins[7])
 	builtins[6] = (void *)&ft_exit;
 }
 
+/*
+** builtin_func_t get_builtin(char *cmd);
+**
+** The function receives a string representing a builtin function and returns
+** a pointer to that function:
+**
+** builyin_func_t func;
+**
+** func = get_builtin(echo);
+**
+** Now call the pointer as a normal function with parameters:
+**
+** func(mini, "Hello", 1);
+*/
 builtin_func_t	get_builtin(char *cmd)
 {
 	builtin_func_t	builtins[7];
