@@ -12,24 +12,9 @@
 
 #include "../../include/minishell.h"
 
-static void	clear_list(t_tokenstream *tokens)
+void	exit_shell(t_mini *mini)
 {
-	t_tokenstream	*tmp;
-
-	while (tokens)
-	{
-		tmp = tokens->next;
-		free(tokens->token->t_name);
-		free(tokens->token);
-		free(tokens);
-		tokens = tmp;
-	}
-}
-
-void	exit_shell(t_mini **mini, t_tokenstream **tokens)
-{
-	mini_destroy(*mini);
-	clear_list(*tokens);
+	mini_destroy(mini);
 	exit(0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:18:53 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/16 01:41:58 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void			execute(t_mini **mini, t_tokenstream **tokens);
 void			main_loop(t_mini *mini);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
+void			exit_shell(t_mini *mini);
 // Builtins
 builtin_func_t	get_builtin(char *cmd);
 int				ft_echo(t_mini **mini, char **args, int fd);
