@@ -1,7 +1,8 @@
-#include "../../include/minishell.h"
-#include "../assertz/assertz.h"
-#include "../../include/parser/list_token.h"
-#include "../../include/parser/token.h"
+#include "list_token_test.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../include/parser/token.h"
+#include "../../assertz/assertz.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -212,8 +213,10 @@ static void list_token_remove_test()
 }
 
 // list_token_test.c
-void	list_token_test()
+void	list_token_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "list_token_test") != 0)
+		return ;
 	create_title("list_token_test");
 
 	list_token_add_end_test();

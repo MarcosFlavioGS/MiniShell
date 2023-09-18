@@ -1,7 +1,9 @@
-#include "../../include/parser/handler_squotes.h"
-#include "../../include/minishell.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
+#include "handler_squotes_test.h"
+#include "../../../include/parser/handler_squotes.h"
+#include "../../../include/minishell.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../test_aux.h"
+#include "../../assertz/assertz.h"
 
 static char *format = "%-45s";
 
@@ -84,8 +86,10 @@ static void make_inside_squote_word_test()
 }
 
 //	handler_squotes_test.c
-void handler_squotes_test()
+void handler_squotes_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_squotes_test") != 0)
+		return ;
 	create_title("handler_squotes_test");
 
 	make_inside_squote_word_test();

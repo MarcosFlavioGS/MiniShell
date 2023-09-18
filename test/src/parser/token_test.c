@@ -1,7 +1,9 @@
-#include "../../include/minishell.h"
-#include "../assertz/assertz.h"
-#include "../../include/parser/token.h"
-#include "../../include/parser/list_token.h"
+#include "token_test.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/token.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../include/minishell.h"
+#include "../../assertz/assertz.h"
 #include <stdio.h>
 
 static void	token_separator_test()
@@ -244,8 +246,10 @@ static void token_dup_test()
 }
 
 //token_test.c
-void token_test()
+void token_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "token_test") != 0)
+		return ;
 	create_title("token_test");
 
 	token_create_and_destroy_tests();

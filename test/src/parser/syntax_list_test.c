@@ -1,11 +1,14 @@
-#include "../../include/parser/syntax_list.h"
-#include "../../include/parser/list_token.h"
+#include "syntax_list_test.h"
+#include "../../../include/parser/syntax_list.h"
+#include "../../../include/parser/list_token.h"
 
 
-#include "../../debug/token_list_utils.h"
+#include "../../../debug/token_list_utils.h"
 
-void syntax_list_test()
+void syntax_list_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "syntax_list_test") != 0)
+		return ;
 	char *env[] = {"a=foo", "b=bar", NULL};
 	t_mini mini;
 	mini.last_exit_code = 42;

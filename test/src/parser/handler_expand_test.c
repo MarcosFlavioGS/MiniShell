@@ -1,10 +1,11 @@
-#include "../../include/parser/handler_expand.h"
-#include "../../include/minishell.h"
-#include "../../include/parser/token.h"
-#include "../../include/parser/list_token.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
-#include "../test_aux.h"
+#include "handler_expand_test.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/handler_expand.h"
+#include "../../../include/parser/token.h"
+#include "../../../include/parser/list_token.h"
+#include "../../test_aux.h"
+#include "../../assertz/assertz.h"
 
 static char *format = "%-55s";
 
@@ -160,8 +161,10 @@ static void make_expand_after_heredoc_word_test()
 }
 
 //	handler_expand_test.c
-void handler_expand_test()
+void handler_expand_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_expand_test") != 0)
+		return ;
 	create_title("handler_expand_test");
 
 	remove_invalid_expand_test();

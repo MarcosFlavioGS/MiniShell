@@ -1,7 +1,8 @@
-#include "../../include/parser/handler_dquotes.h"
-#include "../../include/minishell.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
+#include "handler_dquotes_test.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../../include/parser/handler_dquotes.h"
+#include "../../../include/minishell.h"
+#include "../../assertz/assertz.h"
 
 static char *format = "%-45s";
 
@@ -90,8 +91,10 @@ static void make_inside_dquote_word_test()
 
 
 //  handler_dquotes_test.c
-void handler_dquotes_test()
+void handler_dquotes_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_dquotes_test") != 0)
+		return ;
 	create_title("handler_dquotes_test");
 
 	make_inside_dquote_word_test();

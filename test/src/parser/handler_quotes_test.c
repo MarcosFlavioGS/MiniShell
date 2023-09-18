@@ -1,10 +1,11 @@
-#include "../../include/parser/handler_quotes.h"
-#include "../../debug/token_list_utils.h"
-#include "../../include/minishell.h"
-#include "../../include/parser/token.h"
-#include "../../include/parser/list_token.h"
-#include "../assertz/assertz.h"
-#include "../test_aux.h"
+#include "handler_quotes_test.h"
+#include "../../../include/parser/handler_quotes.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/token.h"
+#include "../../../include/parser/list_token.h"
+#include "../../test_aux.h"
+#include "../../assertz/assertz.h"
 
 static char *format = "%-45s";
 
@@ -99,8 +100,10 @@ static void	remove_quotes_test()
 	list_token_clear(&l01_at02); 	list_token_clear(&l01_ex00);
 }
 //	handler_separators_test.c
-void handler_quotes_test()
+void handler_quotes_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_quotes_test") != 0)
+		return ;
 	create_title("handler_quotes_test");
 
 	add_empty_string_test();

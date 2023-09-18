@@ -1,10 +1,11 @@
-#include "../../include/executor/executor_utils.h"
-#include "../../include/minishell.h"
-#include "../../include/executor/simple_command.h"
-#include "../../include/parser/list_token.h"
-#include "../../include/parser/token.h"
-#include "../../debug/executor/simple_command_debug.h"
-#include "../assertz/assertz.h"
+#include "executor_utils_test.h"
+#include "../../../debug/executor/simple_command_debug.h"
+#include "../../../include/executor/executor_utils.h"
+#include "../../../include/executor/simple_command.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../include/parser/token.h"
+#include "../../assertz/assertz.h"
 
 static void	command_list_create_test()
 {
@@ -24,8 +25,10 @@ static void	command_list_create_test()
 	assert_utils_separator();
 }
 
-void executor_utils_test()
+void executor_utils_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "executor_utils_test") != 0)
+		return ;
 	create_title("executor_utils_test");
 
 	command_list_create_test();

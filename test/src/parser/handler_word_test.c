@@ -1,9 +1,10 @@
-#include "../../include/parser/handler_word.h"
-#include "../../include/minishell.h"
-#include "../../include/parser/list_token.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
-#include "../test_aux.h"
+#include "handler_word_test.h"
+#include "../../../include/parser/handler_word.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../test_aux.h"
+#include "../../assertz/assertz.h"
 
 static char *format = "%-45s";
 
@@ -102,8 +103,10 @@ static void join_words_test()
 }
 
 //	handler_word_test.c
-void	handler_word_test()
+void	handler_word_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_word_test") != 0)
+		return ;
 	create_title("handler_word_test");
 
 	join_words_test();

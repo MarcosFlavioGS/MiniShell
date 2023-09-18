@@ -1,14 +1,17 @@
-#include "../../include/minishell.h"
-#include "../../include/parser/lexer.h"
-#include "../../include/parser/list_token.h"
-#include "../../include/parser/token.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
-#include "../test_aux.h"
+#include "lexer_test.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/lexer.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../include/parser/token.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../test_aux.h"
+#include "../../assertz/assertz.h"
 
-void	lexer_test()  //fazer testes
+void	lexer_test(int argc, char *argv[])  //fazer testes
 {
 	int returnz;
+	if (argc != 1 && strcmp(argv[1], "lexer_test") != 0)
+		return ;
 	create_title("lexer_test");
 
 	// ===== test1

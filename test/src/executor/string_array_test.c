@@ -1,8 +1,9 @@
-#include "../../include/minishell.h"
-#include "../../include/executor/string_array.h"
-#include "../assertz/assertz.h"
+#include "string_array_test.h"
+#include "../../../include/executor/string_array.h"
+#include "../../../include/minishell.h"
+#include "../../assertz/assertz.h"
 
-void string_array_test()
+void string_array_test(int argc, char *argv[])
 {
 	create_title("string_array_test");
 

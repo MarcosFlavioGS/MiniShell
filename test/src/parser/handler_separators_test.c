@@ -1,10 +1,11 @@
-#include "../../include/minishell.h"
-#include "../../include/parser/handler_separators.h"
-#include "../../include/parser/token.h"
-#include "../../include/parser/list_token.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
-#include "../test_aux.h"
+#include "handler_separators_test.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/handler_separators.h"
+#include "../../../include/parser/token.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../debug/token_list_utils.h"
+#include "../../test_aux.h"
+#include "../../assertz/assertz.h"
 
 static char *format = "%-40s";
 
@@ -209,8 +210,10 @@ static void list5()
 
 
 //	handler_separators_test.c
-void handler_separators_test()
+void handler_separators_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_separators_test") != 0)
+		return ;
 	create_title("handler_separators_test");
 
 	list0();

@@ -1,12 +1,13 @@
-#include "main.h"
-#include "../include/minishell.h"
-#include "assertz/assertz.h"
+#include "env_manager_test.h"
+#include "../../include/minishell.h"
+
+#include "../assertz/assertz.h"
 
 static void	env_dup_test()
 {
 	create_subtitle("env_dup_test");
 
-	char *test[] = { "string1", "string2", 0};
+	char *test[] = {"string1", "string2", 0};
 
 	char **new_env = env_dup(test);
 
@@ -61,8 +62,12 @@ static void env_get_value_test()
 
 }
 
-void env_manager_test()
+void env_manager_test(int argc, char *argv[])
 {
+
+	if (argc != 1 &&  strcmp(argv[1], "env_manager_test") != 0)
+		return ;
+
 	create_title("env_manager_test");
 
 	env_dup_test();

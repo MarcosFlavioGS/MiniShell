@@ -1,8 +1,7 @@
 #include "simple_command_debug.h"
 #include "../debug_utils.h"
 #include "string_array_debug.h"
-#include "../token_list_utils.h"
-#include "../../debug/token_list_utils.h"
+#include "redirect/list_redirect_debug.h"
 
 /**
  * simple_command_compare -
@@ -25,7 +24,7 @@ int	simple_command_compare(t_command *expected, t_command *actual)
 			return 1;
 		if (expected->io.stdout != actual->io.stdout)
 			return 1;
-		if (list_token_compare(expected->redir_list, actual->redir_list))
+		if (list_redirect_compare(expected->redir_list, actual->redir_list))
 			return 1;
 		expected = expected->next;
 		actual   = actual->next;
@@ -43,7 +42,7 @@ void	simple_command_printf(t_command *print)
 	string_array_printf(print->argv);
 	printf(", io: [stdio:%d, stdout:%d], ", print->io.stdin, print->io.stdout);
 	printf("redirects: ");
-	list_token_printf(print->redir_list);
+	list_redirect_printf(print->redir_list);
 }
 
 void	simple_command_list_printf(t_command *print)

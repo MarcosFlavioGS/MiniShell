@@ -1,10 +1,12 @@
-#include "../../include/parser/handler_expand.h"
-#include "../../include/minishell.h"
-#include "../../include/parser/token.h"
-#include "../../include/parser/list_token.h"
-#include "../../debug/token_list_utils.h"
-#include "../assertz/assertz.h"
-#include "../test_aux.h"
+#include "handler_expand2_test.h"
+#include "../../../include/parser/handler_expand.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/token.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../debug/token_list_utils.h"
+
+#include "../../assertz/assertz.h"
+#include "../../test_aux.h"
 
 static char *format = "%-55s";
 
@@ -63,8 +65,10 @@ void make_expand_test()
 }
 
 //	handler_separators_test2.c
-void handler_expand2_test()
+void handler_expand2_test(int argc, char *argv[])
 {
+	if (argc != 1 && strcmp(argv[1], "handler_expand2_test") != 0)
+		return ;
 	create_title("handler_expand2_test");
 
 	make_expand_test();

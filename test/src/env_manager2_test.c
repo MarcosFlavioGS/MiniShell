@@ -1,6 +1,6 @@
-#include "main.h"
-#include "../include/minishell.h"
-#include "assertz/assertz.h"
+#include "env_manager2_test.h"
+#include "../../include/minishell.h"
+#include "../assertz/assertz.h"
 
 static void env_add_value_test()
 {
@@ -99,7 +99,7 @@ void env_remove_value_test()
 	env_free(m_empty_env5);
 }
 
-void env_manager2_test()
+void env_manager2_test(int argc, char *argv[])
 {
 	create_title("env_manager2_test");
 

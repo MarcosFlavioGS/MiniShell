@@ -1,9 +1,10 @@
-#include "../../include/minishell.h"
-#include "../../include/executor/simple_command.h"
-#include "../../include/parser/list_token.h"
-#include "../../include/parser/token.h"
-#include "../assertz/assertz.h"
-#include "../../debug/executor/simple_command_debug.h"
+#include "simple_command_test.h"
+#include "../../../debug/executor/simple_command_debug.h"
+#include "../../../include/executor/simple_command.h"
+#include "../../../include/minishell.h"
+#include "../../../include/parser/list_token.h"
+#include "../../../include/parser/token.h"
+#include "../../assertz/assertz.h"
 
 static void command_create_test()
 {
@@ -97,8 +98,10 @@ static void command_create_test()
 }
 
 
-void simple_command_test()
+void simple_command_test(int argc, char *argv[])
 {
+	if (argc != 1 &&  strcmp(argv[1], "simple_command_test") != 0)
+		return ;
 	create_title("simple_command_test");
 
 	command_create_test();
