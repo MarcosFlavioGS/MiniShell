@@ -18,6 +18,12 @@ void	exit_shell(t_mini *mini)
 	exit(0);
 }
 
+int	print_error(char *message, int fd)
+{
+	ft_putstr_fd(message, fd);
+	return (1);
+}
+
 int	ft_exit(t_mini **mini, char **args, int fd)
 {
 	int	i;
@@ -26,10 +32,7 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 	if (args[1])
 	{
 		if (args[2])
-		{
-			ft_putstr_fd("minishell: exit: too many arguments\n", fd);
-			return (1);
-		}
+			return (print_error("minishell: exit: too many arguments\n", fd));
 		while (args[1][i])
 		{
 			if (!ft_isdigit(args[1][i]))

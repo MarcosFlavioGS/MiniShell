@@ -115,7 +115,11 @@ typedef struct s_mini
 }	t_mini;
 
 // Typedef for fucntion pointer array
-typedef int (*builtin_func_t)(t_mini **mini, char **args, int fd);
+typedef int					(*t_builtin_func)(
+		t_mini **mini,
+		char **args,
+		int fd
+);
 
 void			lexer(char *line, t_tokenstream **tokens);
 char			**lexemizer(char *line);
@@ -130,7 +134,7 @@ void			free_env_table(t_env **env_table);
 void			free_array(char **array);
 void			exit_shell(t_mini *mini);
 // Builtins
-builtin_func_t	get_builtin(char *cmd);
+t_builtin_func	get_builtin(char *cmd);
 int				ft_echo(t_mini **mini, char **args, int fd);
 int				ft_pwd(t_mini **mini, char **args, int fd);
 int				ft_cd(t_mini **mini, char **args, int fd);
