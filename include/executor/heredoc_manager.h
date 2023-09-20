@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   heredoc_manager.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 20:59:52 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/20 17:31:21 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/18 15:25:48 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/20 14:11:29 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#ifndef HEREDOC_MANAGER_H
+# define HEREDOC_MANAGER_H
 
-int	ft_env(t_mini **mini, char **args, int fd)
-{
-	int	i;
+# include "../minishell.h"
 
-	(void)args;
-	i = 0;
-	while ((*mini)->env[i])
-	{
-		ft_putstr_fd((*mini)->env[i], fd);
-		ft_putstr_fd("\n", fd);
-		i++;
-	}
-	return (0);
-}
+int		make_all_heredocs(t_mini *mini);
+
+void	close_all_heredocs(t_command *command_list);
+
+#endif
