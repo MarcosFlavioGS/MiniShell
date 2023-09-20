@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   list_redirect.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 14:21:35 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/15 21:58:59 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/20 16:42:06 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/20 16:42:07 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#ifndef LIST_REDIRECT_H
+# define LIST_REDIRECT_H
 
-int	make_heredoc(char *limiter);
+# include "../../minishell.h"
+
+void	list_redirect_add_end(t_redirect **list, t_redirect *add);
+
+void	list_redirect_clear(t_redirect **list);
 
 #endif

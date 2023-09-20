@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 11:07:16 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/15 14:44:48 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:34:57 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	syscall_close(int fd, const char *err_msg)
  * 	On failure:
  * 		-1 is returned
  */
-ssize_t syscall_write(int fd, const void *buf, size_t count, char *err_msg)
+ssize_t	syscall_write(int fd, const void *buf, size_t count, char *err_msg)
 {
 	ssize_t	call_return;
 
@@ -122,7 +122,7 @@ ssize_t syscall_write(int fd, const void *buf, size_t count, char *err_msg)
  * 	On failure:
  * 		-1 is returned
  */
-ssize_t syscall_read(int fd, void *buf, size_t count, char *err_msg)
+ssize_t	syscall_read(int fd, void *buf, size_t count, char *err_msg)
 {
 	ssize_t	call_return;
 

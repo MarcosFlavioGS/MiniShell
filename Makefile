@@ -6,7 +6,7 @@
 #    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/09/13 18:23:36 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/20 14:33:05 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,13 @@ OBJ_DIR = obj
 
 SRC_FILES =		\
 				executor/executor_utils.c		\
+				executor/executor.c		\
+				executor/heredoc_manager.c\
 				executor/string_array.c			\
 				executor/simple_command.c		\
+				executor/redirect/heredoc.c\
+				executor/redirect/list_redirect.c\
+				executor/redirect/redirect.c\
 				env_manager.c					\
 				env_manager2.c					\
 				minishell_manager.c				\
@@ -44,7 +49,10 @@ SRC_FILES =		\
 				parser/handler_quotes.c			\
 				parser/handler_squotes.c		\
 				parser/handler_word.c			\
+				signal/signals.c\
 				utils/message.c   				\
+				utils/syscall.c   				\
+				utils/syscall2.c   				\
 				exit.c							\
 				env_manager.c					\
 				env_manager2.c					\
@@ -53,6 +61,7 @@ SRC_FILES =		\
 				minishell_manager.c 			\
 				main.c  						\
 				pwd.c							\
+				../debug/executor/redirect/list_redirect_debug.c\
 				../debug/executor/simple_command_debug.c\
 				../debug/executor/string_array_debug.c\
 				../debug/debug_utils.c\
@@ -74,8 +83,10 @@ $(NAME): $(OBJ) $(LIBFT)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)
 	mkdir -p $(OBJ_DIR)/executor
+	mkdir -p $(OBJ_DIR)/executor/redirect
 	mkdir -p $(OBJ_DIR)/parser
 	mkdir -p $(OBJ_DIR)/parser/grammar
+	mkdir -p $(OBJ_DIR)/signal
 	mkdir -p $(OBJ_DIR)/utils
 	gcc $(FLAGS) -c $< -o $@
 
@@ -90,4 +101,12 @@ fclean: clean
 re: fclean all
 
 valgrind : all
-	valgrind --leak-check=full --show-leak-kinds=all --suppressions=suppressions ./minishell
+	valgrind --suppressions=suppressions \
+	-q \
+	--leak-check=full \
+	--show-leak-kinds=all \
+	--track-fds=yes \
+	--track-origins=yes \
+	--trace-children=yes \
+	--trace-children-skip='*/bin/*,*/sbin/*' \
+	./minishell

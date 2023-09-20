@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.h                                          :+:      :+:    :+:   */
+/*   signals.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 14:21:35 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/15 21:58:59 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/20 11:17:09 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/20 16:41:26 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEREDOC_H
-# define HEREDOC_H
+#ifndef SIGNALS_H
+# define SIGNALS_H
 
-int	make_heredoc(char *limiter);
+void	set_signals_heredoc(void);
+
+void	set_signals_interative(void);
 
 #endif

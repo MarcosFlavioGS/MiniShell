@@ -121,3 +121,12 @@ heredoc : all
 	--trace-children=yes \
 	--trace-children-skip='*/bin/*,*/sbin/*' \
 	./test.out heredoc_test
+
+bash : all
+	valgrind --suppressions=../suppressions \
+	-q \
+	--track-fds=yes \
+	--track-origins=yes \
+	--trace-children=yes \
+	--trace-children-skip='*/bin/*,*/sbin/*' \
+	bash

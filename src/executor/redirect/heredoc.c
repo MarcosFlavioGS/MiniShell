@@ -6,11 +6,12 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 14:24:31 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/15 18:00:08 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:20:36 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/executor/redirect/heredoc.h"
+#include "../../../include/minishell.h"
 #include "../../../include/utils/message.h"
 #include "../../../include/utils/syscall.h"
 #include "../../../libft/libft.h"
@@ -19,6 +20,7 @@
 #include <readline/readline.h>
 
 #define ERR_HDOC_02 "heredoc[ERR_HDOC_2]: write the entered line in temp file"
+#define ERR_HDOC_03 "heredoc[ERR_HDOC_3]: write new line in the file"
 #define ERR_HDOC_04 "heredoc[ERR_HDOC_4]: create the temporary file"
 #define ERR_HDOC_06 "heredoc[ERR_HDOC_6]: open temporary file on (read mode)"
 #define ERR_HDOC_07 "heredoc[ERR_HDOC_7]: close the temp file fd (write mode)"
@@ -64,15 +66,19 @@ static int	create_tmp_file(char *file_name)
  */
 static int	check_line(char *line, char *limiter)
 {
-	if (line == NULL)
+	if (!line)
 	{
-		msg_err_nnl("minishell: warning: ");
-		msg_err_nnl("here-document delimited by end-of-file (wanted `");
-		msg_err_nnl(limiter);
-		msg_err("')");
+		if (g_continue_heredoc)
+		{
+			msg_err_nnl("minishell: warning: ");
+			msg_err_nnl("here-document delimited by end-of-file (wanted `");
+			msg_err_nnl(limiter);
+			msg_err("')");
+		}
 		return (1);
 	}
-	else if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
+	else if (ft_strncmp(line, limiter, ft_strlen(line)) == 0
+		&& ft_strncmp(line, limiter, ft_strlen(limiter)) == 0)
 		return (1);
 	return (0);
 }
@@ -87,12 +93,14 @@ void	write_file(int hedoc, char *limiter)
 	int		continue_while;
 
 	continue_while = 1;
-	while (continue_while)
+	while (continue_while && g_continue_heredoc)
 	{
 		line = readline("> ");
 		if (!check_line(line, limiter))
 		{
 			if (syscall_write(hedoc, line, ft_strlen(line), ERR_HDOC_02) == -1)
+				continue_while = 0;
+			if (syscall_write(hedoc, "\n", 1, ERR_HDOC_03) == -1)
 				continue_while = 0;
 		}
 		else
@@ -105,7 +113,7 @@ void	write_file(int hedoc, char *limiter)
 }
 
 /**
- * heredoc - create a temp file and fill it with stdin input
+ * make_heredoc - create a temp file and fill it with stdin input
  * @limiter:	the heredoc limiter to stop read from stdin
  *
  * Return:
@@ -114,11 +122,10 @@ void	write_file(int hedoc, char *limiter)
  *	On failure:
  *		-1 is returned
  */
-int	heredoc(char *limiter)
+int	make_heredoc(char *limiter)
 {
 	int		heredoc_fd_read;
 	int		heredoc_fd_writ;
-	int		status;
 
 	heredoc_fd_read = -1;
 	heredoc_fd_writ = create_tmp_file(TEMP_FILE);

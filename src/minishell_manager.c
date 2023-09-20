@@ -6,12 +6,13 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 22:56:54 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:28:54 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:53:00 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include "../include/executor/executor_utils.h"
+#include "../include/executor/heredoc_manager.h"
 #include "../include/parser/list_token.h"
 #include "../libft/libft.h"
 #include "../include/utils/message.h"
@@ -52,6 +53,7 @@ void	mini_destroy(t_mini *mini)
 	}
 	if (mini->command_list)
 	{
+		close_all_heredocs(mini->command_list);
 		command_list_destroy(mini->command_list);
 		mini->command_list = NULL;
 	}

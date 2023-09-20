@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:39:08 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/14 08:33:59 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:49:00 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "../../include/minishell.h"
 #include "../../include/parser/list_token.h"
 #include "../../include/parser/token.h"
+#include "../../include/executor/redirect/list_redirect.h"
+#include "../../include/executor/redirect/redirect.h"
 #include "../../include/executor/string_array.h"
 
 /**
@@ -63,13 +65,12 @@ static int	add_word(t_command *simple_command, t_token *token)
 */
 static int	add_redirect(t_command *simple_command, t_token *token)
 {
-	t_token	*new_token;
+	t_redirect	*new_redirect;
 
-	new_token = token_dup(token->next);
-	if (new_token)
+	new_redirect = redirect_create(token, token->next);
+	if (new_redirect)
 	{
-		new_token->type = token->type;
-		list_token_add_end(&simple_command->redir_list, new_token);
+		list_redirect_add_end(&simple_command->redir_list, new_redirect);
 		return (1);
 	}
 	return (0);
@@ -145,6 +146,6 @@ void	command_destroy(t_command *simple_command)
 	if (simple_command->argv)
 		string_array_free(simple_command->argv);
 	if (simple_command->redir_list)
-		list_token_clear(&simple_command->redir_list);
+		list_redirect_clear(&simple_command->redir_list);
 	free(simple_command);
 }
