@@ -6,17 +6,17 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:21:04 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/20 16:58:01 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include "../include/parser/parser.h"
 #include "../include/parser/list_token.h"
+#include "../include/executor/executor.h"
 #include "../include/executor/executor_utils.h"
-
-//debug
-#include "../debug/executor/simple_command_debug.h"
+#include "../include/executor/heredoc_manager.h"
+#include "../include/signal/signals.h"
 
 /**
  * main_loop_clear - free unnecessay malloc to next commandline
@@ -32,6 +32,7 @@ static void	main_loop_clear(t_mini *mini)
 	}
 	if (mini->command_list)
 	{
+		close_all_heredocs(mini->command_list);
 		command_list_destroy(mini->command_list);
 		mini->command_list = NULL;
 	}
@@ -48,14 +49,15 @@ void	main_loop(t_mini *mini)
 
 	while (1)
 	{
+		set_signals_interative();
 		mini->line = get_line();
 		if (!mini->line)
 			exit_shell(mini);
 		parser_status = parser(mini, mini->line);
 		if (parser_status)
-			exit_shell(mini);
+			mini->last_exit_code = 2;
 		else
-			simple_command_list_printf_nl(mini->command_list);
+			executor(mini);
 		main_loop_clear(mini);
 	}
 }

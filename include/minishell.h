@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/16 01:41:58 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:29:56 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,17 @@
 # define STATUS_DQUOTE 1
 # define STATUS_SQUOTE 2
 
+/*************************************
+ *****      GLOBAL VARIABLE      *****
+ ************************************/
+extern int					g_continue_heredoc;
+
+/*************************************
+ *****         TYPEDEFS          *****
+ ************************************/
 typedef struct s_command	t_command;
 typedef struct s_token		t_token;
+typedef struct s_redirect	t_redirect;
 
 typedef enum e_tok_type
 {
@@ -63,6 +72,15 @@ typedef struct s_token
 	t_tok_type	type;
 	t_token		*next;
 }	t_token;
+
+typedef struct s_redirect
+{
+	char		*text;
+	char		*text_aux;
+	t_tok_type	type;
+	int			hdoc_fd;
+	t_redirect	*next;
+}	t_redirect;
 
 typedef struct s_stream
 {
@@ -100,7 +118,7 @@ typedef struct s_command
 	pid_t		pid;
 	char		*command_path;
 	char		**argv;
-	t_token		*redir_list;
+	t_redirect	*redir_list;
 	t_io		io;
 	t_command	*next;
 }	t_command;

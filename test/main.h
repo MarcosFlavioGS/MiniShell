@@ -1,38 +1,28 @@
 #ifndef MAIN_H
-#define MAIN_H
+# define MAIN_H
 
-void	env_manager_test();
+#include "src/env_manager_test.h"
+#include "src/env_manager2_test.h"
 
-void	env_manager2_test();
+#include "src/executor/executor_utils_test.h"
+#include "src/executor/redirect/heredoc_test.h"
+#include "src/executor/simple_command_test.h"
+#include "src/executor/string_array_test.h"
 
-void	lexer_test();
+#include "src/parser/handler_dquotes_test.h"
+#include "src/parser/handler_expand_test.h"
+#include "src/parser/handler_expand2_test.h"
+#include "src/parser/handler_quotes_test.h"
+#include "src/parser/handler_separators_test.h"
+#include "src/parser/handler_squotes_test.h"
+#include "src/parser/handler_word_test.h"
+#include "src/parser/lexer_test.h"
+#include "src/parser/list_token_test.h"
+#include "src/parser/parser_test.h"
+#include "src/parser/syntax_list_test.h"
+#include "src/parser/token_test.h"
 
-void	list_token_test();
 
-void	token_test();
 
-void	handler_dquotes_test();
-
-void	handler_expand_test();
-
-void	handler_expand2_test();
-
-void	handler_quotes_test();
-
-void	handler_separators_test();
-
-void	handler_squotes_test();
-
-void	handler_word_test();
-
-void 	syntax_list_test();
-
-void	redirect_list_test();
-
-void 	string_array_test();
-
-void	simple_command_test();
-
-void	executor_utils_test();
 
 #endif
