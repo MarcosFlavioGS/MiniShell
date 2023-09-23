@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:25:54 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 23:51:16 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:17:47 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "../../include/utils/message.h"
 #include "../../include/executor/pipeline.h"
 
-void static execute_builtin_in_parent(t_mini *mini)
+static void	execute_builtin_in_parent(t_mini *mini)
 {
 	int				bultin_code;
 	t_builtin_func	builtin_func;

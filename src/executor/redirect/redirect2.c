@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: phz <phz@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:13:03 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/23 00:06:46 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:09:35 by phz              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,8 @@ static int	make_redirect_heredoc(t_io *io, t_redirect *redir_heredoc)
 {
 	if (io->fd_stdin != 0)
 	{
-		syscall_close(io->fd_stdin,
-			"make_redirect_heredoc close io.stdin");
-		return (1);
+		if (syscall_close(io->fd_stdin, "make_redirect_heredoc close io.stdin") == -1)
+			return (1);
 	}
 	io->fd_stdin = redir_heredoc->hdoc_fd;
 	redir_heredoc->hdoc_fd = -1;
