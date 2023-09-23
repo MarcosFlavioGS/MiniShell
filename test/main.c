@@ -1,5 +1,7 @@
 #include "main.h"
 
+int	g_continue_heredoc;
+
 int main(int argc, char *argv[])
 {
 	env_manager_test(argc, argv);
@@ -7,6 +9,7 @@ int main(int argc, char *argv[])
 
 	// executor folder
 	executor_utils_test(argc, argv);
+	path_creator_test(argc, argv);
 	simple_command_test(argc, argv);
 	string_array_test(argc, argv);
 	heredoc_test(argc, argv);

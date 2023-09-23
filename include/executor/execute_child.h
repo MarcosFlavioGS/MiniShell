@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 11:17:09 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:55:53 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/22 18:03:45 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/22 18:05:15 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#ifndef EXECUTE_CHILD_H
+# define EXECUTE_CHILD_H
 
-void	set_signals_heredoc(void);
+# include "../../include/minishell.h"
 
-void	set_signals_interative(void);
-
-void	set_default_signals(void);
+void	execute_command(t_mini *mini, t_command *simple_command);
 
 #endif

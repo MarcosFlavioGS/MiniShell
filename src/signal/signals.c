@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/20 16:35:58 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:54:11 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,10 @@ void	set_signals_interative(void)
 	act.sa_handler = &print_new_line;
 	signal(SIGQUIT, SIG_IGN);
 	sigaction(SIGINT, &act, NULL);
+}
+
+void	set_default_signals(void)
+{
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
 }

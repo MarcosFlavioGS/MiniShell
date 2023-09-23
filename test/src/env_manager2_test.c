@@ -101,6 +101,9 @@ void env_remove_value_test()
 
 void env_manager2_test(int argc, char *argv[])
 {
+	if (argc != 1 &&  strcmp(argv[1], "env_manager2_test") != 0)
+		return ;
+
 	create_title("env_manager2_test");
 
 	env_add_value_test();

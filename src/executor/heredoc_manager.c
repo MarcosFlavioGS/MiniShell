@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:37:58 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/20 16:38:14 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/22 23:42:09 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	make_all_heredocs(t_mini *mini)
 	is_success = 0;
 	while (aux_command && g_continue_heredoc)
 	{
-		if (iterator_redirect(command_list->redir_list, prepare_hdoc))
+		if (iterator_redirect(aux_command->redir_list, prepare_hdoc))
 		{
 			close_all_heredocs(command_list);
 			is_success = 1;

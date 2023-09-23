@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/20 17:29:56 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:58:00 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ typedef struct s_env
 
 typedef struct s_io
 {
-	int	stdin;
-	int	stdout;
+	int	fd_stdin;
+	int	fd_stdout;
 }	t_io;
 
 typedef struct s_command

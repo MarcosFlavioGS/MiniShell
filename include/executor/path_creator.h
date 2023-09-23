@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   path_creator.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 11:17:09 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:55:53 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/21 22:17:40 by phz               #+#    #+#             */
+/*   Updated: 2023/09/22 17:01:44 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#ifndef PATH_CREATOR_H
+# define PATH_CREATOR_H
 
-void	set_signals_heredoc(void);
+char	*check_path_binary(char *paths[], char *comd, int *malloc_status);
 
-void	set_signals_interative(void);
+char	*create_full_path(char *path, char *comd);
 
-void	set_default_signals(void);
+char	*get_cmd_full_path(char *comd, char **env, int *malloc_status);
 
 #endif

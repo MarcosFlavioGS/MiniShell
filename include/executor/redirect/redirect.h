@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:41:48 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/20 16:41:50 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:31:02 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,11 @@
 t_redirect	*redirect_create(t_token *token_redirect, t_token *token_word);
 
 void		redirect_destroy(t_redirect *free);
+
+int 		redirect_files(t_command *command);
+
+int			redirect_dup2(t_io *io);
+
+int			redirect_close_io(t_io *io);
 
 #endif
