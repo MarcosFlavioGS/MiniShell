@@ -6,7 +6,7 @@
 #    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/09/25 13:48:42 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/25 13:56:18 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_FILES =		\
 				executor/redirect/list_redirect.c\
 				executor/redirect/redirect.c	\
 				executor/redirect/redirect2.c	\
+				executor/redirect/redirect3.c	\
 				env_manager.c					\
 				env_manager2.c					\
 				minishell_manager.c				\
