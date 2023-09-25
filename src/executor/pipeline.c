@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 10:29:50 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:44:46 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ void	wait_children(t_mini *mini, t_pipeline	*pipeline)
 			last_status = status;
 		continue ;
 	}
-	if (WIFSIGNALED(last_status))
+	if (!pipeline->is_sucessfull)
+		mini->last_exit_code = 1;
+	else if (WIFSIGNALED(last_status))
 		mini->last_exit_code = 128 + WTERMSIG(last_status);
 	else if (WIFEXITED(last_status))
 		mini->last_exit_code = WEXITSTATUS(last_status);
 	else
 		mini->last_exit_code = last_status;
-	if (!pipeline->is_sucessfull)
-		mini->last_exit_code = 1;
 }
 
 void	execute_pipeline(t_mini *mini)
