@@ -7,41 +7,59 @@ LIBFT   = $(LIBFT_DIR)libft.a
 ASSERTZ = $(ASSERTZ_DIR)assertz.a
 
 SOURCES_PROGRAM  = \
-					../src/executor/executor_utils.c\
-					../src/executor/heredoc_manager.c\
-					../src/executor/path_creator.c\
-					../src/executor/redirect/list_redirect.c\
-					../src/executor/redirect/redirect.c\
-					../src/executor/redirect/heredoc.c\
-					../src/executor/string_array.c\
-					../src/executor/simple_command.c\
-					../src/env_manager.c\
-					../src/env_manager2.c\
-					../src/minishell_manager.c\
-					../src/parser/grammar/grammar_rule.c\
-					../src/parser/grammar/grammar_rule2.c\
-					../src/parser/grammar/grammar.c\
-					../src/parser/list_token.c\
-					../src/parser/parser.c\
-					../src/parser/syntax_list.c\
-					../src/parser/token.c\
-					../src/parser/token2.c\
-					../src/parser/token3.c\
-					../src/parser/token4.c\
-					../src/parser/token5.c\
-					../src/parser/peek.c\
-					../src/parser/lexer.c\
-					../src/parser/handler_dquotes.c\
-					../src/parser/handler_expand.c\
-					../src/parser/handler_expand2.c\
-					../src/parser/handler_separators.c\
-					../src/parser/handler_quotes.c\
-					../src/parser/handler_squotes.c\
-					../src/parser/handler_word.c\
-					../src/signal/signals.c\
-					../src/utils/message.c\
-					../src/utils/syscall.c\
-					../src/utils/syscall2.c
+				../src/builtins/pwd.c					\
+				../src/builtins/get_builtin.c			\
+				../src/builtins/unset.c					\
+				../src/builtins/export.c				\
+				../src/builtins/env.c					\
+				../src/builtins/echo.c					\
+				../src/builtins/exit.c					\
+				../src/builtins/cd.c					\
+				../src/executor/execute_child.c			\
+				../src/executor/executor_utils.c		\
+				../src/executor/executor.c				\
+				../src/executor/heredoc_manager.c		\
+				../src/executor/path_creator.c			\
+				../src/executor/pipeline.c				\
+				../src/executor/pipeline2.c				\
+				../src/executor/simple_command.c		\
+				../src/executor/string_array.c			\
+				../src/executor/redirect/heredoc.c		\
+				../src/executor/redirect/list_redirect.c\
+				../src/executor/redirect/redirect.c		\
+				../src/executor/redirect/redirect2.c	\
+				../src/executor/redirect/redirect3.c	\
+				../src/parser/grammar/grammar_rule.c	\
+				../src/parser/grammar/grammar_rule2.c	\
+				../src/parser/grammar/grammar.c			\
+				../src/parser/list_token.c				\
+				../src/parser/syntax_list.c				\
+				../src/parser/token.c					\
+				../src/parser/token2.c					\
+				../src/parser/token3.c					\
+				../src/parser/token4.c					\
+				../src/parser/token5.c					\
+				../src/parser/peek.c					\
+				../src/parser/parser.c					\
+				../src/parser/lexer.c					\
+				../src/parser/handler_dquotes.c			\
+				../src/parser/handler_expand.c			\
+				../src/parser/handler_expand2.c			\
+				../src/parser/handler_separators.c		\
+				../src/parser/handler_quotes.c			\
+				../src/parser/handler_squotes.c			\
+				../src/parser/handler_word.c			\
+				../src/signal/signals.c					\
+				../src/signal/signals2.c				\
+				../src/utils/global_config.c			\
+				../src/utils/message.c   				\
+				../src/utils/syscall.c   				\
+				../src/utils/syscall2.c   				\
+				../src/env_manager.c					\
+				../src/env_manager2.c					\
+				../src/get_line.c						\
+				../src/main_loop.c						\
+				../src/minishell_manager.c
 
 SOURCES_TESTS    = \
 					../debug/executor/simple_command_debug.c\
