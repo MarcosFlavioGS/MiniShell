@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:37:58 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 23:42:09 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:30:45 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../include/minishell.h"
 #include "../../include/executor/redirect/heredoc.h"
 #include "../../include/signal/signals.h"
+#include "../../include/utils/global_config.h"
 
 #define HDOC_MANAGER_ERR1 "heredoc_manager[HDOC_MANAGER_ERR1]"
 
@@ -37,14 +38,14 @@ static int	prepare_hdoc(t_redirect *redirect)
 		return (1);
 	set_signals_heredoc();
 	redirect->hdoc_fd = make_heredoc(redirect->text);
-	if (!g_continue_heredoc)
+	if (!get_heredoc_config())
 	{
 		if (syscall_dup2(input_backup, 0, "prepare_hdoc reset input") == -1)
 			return (1);
 	}
 	if (syscall_close(input_backup, "prepare_hdoc close input_backup") == -1)
 		return (1);
-	if (redirect->hdoc_fd == -1 || !g_continue_heredoc)
+	if (redirect->hdoc_fd == -1 || !get_heredoc_config())
 		return (1);
 	return (0);
 }
@@ -90,9 +91,9 @@ int	make_all_heredocs(t_mini *mini)
 
 	command_list = mini->command_list;
 	aux_command = command_list;
-	g_continue_heredoc = 1;
+	enable_heredoc_config();
 	is_success = 0;
-	while (aux_command && g_continue_heredoc)
+	while (aux_command && get_heredoc_config())
 	{
 		if (iterator_redirect(aux_command->redir_list, prepare_hdoc))
 		{
@@ -102,7 +103,7 @@ int	make_all_heredocs(t_mini *mini)
 		}
 		aux_command = aux_command->next;
 	}
-	if (g_continue_heredoc == 0)
+	if (get_heredoc_config() == 0)
 	{
 		close_all_heredocs(command_list);
 		mini->last_exit_code = 130;

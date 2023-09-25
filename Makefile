@@ -6,7 +6,7 @@
 #    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/09/22 19:51:34 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/25 09:21:18 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SRC_FILES =		\
 				parser/handler_squotes.c		\
 				parser/handler_word.c			\
 				signal/signals.c\
+				utils/global_config.c			\
 				utils/message.c   				\
 				utils/syscall.c   				\
 				utils/syscall2.c   				\

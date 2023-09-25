@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   global_config.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:29:35 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/25 00:46:45 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/25 09:30:45 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-#include "../include/utils/global_config.h"
+#ifndef GLOBAL_CONFIG_H
+# define GLOBAL_CONFIG_H
 
-int	g_global_config;
+void	enable_heredoc_config();
 
-int	main(int argc, char *argv[], char *env[])
-{
-	t_mini	*mini;
+void	disable_heredoc_config();
 
-	(void) argv;
-		enable_heredoc_config();
-	if (argc > 2)
-	{
-		return (0);
-	}
-	mini = mini_create(env);
-	main_loop(mini);
-	return (0);
-}
+int		get_heredoc_config();
+
+void	enable_redisplay();
+
+void	disable_redisplay();
+
+#endif

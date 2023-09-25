@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 14:24:31 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/20 17:20:36 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:30:45 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../../include/minishell.h"
 #include "../../../include/utils/message.h"
 #include "../../../include/utils/syscall.h"
+#include "../../../include/utils/global_config.h"
 #include "../../../libft/libft.h"
 #include <fcntl.h>
 #include <unistd.h>
@@ -68,7 +69,7 @@ static int	check_line(char *line, char *limiter)
 {
 	if (!line)
 	{
-		if (g_continue_heredoc)
+		if (get_heredoc_config())
 		{
 			msg_err_nnl("minishell: warning: ");
 			msg_err_nnl("here-document delimited by end-of-file (wanted `");
@@ -93,7 +94,7 @@ void	write_file(int hedoc, char *limiter)
 	int		continue_while;
 
 	continue_while = 1;
-	while (continue_while && g_continue_heredoc)
+	while (continue_while && get_heredoc_config())
 	{
 		line = readline("> ");
 		if (!check_line(line, limiter))

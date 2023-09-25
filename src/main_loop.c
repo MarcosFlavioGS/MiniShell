@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/20 16:58:01 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:27:40 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "../include/executor/executor_utils.h"
 #include "../include/executor/heredoc_manager.h"
 #include "../include/signal/signals.h"
+#include "../include/utils/global_config.h"
 
 /**
  * main_loop_clear - free unnecessay malloc to next commandline

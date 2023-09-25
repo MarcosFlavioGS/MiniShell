@@ -6,19 +6,20 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:54:11 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:32:48 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/signal/signals.h"
 #include "../../include/minishell.h"
+#include "../../include/utils/global_config.h"
 #include "../../libft/libft.h"
 #include <signal.h>
 
 static void	interrupt_heredoc(int sig)
 {
 	(void)sig;
-	g_continue_heredoc = 0;
+	disable_heredoc_config();
 	write(1, "\n", 1);
 	close(0);
 }
@@ -26,7 +27,7 @@ static void	interrupt_heredoc(int sig)
 static void	print_new_line(int sig)
 {
 	(void)sig;
-	if (g_continue_heredoc)
+	if (get_heredoc_config())
 		write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);

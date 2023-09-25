@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:29:35 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/22 18:03:45 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/22 18:05:15 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-#include "../include/utils/global_config.h"
+#ifndef EXECUTE_H
+# define EXECUTE_H
 
-int	g_global_config;
+# include "../../include/minishell.h"
 
-int	main(int argc, char *argv[], char *env[])
-{
-	t_mini	*mini;
+void	execute_command(t_mini *mini, t_command *simple_command);
 
-	(void) argv;
-		enable_heredoc_config();
-	if (argc > 2)
-	{
-		return (0);
-	}
-	mini = mini_create(env);
-	main_loop(mini);
-	return (0);
-}
+#endif
