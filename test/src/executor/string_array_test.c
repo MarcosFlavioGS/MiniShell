@@ -5,6 +5,9 @@
 
 void string_array_test(int argc, char *argv[])
 {
+	if (argc != 1 &&  strcmp(argv[1], "string_array_test") != 0)
+		return ;
+
 	create_title("string_array_test");
 
 	char **str_arr_1 = NULL;

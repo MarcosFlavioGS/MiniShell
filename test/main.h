@@ -5,6 +5,7 @@
 #include "src/env_manager2_test.h"
 
 #include "src/executor/executor_utils_test.h"
+#include "src/executor/path_creator_test.h"
 #include "src/executor/redirect/heredoc_test.h"
 #include "src/executor/simple_command_test.h"
 #include "src/executor/string_array_test.h"

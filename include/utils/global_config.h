@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                         :+:      :+:    :+:   */
+/*   global_config.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:52:51 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 17:23:12 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/25 00:46:45 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/25 13:50:59 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef GLOBAL_CONFIG_H
+# define GLOBAL_CONFIG_H
 
-char	*get_line(void)
-{
-	char	*line;
+void	enable_heredoc_config(void);
 
-	line = readline("$> ");
-	if (line && ft_strlen(line))
-		add_history(line);
-	return (line);
-}
+void	disable_heredoc_config(void);
+
+int		get_heredoc_config(void);
+
+void	enable_redisplay(void);
+
+void	disable_redisplay(void);
+
+#endif

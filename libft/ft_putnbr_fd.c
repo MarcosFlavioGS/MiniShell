@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 00:16:53 by mflavio-          #+#    #+#             */
-/*   Updated: 2022/09/27 00:16:55 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/22 21:13:07 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_putnbr_fd(long n, int fd)
 		num = n % 10 + '0';
 		n /= 10;
 		len += ft_putnbr_fd(n, fd);
-		len += write(1, &num, 1);
+		len += write(fd, &num, 1);
 	}
 	else if (0 <= n && n <= 9)
 	{
 		n += '0';
-		len += write(1, &n, 1);
+		len += write(fd, &n, 1);
 	}
 	else if (n < 0)
 	{

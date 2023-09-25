@@ -1,48 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tables.c                                      :+:      :+:    :+:   */
+/*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 18:50:36 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/30 23:32:48 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/21 16:45:22 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/25 14:52:53 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef PIPELINE_H
+# define PIPELINE_H
+# include "../minishell.h"
 
-void	free_env_table(t_env **env_table)
+# define IN 0
+# define OUT 1
+
+typedef struct s_pipeline
 {
-	int		i;
-	t_env	*tmp;
-	t_env	*tmp2;
+	int			tmp_fd_in;
+	int			pipe[2];
+	t_command	*simple_command;
+	size_t		count_child;
+	int			is_sucessfull;
+}	t_pipeline;
 
-	i = 0;
-	while (i < ENV_TABLE_SIZE)
-	{
-		tmp = env_table[i];
-		while (tmp)
-		{
-			tmp2 = tmp->next;
-			free(tmp->name);
-			free(tmp->path);
-			free(tmp);
-			tmp = tmp2;
-		}
-		i++;
-	}
-}
+void	execute_pipeline(t_mini *mini);
 
-void	free_array(char **array)
-{
-	int	i;
+void	pipeline_die(t_pipeline	*pipeline);
 
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
+#endif

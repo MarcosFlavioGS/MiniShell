@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                         :+:      :+:    :+:   */
+/*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/20 18:52:51 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 17:23:12 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/22 18:03:45 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/22 18:05:15 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef EXECUTE_CHILD_H
+# define EXECUTE_CHILD_H
 
-char	*get_line(void)
-{
-	char	*line;
+# include "../../include/minishell.h"
 
-	line = readline("$> ");
-	if (line && ft_strlen(line))
-		add_history(line);
-	return (line);
-}
+void	execute_command(t_mini *mini, t_command *simple_command);
+
+#endif

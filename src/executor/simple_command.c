@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:39:08 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/18 17:49:00 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:57:57 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,9 @@ t_command	*command_create(t_token *token_list, size_t *count)
 	simple_command = ft_calloc(1, sizeof(*simple_command));
 	if (!simple_command)
 		return (NULL);
-	simple_command->io.stdin = 0;
-	simple_command->io.stdout = 1;
+	simple_command->pid = -1;
+	simple_command->io.fd_stdin = 0;
+	simple_command->io.fd_stdout = 1;
 	aux = list_token_get(token_list, *count);
 	while (aux->type != eol && aux->type != pipez && add_return)
 	{
