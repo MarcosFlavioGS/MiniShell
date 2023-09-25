@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:25:54 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 11:41:28 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:42:41 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ static void	execute_builtin_in_parent(t_mini *mini)
 
 void	executor(t_mini *mini)
 {
-	int	heredoc_status;
-	int is_builtin;
+	int				heredoc_status;
+	int				is_builtin;
+	t_builtin_func	fun_builtin;
 
 	heredoc_status = make_all_heredocs(mini);
 	if (heredoc_status)
 		return ;
-	is_builtin = mini->command_list->command_path
-				&& get_builtin(mini->command_list->command_path)
-				&& !mini->command_list->next;
+	fun_builtin = get_builtin(mini->command_list->command_path);
+	is_builtin = (mini->command_list->command_path && fun_builtin \
+		&& !mini->command_list->next);
 	if (is_builtin)
 		execute_builtin_in_parent(mini);
 	else
 		execute_pipeline(mini);
 }
-

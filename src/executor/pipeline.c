@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 13:48:14 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:32:49 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-static void start_pipeline_struct(t_pipeline *pipeline, t_mini *mini)
+static void	start_pipeline_struct(t_pipeline *pipeline, t_mini *mini)
 {
 	pipeline->tmp_fd_in = 0;
 	pipeline->simple_command = mini->command_list;
@@ -38,7 +38,7 @@ static void start_pipeline_struct(t_pipeline *pipeline, t_mini *mini)
  * 	On failure:
  * 		1 is returned
 */
-int		create_pipe(t_pipeline	*pipeline)
+int	create_pipe(t_pipeline	*pipeline)
 {
 	pipeline->pipe[IN] = -1;
 	pipeline->pipe[OUT] = -1;
@@ -62,7 +62,7 @@ int		create_pipe(t_pipeline	*pipeline)
  * 	On failure:
  * 		1 is returned
 */
-int		create_fork(t_pipeline	*pipeline, t_mini *mini)
+int	create_fork(t_pipeline	*pipeline, t_mini *mini)
 {
 	pipeline->simple_command->pid = syscall_fork("pipeline: create_fork");
 	if (pipeline->simple_command->pid == -1)

@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:01:46 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:29:35 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:02:15 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[], char *env[])
 	t_mini	*mini;
 
 	(void) argv;
-		enable_heredoc_config();
+	enable_heredoc_config();
 	if (argc > 2)
 	{
 		return (0);

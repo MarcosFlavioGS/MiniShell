@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 10:28:11 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:19:40 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	set_signals_interative(void)
 	signal(SIGQUIT, SIG_IGN);
 	sigaction(SIGINT, &act, NULL);
 }
-
 
 void	set_default_signals(void)
 {

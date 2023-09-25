@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:13:03 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 14:00:21 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:21:53 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include "../../../include/utils/syscall.h"
 #include "../../../include/utils/message.h"
 
-int make_redirect_out(t_io *io, t_redirect *redirect)
+int	make_redirect_out(t_io *io, t_redirect *redirect)
 {
 	return (make_redirect_out2(io, redirect, O_CREAT | O_TRUNC | O_WRONLY));
 }
 
-int make_redirect_append(t_io *io, t_redirect *redirect)
+int	make_redirect_append(t_io *io, t_redirect *redirect)
 {
 	return (make_redirect_out2(io, redirect, O_CREAT | O_APPEND | O_WRONLY));
 }
 
-static int make_redirect_in(t_io *io, t_redirect *redirect)
+static int	make_redirect_in(t_io *io, t_redirect *redirect)
 {
 	int	fd;
 
@@ -35,7 +35,7 @@ static int make_redirect_in(t_io *io, t_redirect *redirect)
 	if (io->fd_stdin != 0)
 	{
 		if (syscall_close(io->fd_stdin,
-			"make_redirect_in close stdin fd") == -1)
+				"make_redirect_in close stdin fd") == -1)
 			return (1);
 	}
 	io->fd_stdin = fd;
@@ -47,7 +47,7 @@ static int	make_redirect_heredoc(t_io *io, t_redirect *redir_heredoc)
 	if (io->fd_stdin != 0)
 	{
 		if (syscall_close(io->fd_stdin,
-			"make_redirect_heredoc close io.stdin") == -1)
+				"make_redirect_heredoc close io.stdin") == -1)
 			return (1);
 	}
 	io->fd_stdin = redir_heredoc->hdoc_fd;
@@ -55,7 +55,7 @@ static int	make_redirect_heredoc(t_io *io, t_redirect *redir_heredoc)
 	return (0);
 }
 
-int redirect_files(t_command *command)
+int	redirect_files(t_command *command)
 {
 	int			status;
 	t_redirect	*redirect;
@@ -64,13 +64,13 @@ int redirect_files(t_command *command)
 	redirect = command->redir_list;
 	while (redirect)
 	{
-		if(redirect->type == heredoc)
+		if (redirect->type == heredoc)
 			status = make_redirect_heredoc(&command->io, redirect);
-		if(redirect->type == redir_in)
+		if (redirect->type == redir_in)
 			status = make_redirect_in(&command->io, redirect);
-		if(redirect->type == redir_out)
+		if (redirect->type == redir_out)
 			status = make_redirect_out(&command->io, redirect);
-		if(redirect->type == append)
+		if (redirect->type == append)
 			status = make_redirect_append(&command->io, redirect);
 		if (status)
 			break ;

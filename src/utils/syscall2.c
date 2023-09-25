@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 11:07:16 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/21 10:34:51 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:03:02 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	syscall_dup2(int old, int new, const char *err_msg)
  */
 int	syscall_pipe(int pipe_arr[2], const char *err_msg)
 {
-	int call_return;
+	int	call_return;
 
 	call_return = pipe(pipe_arr);
 	if (call_return == -1)

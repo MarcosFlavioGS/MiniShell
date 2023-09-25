@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 10:29:38 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:19:55 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../../libft/libft.h"
 #include <signal.h>
 
-static void print_quit(int sig)
+static void	print_quit(int sig)
 {
 	(void)sig;
 	ft_printf(2, "Quit\n");

@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:50:55 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 21:35:38 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:38:25 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*check_path_binary(char *paths[], char *comd, int *malloc_status)
 			full_path_cmd = NULL;
 		}
 		else
-			break;
+			break ;
 		paths++;
 	}
 	return (full_path_cmd);

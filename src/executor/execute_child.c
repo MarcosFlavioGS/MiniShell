@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 10:47:59 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:30:46 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,20 @@
 
 static void	execute_exit(char *full_path, t_mini *mini, t_io *io, int code)
 {
-	if(full_path)
+	if (full_path)
 		free(full_path);
-	if(io)
+	if (io)
 		redirect_close_io(io);
 	mini_destroy(mini);
 	exit(code);
 }
 
-static void execute_exec(t_mini *mini, t_command *s_comd)
+static void	execute_exec(t_mini *mini, t_command *s_comd)
 {
-	int		m_status = 0;
+	int		m_status;
 	char	*full_path;
 
+	m_status = 0;
 	full_path = get_cmd_full_path(s_comd->command_path, mini->env, &m_status);
 	if (m_status)
 	{
@@ -41,7 +42,8 @@ static void execute_exec(t_mini *mini, t_command *s_comd)
 	}
 	if (full_path == NULL)
 	{
-		ft_printf(1, "minishell: %s: command not found\n", s_comd->command_path);
+		ft_printf(1, "minishell: %s: command not found\n",
+			s_comd->command_path);
 		execute_exit(full_path, mini, NULL, 127);
 	}
 	execve(full_path, s_comd->argv, mini->env);
@@ -72,11 +74,8 @@ static void	execute_builtin(t_mini *mini, t_command *s_comd)
 		execute_exit(NULL, mini, &s_comd->io, 1);
 	if (redirect_dup2(&s_comd->io))
 		execute_exit(NULL, mini, &s_comd->io, 1);
-
 	builtin_func = get_builtin(s_comd->command_path);
-
 	bultin_code = builtin_func(&mini, s_comd->argv, s_comd->io.fd_stdout);
-
 	if (redirect_close_io(&s_comd->io))
 		execute_exit(NULL, mini, &s_comd->io, 1);
 	execute_exit(NULL, mini, &s_comd->io, bultin_code);

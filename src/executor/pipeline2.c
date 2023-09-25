@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 13:48:58 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:33:04 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,3 @@ void	pipeline_die(t_pipeline	*pipeline)
 	syscall_close(pipeline->pipe[OUT],
 		"pipeline_die: close pipeline->pipe[OUT]");
 }
-
