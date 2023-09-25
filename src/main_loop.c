@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:27:40 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:49:31 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	main_loop(t_mini *mini)
 	while (1)
 	{
 		set_signals_interative();
+		enable_redisplay();
 		mini->line = get_line();
 		if (!mini->line)
 			exit_shell(mini);

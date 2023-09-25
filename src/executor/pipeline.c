@@ -6,13 +6,14 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 21:50:11 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:53:52 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/executor/pipeline.h"
 #include "../../include/executor/execute_child.h"
 #include "../../include/minishell.h"
+#include "../../include/utils/global_config.h"
 #include "../../include/utils/syscall.h"
 #include <errno.h>
 #include <sys/types.h>
@@ -52,6 +53,7 @@ int		create_fork(t_pipeline	*pipeline, t_mini *mini)
 		printf("tratar deu pau");
 		return (1);
 	}
+	disable_redisplay();
 	if (pipeline->simple_command->pid)
 	{
 		if (pipeline->count_child > 0)

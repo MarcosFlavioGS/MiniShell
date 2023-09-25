@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:32:48 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:49:16 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void	print_new_line(int sig)
 		write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
-	rl_redisplay();
+	if (g_global_config & 2)
+		rl_redisplay();
 }
 
 void	set_signals_heredoc(void)
