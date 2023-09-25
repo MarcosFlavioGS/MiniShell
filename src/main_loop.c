@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 11:14:05 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:49:31 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:42:55 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ void	main_loop(t_mini *mini)
 {
 	int		parser_status;
 
+	mini->last_exit_code = 0;
 	while (1)
 	{
 		set_signals_interative();
 		enable_redisplay();
 		mini->line = get_line();
 		if (!mini->line)
-			exit_shell(mini);
+			ft_exit(&mini, NULL, 1);
 		parser_status = parser(mini, mini->line);
 		if (parser_status)
 			mini->last_exit_code = 2;

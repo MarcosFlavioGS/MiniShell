@@ -3,19 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/12 19:58:06 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:43:40 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-void	exit_shell(t_mini *mini)
+static void	exit_shell(t_mini *mini, int fd)
 {
+	int	last_exit_code;
+
+	last_exit_code = mini->last_exit_code;
 	mini_destroy(mini);
-	exit(0);
+	ft_putstr_fd("exit\n", fd);
+	exit (last_exit_code);
 }
 
 int	print_error(char *message, int fd)
@@ -29,7 +33,7 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 	int	i;
 
 	i = 0;
-	if (args[1])
+	if (args && args[1])
 	{
 		if (args[2])
 			return (print_error("minishell: exit: too many arguments\n", fd));
@@ -46,7 +50,6 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 		}
 		exit(ft_atoi(args[1]) % 256);
 	}
-	mini_destroy(*mini);
-	ft_putstr_fd("exit\n", fd);
-	exit (0);
+	exit_shell(*mini, fd);
+	return (0);
 }

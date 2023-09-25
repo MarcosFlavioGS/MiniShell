@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:25:54 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/23 14:17:47 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:41:28 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	executor(t_mini *mini)
 	int	heredoc_status;
 	int is_builtin;
 
-	mini->last_exit_code = 0;
 	heredoc_status = make_all_heredocs(mini);
 	if (heredoc_status)
 		return ;

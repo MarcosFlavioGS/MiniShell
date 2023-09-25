@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:18:52 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:19:40 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ void			execute(t_mini **mini, t_tokenstream **tokens);
 void			main_loop(t_mini *mini);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
-void			exit_shell(t_mini *mini);
 // Builtins
 t_builtin_func	get_builtin(char *cmd);
 int				ft_echo(t_mini **mini, char **args, int fd);
