@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 10:20:22 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:47:59 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void execute_exec(t_mini *mini, t_command *s_comd)
 	}
 	if (full_path == NULL)
 	{
-		ft_printf(1, "%s: command not found\n", s_comd->command_path);
+		ft_printf(1, "minishell: %s: command not found\n", s_comd->command_path);
 		execute_exit(full_path, mini, NULL, 127);
 	}
 	execve(full_path, s_comd->argv, mini->env);
