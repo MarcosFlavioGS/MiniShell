@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 11:43:46 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:48:14 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void start_pipeline_struct(t_pipeline *pipeline, t_mini *mini)
 	pipeline->simple_command = mini->command_list;
 	pipeline->count_child = 0;
 	pipeline->is_sucessfull = 1;
+	pipeline->pipe[IN] = -1;
+	pipeline->pipe[OUT] = -1;
 }
 
 /**
@@ -38,10 +40,16 @@ static void start_pipeline_struct(t_pipeline *pipeline, t_mini *mini)
 */
 int		create_pipe(t_pipeline	*pipeline)
 {
+	pipeline->pipe[IN] = -1;
+	pipeline->pipe[OUT] = -1;
 	if (pipeline->simple_command->next)
 	{
-		if(syscall_pipe(pipeline->pipe, "pipeline: create_pipe"))
+		if (syscall_pipe(pipeline->pipe, "pipeline: create_pipe 1") == -1)
+		{
+			if (pipeline->tmp_fd_in != 0)
+				syscall_close(pipeline->tmp_fd_in, "pipeline: create_pipe 2");
 			return (1);
+		}
 	}
 	return (0);
 }
@@ -59,7 +67,7 @@ int		create_fork(t_pipeline	*pipeline, t_mini *mini)
 	pipeline->simple_command->pid = syscall_fork("pipeline: create_fork");
 	if (pipeline->simple_command->pid == -1)
 	{
-		printf("tratar deu pau");
+		pipeline_die(pipeline);
 		return (1);
 	}
 	disable_redisplay();

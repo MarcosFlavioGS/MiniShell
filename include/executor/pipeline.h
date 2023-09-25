@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:45:22 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 19:49:27 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:48:03 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ typedef	struct s_pipeline
 }	t_pipeline;
 
 void	execute_pipeline(t_mini *mini);
+
+void	pipeline_die(t_pipeline	*pipeline);
 
 #endif
