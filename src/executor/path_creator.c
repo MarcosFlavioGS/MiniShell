@@ -6,13 +6,31 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:50:55 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 14:38:25 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:47:52 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/executor/path_creator.h"
 #include "../../include/executor/string_array.h"
 #include "../../include/minishell.h"
+#include "../../include/utils/message.h"
+#include <sys/stat.h>
+
+int	is_directory(const char *path)
+{
+	struct stat	statbuf;
+
+	if (!ft_strchr(path, '/'))
+		return (0);
+	if (stat(path, &statbuf) == -1)
+		return (0);
+	if (S_ISDIR(statbuf.st_mode))
+	{
+		ft_printf(2, "minishell: %s: Is a directory\n", path);
+		return (1);
+	}
+	return (0);
+}
 
 static char	*get_path_string(char **env)
 {

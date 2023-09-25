@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:07:45 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/08/31 19:32:00 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:37:39 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_builtin_func	get_builtin(char *cmd)
 {
 	t_builtin_func	builtins[7];
 
+	if (cmd == NULL)
+		return (NULL);
 	set_builtins(builtins);
 	if (ft_strncmp(cmd, "echo", 5) == 0)
 		return (builtins[0]);

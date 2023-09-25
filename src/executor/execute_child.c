@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 14:30:46 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:48:09 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	char	*full_path;
 
 	m_status = 0;
-	full_path = get_cmd_full_path(s_comd->command_path, mini->env, &m_status);
+	if (s_comd->command_path && is_directory(s_comd->command_path))
+		execute_exit(NULL, mini, NULL, 126);
+	if (s_comd->command_path)
+		full_path = get_cmd_full_path(s_comd->command_path, \
+			mini->env, &m_status);
 	if (m_status)
 	{
 		msg_fatal_err("malloc error! get_cmd_full_path");
@@ -42,7 +46,7 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	}
 	if (full_path == NULL)
 	{
-		ft_printf(1, "minishell: %s: command not found\n",
+		ft_printf(2, "minishell: %s: command not found\n",
 			s_comd->command_path);
 		execute_exit(full_path, mini, NULL, 127);
 	}
@@ -50,6 +54,7 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	msg_syscall_err(s_comd->command_path);
 	if (full_path)
 		free(full_path);
+	execute_exit(NULL, mini, NULL, 127);
 }
 
 static void	execute_binary(t_mini *mini, t_command *simple_command)
@@ -62,7 +67,7 @@ static void	execute_binary(t_mini *mini, t_command *simple_command)
 		execute_exit(NULL, mini, &simple_command->io, 1);
 	if (simple_command->command_path)
 		execute_exec(mini, simple_command);
-	execute_exit(NULL, mini, NULL, 127);
+	execute_exit(NULL, mini, NULL, 0);
 }
 
 static void	execute_builtin(t_mini *mini, t_command *s_comd)

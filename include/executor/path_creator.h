@@ -6,12 +6,14 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 22:17:40 by phz               #+#    #+#             */
-/*   Updated: 2023/09/22 17:01:44 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:18:05 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PATH_CREATOR_H
 # define PATH_CREATOR_H
+
+int		is_directory(const char *path);
 
 char	*check_path_binary(char *paths[], char *comd, int *malloc_status);
 
