@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:49:16 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:28:11 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	interrupt_heredoc(int sig)
 {
 	(void)sig;
 	disable_heredoc_config();
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 	close(0);
 }
 
@@ -55,8 +55,9 @@ void	set_signals_interative(void)
 	sigaction(SIGINT, &act, NULL);
 }
 
+
 void	set_default_signals(void)
 {
-	signal(SIGQUIT, SIG_DFL);
+	set_signals_quit();
 	signal(SIGINT, SIG_DFL);
 }

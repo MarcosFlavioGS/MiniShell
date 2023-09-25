@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   global_config.c                                    :+:      :+:    :+:   */
+/*   signals2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 00:02:35 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:58:20 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/20 11:16:18 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/25 10:29:38 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/utils/global_config.h"
+#include "../../include/signal/signals.h"
 #include "../../include/minishell.h"
+#include "../../include/utils/global_config.h"
+#include "../../libft/libft.h"
+#include <signal.h>
 
-void	enable_heredoc_config()
+static void print_quit(int sig)
 {
-	g_global_config = g_global_config | 1;
+	(void)sig;
+	ft_printf(2, "Quit\n");
 }
 
-void	disable_heredoc_config()
+void	set_signals_quit(void)
 {
-	g_global_config = g_global_config & ~1;
-}
+	struct sigaction	act;
 
-int		get_heredoc_config()
-{
-	return (g_global_config & 1);
-}
-
-void	enable_redisplay()
-{
-	g_global_config = g_global_config | 2;
-}
-
-void	disable_redisplay()
-{
-	g_global_config = g_global_config & ~2;
+	ft_memset(&act, 0, sizeof(act));
+	act.sa_handler = &print_quit;
+	sigaction(SIGQUIT, &act, NULL);
 }

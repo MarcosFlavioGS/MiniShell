@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:53:52 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:29:50 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../include/executor/execute_child.h"
 #include "../../include/minishell.h"
 #include "../../include/utils/global_config.h"
+#include "../../include/signal/signals.h"
 #include "../../include/utils/syscall.h"
 #include <errno.h>
 #include <sys/types.h>
@@ -54,6 +55,7 @@ int		create_fork(t_pipeline	*pipeline, t_mini *mini)
 		return (1);
 	}
 	disable_redisplay();
+	set_signals_quit();
 	if (pipeline->simple_command->pid)
 	{
 		if (pipeline->count_child > 0)

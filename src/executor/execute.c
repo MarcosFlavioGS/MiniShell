@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/22 18:00:22 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:27:36 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	execute_builtin(t_mini *mini, t_command *s_comd)
 void	execute_command(t_mini *mini, t_command *simple_command)
 {
 	int	is_builtin;
-
+	set_default_signals();
 	is_builtin = (get_builtin(simple_command->command_path) != NULL);
 	if(is_builtin)
 		execute_builtin(mini, simple_command);
