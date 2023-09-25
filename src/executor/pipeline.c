@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 09:19:43 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 10:44:46 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 10:55:41 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
+static void start_pipeline_struct(t_pipeline *pipeline, t_mini *mini)
+{
+	pipeline->tmp_fd_in = 0;
+	pipeline->simple_command = mini->command_list;
+	pipeline->count_child = 0;
+	pipeline->is_sucessfull = 1;
+}
 
 /**
  *
@@ -102,10 +110,7 @@ void	execute_pipeline(t_mini *mini)
 {
 	t_pipeline	pipeline;
 
-	pipeline.tmp_fd_in = 0;
-	pipeline.simple_command = mini->command_list;
-	pipeline.count_child = 0;
-	pipeline.is_sucessfull = 1;
+	start_pipeline_struct(&pipeline, mini);
 	while (pipeline.simple_command)
 	{
 		if (create_pipe(&pipeline))
