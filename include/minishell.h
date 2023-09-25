@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:53:25 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/20 17:29:56 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:19:40 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 /*************************************
  *****      GLOBAL VARIABLE      *****
  ************************************/
-extern int					g_continue_heredoc;
+extern int					g_global_config;
 
 /*************************************
  *****         TYPEDEFS          *****
@@ -109,8 +109,8 @@ typedef struct s_env
 
 typedef struct s_io
 {
-	int	stdin;
-	int	stdout;
+	int	fd_stdin;
+	int	fd_stdout;
 }	t_io;
 
 typedef struct s_command
@@ -150,7 +150,6 @@ void			execute(t_mini **mini, t_tokenstream **tokens);
 void			main_loop(t_mini *mini);
 void			free_env_table(t_env **env_table);
 void			free_array(char **array);
-void			exit_shell(t_mini *mini);
 // Builtins
 t_builtin_func	get_builtin(char *cmd);
 int				ft_echo(t_mini **mini, char **args, int fd);

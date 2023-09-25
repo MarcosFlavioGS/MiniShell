@@ -6,7 +6,7 @@
 #    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/09/20 17:35:09 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/25 13:56:18 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,20 @@ SRC_FILES =		\
 				builtins/echo.c					\
 				builtins/exit.c					\
 				builtins/cd.c					\
+				executor/execute_child.c		\
 				executor/executor_utils.c		\
-				executor/executor.c		\
-				executor/heredoc_manager.c\
-				executor/string_array.c			\
+				executor/executor.c				\
+				executor/heredoc_manager.c		\
+				executor/path_creator.c			\
+				executor/pipeline.c				\
+				executor/pipeline2.c			\
 				executor/simple_command.c		\
-				executor/redirect/heredoc.c\
+				executor/string_array.c			\
+				executor/redirect/heredoc.c		\
 				executor/redirect/list_redirect.c\
-				executor/redirect/redirect.c\
+				executor/redirect/redirect.c	\
+				executor/redirect/redirect2.c	\
+				executor/redirect/redirect3.c	\
 				env_manager.c					\
 				env_manager2.c					\
 				minishell_manager.c				\
@@ -58,6 +64,8 @@ SRC_FILES =		\
 				parser/handler_squotes.c		\
 				parser/handler_word.c			\
 				signal/signals.c\
+				signal/signals2.c\
+				utils/global_config.c			\
 				utils/message.c   				\
 				utils/syscall.c   				\
 				utils/syscall2.c   				\

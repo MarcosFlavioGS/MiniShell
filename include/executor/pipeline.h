@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 00:16:53 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/22 21:13:07 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/21 16:45:22 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/25 14:52:53 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PIPELINE_H
+# define PIPELINE_H
+# include "../minishell.h"
 
-int	ft_putnbr_fd(long n, int fd)
+# define IN 0
+# define OUT 1
+
+typedef struct s_pipeline
 {
-	char	num;
-	int		len;
+	int			tmp_fd_in;
+	int			pipe[2];
+	t_command	*simple_command;
+	size_t		count_child;
+	int			is_sucessfull;
+}	t_pipeline;
 
-	num = 0;
-	len = 0;
-	if (n >= 10)
-	{
-		num = n % 10 + '0';
-		n /= 10;
-		len += ft_putnbr_fd(n, fd);
-		len += write(fd, &num, 1);
-	}
-	else if (0 <= n && n <= 9)
-	{
-		n += '0';
-		len += write(fd, &n, 1);
-	}
-	else if (n < 0)
-	{
-		n *= (-1);
-		len += write(1, "-", 1);
-		len += ft_putnbr_fd(n, fd);
-	}
-	return (len);
-}
+void	execute_pipeline(t_mini *mini);
+
+void	pipeline_die(t_pipeline	*pipeline);
+
+#endif

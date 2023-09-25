@@ -8,6 +8,8 @@ ASSERTZ = $(ASSERTZ_DIR)assertz.a
 
 SOURCES_PROGRAM  = \
 					../src/executor/executor_utils.c\
+					../src/executor/heredoc_manager.c\
+					../src/executor/path_creator.c\
 					../src/executor/redirect/list_redirect.c\
 					../src/executor/redirect/redirect.c\
 					../src/executor/redirect/heredoc.c\
@@ -36,8 +38,10 @@ SOURCES_PROGRAM  = \
 					../src/parser/handler_quotes.c\
 					../src/parser/handler_squotes.c\
 					../src/parser/handler_word.c\
+					../src/signal/signals.c\
 					../src/utils/message.c\
-					../src/utils/syscall.c
+					../src/utils/syscall.c\
+					../src/utils/syscall2.c
 
 SOURCES_TESTS    = \
 					../debug/executor/simple_command_debug.c\
@@ -48,6 +52,7 @@ SOURCES_TESTS    = \
 					src/env_manager_test.c\
 					src/env_manager2_test.c\
 					src/executor/executor_utils_test.c\
+					src/executor/path_creator_test.c\
 					src/executor/redirect/heredoc_test.c\
 					src/executor/simple_command_test.c\
 					src/executor/string_array_test.c\

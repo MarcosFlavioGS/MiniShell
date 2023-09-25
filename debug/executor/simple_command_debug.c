@@ -20,9 +20,9 @@ int	simple_command_compare(t_command *expected, t_command *actual)
 			return 1;
 		if (expected->pid != actual->pid)
 			return 1;
-		if (expected->io.stdin != actual->io.stdin)
+		if (expected->io.fd_stdin != actual->io.fd_stdin)
 			return 1;
-		if (expected->io.stdout != actual->io.stdout)
+		if (expected->io.fd_stdout != actual->io.fd_stdout)
 			return 1;
 		if (list_redirect_compare(expected->redir_list, actual->redir_list))
 			return 1;
@@ -40,7 +40,7 @@ void	simple_command_printf(t_command *print)
 	printf("command: %s, ", print->command_path);
 	printf("argv: ");
 	string_array_printf(print->argv);
-	printf(", io: [stdio:%d, stdout:%d], ", print->io.stdin, print->io.stdout);
+	printf(", io: [stdio:%d, stdout:%d], ", print->io.fd_stdin, print->io.fd_stdout);
 	printf("redirects: ");
 	list_redirect_printf(print->redir_list);
 }

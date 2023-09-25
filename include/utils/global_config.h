@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   global_config.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 00:16:53 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/22 21:13:07 by dmanoel-         ###   ########.fr       */
+/*   Created: 2023/09/25 00:46:45 by dmanoel-          #+#    #+#             */
+/*   Updated: 2023/09/25 13:50:59 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GLOBAL_CONFIG_H
+# define GLOBAL_CONFIG_H
 
-int	ft_putnbr_fd(long n, int fd)
-{
-	char	num;
-	int		len;
+void	enable_heredoc_config(void);
 
-	num = 0;
-	len = 0;
-	if (n >= 10)
-	{
-		num = n % 10 + '0';
-		n /= 10;
-		len += ft_putnbr_fd(n, fd);
-		len += write(fd, &num, 1);
-	}
-	else if (0 <= n && n <= 9)
-	{
-		n += '0';
-		len += write(fd, &n, 1);
-	}
-	else if (n < 0)
-	{
-		n *= (-1);
-		len += write(1, "-", 1);
-		len += ft_putnbr_fd(n, fd);
-	}
-	return (len);
-}
+void	disable_heredoc_config(void);
+
+int		get_heredoc_config(void);
+
+void	enable_redisplay(void);
+
+void	disable_redisplay(void);
+
+#endif
