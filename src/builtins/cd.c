@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mfghost69@gmail.com>             +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:23:33 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/05 21:46:33 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:24:52 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ static char	*get_env(char **env, char *key)
 	return (NULL);
 }
 
+static int	arg_error(int fd)
+{
+	ft_putstr_fd("minishell: cd: too many arguments\n", fd);
+	return (1);
+}
+
 int	ft_cd(t_mini **mini, char **args, int fd)
 {
 	char	*path;
 
+	if (args[1] && args[2])
+		return (arg_error(fd));
 	if (args[1] == NULL)
 	{
 		path = get_env((*mini)->env, "HOME");
