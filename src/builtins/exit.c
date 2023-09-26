@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/26 19:40:46 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:41:45 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 		{
 			while (args[1][i])
 			{
+				if ((args[1][i] == '+' || args[1][i] == '-') && i == 0)
+					i++;
 				if (!ft_isdigit(args[1][i]))
 					invalid_arg(mini, args[1]);
 				i++;
