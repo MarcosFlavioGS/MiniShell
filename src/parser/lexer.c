@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:07:36 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/13 18:32:20 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:09:23 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,21 +116,21 @@ static int	tokenizer(t_stream *stream, t_token **token_list, char c)
  */
 t_token	*lexer_create_tokens(const char *line_to_split)
 {
-	t_stream	caracteres_stream;
+	t_stream	characters_stream;
 	char		current_char;
 	t_token		*token_list;
 
-	caracteres_stream.line = line_to_split;
-	caracteres_stream.index = 0;
+	characters_stream.line = line_to_split;
+	characters_stream.index = 0;
 	token_list = NULL;
-	current_char = caracteres_stream.line[caracteres_stream.index];
+	current_char = characters_stream.line[characters_stream.index];
 	while (current_char)
 	{
-		if (tokenizer(&caracteres_stream, &token_list, current_char))
+		if (tokenizer(&characters_stream, &token_list, current_char))
 			return (NULL);
-		current_char = caracteres_stream.line[caracteres_stream.index];
+		current_char = characters_stream.line[characters_stream.index];
 	}
-	if (tokenizer(&caracteres_stream, &token_list, '\0'))
+	if (tokenizer(&characters_stream, &token_list, '\0'))
 		return (NULL);
 	return (token_list);
 }
