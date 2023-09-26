@@ -6,26 +6,27 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/25 11:43:40 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:40:46 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+#include "../../include/utils/message.h"
 
-static void	exit_shell(t_mini *mini, int fd)
+static void	exit_shell(t_mini *mini)
 {
 	int	last_exit_code;
 
 	last_exit_code = mini->last_exit_code;
 	mini_destroy(mini);
-	ft_putstr_fd("exit\n", fd);
 	exit (last_exit_code);
 }
 
-int	print_error(char *message, int fd)
+static void	invalid_arg(t_mini **mini, char *arg)
 {
-	ft_putstr_fd(message, fd);
-	return (1);
+	ft_printf(2, "minishell: exit: %s: numeric argument required\n", arg);
+	(*mini)->last_exit_code = 2;
+	exit_shell(*mini);
 }
 
 int	ft_exit(t_mini **mini, char **args, int fd)
@@ -33,23 +34,22 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 	int	i;
 
 	i = 0;
+	ft_putstr_fd("exit\n", fd);
 	if (args && args[1])
 	{
 		if (args[2])
-			return (print_error("minishell: exit: too many arguments\n", fd));
-		while (args[1][i])
+			msg_err("minishell: exit: too many arguments");
+		else
 		{
-			if (!ft_isdigit(args[1][i]))
+			while (args[1][i])
 			{
-				ft_putstr_fd("minishell: exit: ", fd);
-				ft_putstr_fd(args[1], fd);
-				ft_putstr_fd(": numeric argument required\n", fd);
-				return (1);
+				if (!ft_isdigit(args[1][i]))
+					invalid_arg(mini, args[1]);
+				i++;
 			}
-			i++;
+			(*mini)->last_exit_code = (ft_atoi(args[1]) % 256);
 		}
-		exit(ft_atoi(args[1]) % 256);
 	}
-	exit_shell(*mini, fd);
+	exit_shell(*mini);
 	return (0);
 }
