@@ -33,6 +33,7 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	int		m_status;
 	char	*full_path;
 
+	full_path = NULL;
 	m_status = 0;
 	if (s_comd->command_path && is_directory(s_comd->command_path))
 		execute_exit(NULL, mini, NULL, 126);
@@ -46,8 +47,7 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	}
 	if (full_path == NULL)
 	{
-		ft_printf(2, "minishell: %s: command not found\n",
-			s_comd->command_path);
+		ft_printf(2, "minishell:%s: command not found\n", s_comd->command_path);
 		execute_exit(full_path, mini, NULL, 127);
 	}
 	execve(full_path, s_comd->argv, mini->env);
