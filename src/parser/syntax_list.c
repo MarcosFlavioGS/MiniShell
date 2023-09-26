@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:07:51 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/13 17:35:21 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:44:23 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 #include "../../include/parser/list_token.h"
 #include "../../include/parser/parser.h"
 #include "../../include/parser/token.h"
-#include "../../include/utils/die.h"
 #include "../../include/utils/message.h"
 #include "../../libft/libft.h"
 #include <stddef.h>
