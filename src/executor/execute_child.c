@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/26 22:05:36 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:10:38 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include "../../include/utils/message.h"
 #include <unistd.h>
 #include <signal.h>
+
+#define EXEC_CHIL_ERR1 "minishell: %s: command not found\n"
+#define EXEC_CHIL_ERR2 "minishell: %s: Is a directory\n"
+#define EXEC_CHIL_ERR3 "minishell: %s: Permission denied\n"
 
 static void	execute_exit(char *full_path, t_mini *mini, t_io *io, int code)
 {
@@ -45,13 +49,8 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	}
 	if (full_path == NULL)
 	{
-		ft_printf(2, "minishell: %s: command not found\n", s_comd->command_path);
+		ft_printf(2, EXEC_CHIL_ERR1, s_comd->command_path);
 		execute_exit(full_path, mini, NULL, 127);
-	}
-	else if (!access(full_path, F_OK) && access(full_path, X_OK))
-	{
-		ft_printf(2, "minishell: %s: Permission denied\n", s_comd->command_path);
-		execute_exit(full_path, mini, NULL, 126);
 	}
 	execve(full_path, s_comd->argv, mini->env);
 	msg_syscall_err(s_comd->command_path);
@@ -70,8 +69,17 @@ static void	execute_binary(t_mini *mini, t_command *s_comd)
 	{
 		if (is_directory(s_comd->command_path))
 		{
-			ft_printf(2, "minishell: %s: Is a directory\n",s_comd->command_path);
+			ft_printf(2, EXEC_CHIL_ERR2, s_comd->command_path);
 			execute_exit(NULL, mini, NULL, 126);
+		}
+		if (ft_strchr(s_comd->command_path, '/'))
+		{
+			if (!access(s_comd->command_path, F_OK)
+				&& access(s_comd->command_path, X_OK))
+			{
+				ft_printf(2, EXEC_CHIL_ERR3, s_comd->command_path);
+				execute_exit(NULL, mini, NULL, 126);
+			}
 		}
 		execute_exec(mini, s_comd);
 	}
