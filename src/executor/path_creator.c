@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:50:55 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 15:47:52 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:42:49 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	is_directory(const char *path)
 	if (stat(path, &statbuf) == -1)
 		return (0);
 	if (S_ISDIR(statbuf.st_mode))
-	{
-		ft_printf(2, "minishell: %s: Is a directory\n", path);
 		return (1);
-	}
 	return (0);
 }
 
