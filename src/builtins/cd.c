@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:23:33 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/26 21:31:31 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:44:32 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*get_env(char **env, char *key)
 	return (NULL);
 }
 
-static int	arg_error()
+static int	arg_error(void)
 {
 	ft_putstr_fd(" too many arguments\n", 2);
 	return (1);
