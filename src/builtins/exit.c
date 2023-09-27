@@ -6,7 +6,7 @@
 /*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/26 20:41:45 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:35:27 by mflavio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	ft_exit(t_mini **mini, char **args, int fd)
 	if (args && args[1])
 	{
 		if (args[2])
-			msg_err("minishell: exit: too many arguments");
+		{
+			msg_err(" too many arguments");
+			(*mini)->last_exit_code = 1;
+		}
 		else
 		{
 			while (args[1][i])
