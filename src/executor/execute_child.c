@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 15:48:09 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:10:38 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 #include "../../include/utils/message.h"
 #include <unistd.h>
 #include <signal.h>
+
+#define EXEC_CHIL_ERR1 "minishell: %s: command not found\n"
+#define EXEC_CHIL_ERR2 "minishell: %s: Is a directory\n"
+#define EXEC_CHIL_ERR3 "minishell: %s: Permission denied\n"
 
 static void	execute_exit(char *full_path, t_mini *mini, t_io *io, int code)
 {
@@ -35,8 +39,6 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 
 	full_path = NULL;
 	m_status = 0;
-	if (s_comd->command_path && is_directory(s_comd->command_path))
-		execute_exit(NULL, mini, NULL, 126);
 	if (s_comd->command_path)
 		full_path = get_cmd_full_path(s_comd->command_path, \
 			mini->env, &m_status);
@@ -47,26 +49,40 @@ static void	execute_exec(t_mini *mini, t_command *s_comd)
 	}
 	if (full_path == NULL)
 	{
-		ft_printf(2, "minishell:%s: command not found\n", s_comd->command_path);
+		ft_printf(2, EXEC_CHIL_ERR1, s_comd->command_path);
 		execute_exit(full_path, mini, NULL, 127);
 	}
 	execve(full_path, s_comd->argv, mini->env);
 	msg_syscall_err(s_comd->command_path);
-	if (full_path)
-		free(full_path);
-	execute_exit(NULL, mini, NULL, 127);
+	execute_exit(full_path, mini, NULL, 127);
 }
 
-static void	execute_binary(t_mini *mini, t_command *simple_command)
+static void	execute_binary(t_mini *mini, t_command *s_comd)
 {
-	if (redirect_files(simple_command))
-		execute_exit(NULL, mini, &simple_command->io, 1);
-	if (redirect_dup2(&simple_command->io))
-		execute_exit(NULL, mini, &simple_command->io, 1);
-	if (redirect_close_io(&simple_command->io))
-		execute_exit(NULL, mini, &simple_command->io, 1);
-	if (simple_command->command_path)
-		execute_exec(mini, simple_command);
+	if (redirect_files(s_comd))
+		execute_exit(NULL, mini, &s_comd->io, 1);
+	if (redirect_dup2(&s_comd->io))
+		execute_exit(NULL, mini, &s_comd->io, 1);
+	if (redirect_close_io(&s_comd->io))
+		execute_exit(NULL, mini, &s_comd->io, 1);
+	if (s_comd->command_path)
+	{
+		if (is_directory(s_comd->command_path))
+		{
+			ft_printf(2, EXEC_CHIL_ERR2, s_comd->command_path);
+			execute_exit(NULL, mini, NULL, 126);
+		}
+		if (ft_strchr(s_comd->command_path, '/'))
+		{
+			if (!access(s_comd->command_path, F_OK)
+				&& access(s_comd->command_path, X_OK))
+			{
+				ft_printf(2, EXEC_CHIL_ERR3, s_comd->command_path);
+				execute_exit(NULL, mini, NULL, 126);
+			}
+		}
+		execute_exec(mini, s_comd);
+	}
 	execute_exit(NULL, mini, NULL, 0);
 }
 
