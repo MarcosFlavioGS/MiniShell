@@ -6,10 +6,11 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:45:30 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/26 22:10:38 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/29 09:31:04 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/executor/executor.h"
 #include "../../include/minishell.h"
 #include "../../include/executor/path_creator.h"
 #include "../../include/executor/redirect/redirect.h"
@@ -17,10 +18,6 @@
 #include "../../include/utils/message.h"
 #include <unistd.h>
 #include <signal.h>
-
-#define EXEC_CHIL_ERR1 "minishell: %s: command not found\n"
-#define EXEC_CHIL_ERR2 "minishell: %s: Is a directory\n"
-#define EXEC_CHIL_ERR3 "minishell: %s: Permission denied\n"
 
 static void	execute_exit(char *full_path, t_mini *mini, t_io *io, int code)
 {
