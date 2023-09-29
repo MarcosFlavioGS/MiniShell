@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 18:48:39 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/26 21:43:40 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/29 09:35:48 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	invalid_arg(t_mini **mini, char *arg)
 
 void	too_many_args_error(t_mini **mini)
 {
-	msg_err(" too many arguments");
+	msg_err("minishell: exit: too many arguments");
 	(*mini)->last_exit_code = 1;
 }
 
