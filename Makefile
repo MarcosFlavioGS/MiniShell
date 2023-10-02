@@ -6,7 +6,7 @@
 #    By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 18:52:29 by mflavio-          #+#    #+#              #
-#    Updated: 2023/09/25 16:44:57 by dmanoel-         ###   ########.fr        #
+#    Updated: 2023/09/29 22:21:51 by dmanoel-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ FLAGS = -Wall -Wextra -Werror -g
 
 SRC_DIR = src
 OBJ_DIR = obj
+
+CC = cc
 
 SRC_FILES =		\
 				builtins/pwd.c						\
@@ -84,7 +86,7 @@ $(LIBFT):
 	$(MAKE) -C libft/
 
 $(NAME): $(OBJ) $(LIBFT)
-	gcc $(FLAGS) -o $@ $^ -lreadline
+	$(CC) $(FLAGS) -o $@ $^ -lreadline
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(OBJ_DIR)

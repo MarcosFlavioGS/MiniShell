@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 16:37:58 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/25 09:30:45 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/29 10:21:32 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "../../include/executor/redirect/heredoc.h"
 #include "../../include/signal/signals.h"
 #include "../../include/utils/global_config.h"
-
-#define HDOC_MANAGER_ERR1 "heredoc_manager[HDOC_MANAGER_ERR1]"
 
 /**
  *

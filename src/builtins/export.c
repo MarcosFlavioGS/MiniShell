@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mflavio- <mflavio-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 20:54:51 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/26 21:39:32 by mflavio-         ###   ########.fr       */
+/*   Updated: 2023/09/29 09:56:31 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	ft_export(t_mini **mini, char **args, int fd)
 		{
 			if (validate_key(args[i]) == 1)
 			{
-				ft_printf(2, " not a valid identifier\n");
+				ft_printf(2, "minishell: export: `%s' not a valid identifier\n",
+					args[i]);
 				return (1);
 			}
 			env_add_value(&(*mini)->env, args[i]);

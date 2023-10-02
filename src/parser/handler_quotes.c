@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:07:16 by dmanoel-          #+#    #+#             */
-/*   Updated: 2023/09/05 11:31:43 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/09/30 17:31:26 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	get_quote_status(t_tok_type token_type, int quote_status)
  * 						of tokens.
  *
  * Return:
- * 	1 if there are open quotes
  * 	0 if there no are open quotes
+ * 	1 if are double quotes open
+ *  2 if are single quotes open
 */
 int	check_opened_quote(t_token *token_list)
 {
@@ -69,7 +70,7 @@ int	check_opened_quote(t_token *token_list)
 		status = get_quote_status(aux->type, status);
 		aux = list_token_get(token_list, ++count);
 	}
-	return (status != STATUS_DEFAULT);
+	return (status);
 }
 
 /**
