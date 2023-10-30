@@ -47,6 +47,7 @@ int	ft_cd(t_mini **mini, char **args, int fd)
 	char	*path;
 
 	(void) fd;
+	path = NULL;
 	if (args[1] && args[2])
 		return (arg_error());
 	if (args[1] == NULL)
@@ -65,7 +66,7 @@ int	ft_cd(t_mini **mini, char **args, int fd)
 		ft_putstr_fd(" ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd("\n", 2);
-		return (1);
+		return (free(path), 1);
 	}
-	return (0);
+	return (free(path), 0);
 }
