@@ -1,5 +1,9 @@
 # MiniShell
 
+<div align="center">
+  <img width=100% src="https://github.com/MarcosFlavioGS/MiniShell/assets/95108526/a98519d9-9fd9-432a-b4b4-4db6985668a9" alt="Capturar">
+</div>
+
 ### Table of Contents
 
 - Introdution
