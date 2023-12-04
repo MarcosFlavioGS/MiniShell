@@ -6,7 +6,7 @@
 /*   By: dmanoel- <dmanoel-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 20:23:33 by mflavio-          #+#    #+#             */
-/*   Updated: 2023/09/29 09:48:47 by dmanoel-         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:56:22 by dmanoel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_cd(t_mini **mini, char **args, int fd)
 		}
 	}
 	else
-		path = args[1];
+		path = ft_strdup(args[1]);
 	if (chdir(path) != 0)
 	{
 		ft_putstr_fd(" ", 2);
